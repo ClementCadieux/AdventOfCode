@@ -50,6 +50,22 @@ def buildPosDiag(lines):
     
     return diagGrid
 
+def buildNegDiag(lines):
+    diagGrid = []
+
+    startIdx = 0
+
+    for line in lines:
+        for i in range(len(line) - 1, -1, -1):
+            if startIdx + i == len(diagGrid):
+                diagGrid.append(line[i])
+            else:
+                diagGrid[startIdx + i] += line[i]
+        
+        startIdx += 1
+    
+    return diagGrid
+
 if __name__ == "__main__":
     lines = readFile("2024\\Day4\\test.txt")
 
@@ -60,4 +76,8 @@ if __name__ == "__main__":
     verticalTotal = findInLines(vertical)
 
     posDiag = buildPosDiag(lines)
+
+    posDiagTotal = findInLines(posDiag)
+
+
     
