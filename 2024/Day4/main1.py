@@ -23,4 +23,7 @@ def findInLines(lines):
 if __name__ == "__main__":
     lines = readFile("2024\\Day4\\test.txt")
 
+    horizontal = findInLines(lines)
+
+    
     
