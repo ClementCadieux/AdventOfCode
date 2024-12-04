@@ -67,7 +67,7 @@ def buildNegDiag(lines):
     return diagGrid
 
 if __name__ == "__main__":
-    lines = readFile("2024\\Day4\\test.txt")
+    lines = readFile("2024\\Day4\\input.txt")
 
     horizontalTotal = findInLines(lines)
 
