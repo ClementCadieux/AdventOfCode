@@ -45,6 +45,8 @@ def buildPosDiag(lines):
                 diagGrid.append(line[i])
             else:
                 diagGrid[startIdx + i] += line[i]
+        
+        startIdx += 1
     
     return diagGrid
 
@@ -57,5 +59,5 @@ if __name__ == "__main__":
 
     verticalTotal = findInLines(vertical)
 
-
+    posDiag = buildPosDiag(lines)
     
