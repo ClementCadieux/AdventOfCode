@@ -1,7 +1,7 @@
 import main1 as base
 
 if __name__ == "__main__":
-    lines = base.readFile("2024\\Day4\\test.txt")
+    lines = base.readFile("2024\\Day4\\input.txt")
 
     total = 0
 
