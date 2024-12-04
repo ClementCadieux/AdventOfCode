@@ -1,3 +1,5 @@
+import re
+
 def readFile(path):
     file = open(path, "r")
 
@@ -7,5 +9,8 @@ def readFile(path):
 
     return lines
 
+xmas = "XMAS"
+samx = "SAMX"
+
 if __name__ == "__main__":
-    readFile("2024\\Day4\\test.txt")
+    lines = readFile("2024\\Day4\\test.txt")
