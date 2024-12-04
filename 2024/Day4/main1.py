@@ -81,5 +81,9 @@ if __name__ == "__main__":
 
     negDiag = buildNegDiag(lines)
 
-    
+    negDiagTotal = findInLines(negDiag)
+
+    total = horizontalTotal + verticalTotal + posDiagTotal + negDiagTotal
+
+    print(total)
     
