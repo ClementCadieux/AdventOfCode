@@ -34,6 +34,20 @@ def buildVertical(lines):
             
     return verticalLines
 
+def buildPosDiag(lines):
+    diagGrid = []
+
+    startIdx = 0
+
+    for line in lines:
+        for i in range(len(line)):
+            if startIdx + i == len(diagGrid):
+                diagGrid.append(line[i])
+            else:
+                diagGrid[startIdx + i] += line[i]
+    
+    return diagGrid
+
 if __name__ == "__main__":
     lines = readFile("2024\\Day4\\test.txt")
 
@@ -42,4 +56,6 @@ if __name__ == "__main__":
     vertical = buildVertical(lines)
 
     verticalTotal = findInLines(vertical)
+
+
     
