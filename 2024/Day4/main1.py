@@ -12,5 +12,15 @@ def readFile(path):
 xmas = "XMAS"
 samx = "SAMX"
 
+def findInLines(lines):
+    total = 0
+    for line in lines:
+        total += len(re.findall(xmas, line))
+        total += len(re.findall(samx, line))
+    
+    return total
+
 if __name__ == "__main__":
     lines = readFile("2024\\Day4\\test.txt")
+
+    
