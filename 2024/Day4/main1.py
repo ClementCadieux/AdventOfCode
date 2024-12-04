@@ -56,11 +56,11 @@ def buildNegDiag(lines):
     startIdx = 0
 
     for line in lines:
-        for i in range(len(line) - 1, -1, -1):
+        for i in range(len(line)):
             if startIdx + i == len(diagGrid):
-                diagGrid.append(line[i])
+                diagGrid.append(line[len(line) - i - 1])
             else:
-                diagGrid[startIdx + i] += line[i]
+                diagGrid[startIdx + i] += line[len(line) - i - 1]
         
         startIdx += 1
     
@@ -79,5 +79,7 @@ if __name__ == "__main__":
 
     posDiagTotal = findInLines(posDiag)
 
+    negDiag = buildNegDiag(lines)
 
+    
     
