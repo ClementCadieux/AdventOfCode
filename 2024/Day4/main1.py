@@ -20,6 +20,20 @@ def findInLines(lines):
     
     return total
 
+def buildVertical(lines):
+    verticalLines = []
+
+    for i in range(len(lines)):
+        line = lines[i]
+
+        for j in range(len(line)):
+            if i == 0:
+                verticalLines.append(line[j])
+            else:
+                verticalLines[j] += line[i]
+            
+    return verticalLines
+
 if __name__ == "__main__":
     lines = readFile("2024\\Day4\\test.txt")
 
