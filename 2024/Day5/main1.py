@@ -46,6 +46,10 @@ def validatePrint(printLine, rules):
     
     return True
 
+def getMiddle(printLine):
+    middle = int(len(printLine) / 2)
+    return printLine[middle]
+
 if __name__ == "__main__":
     rules, prints = readFile("2024\\Day5\\input.txt")
 
@@ -53,7 +57,6 @@ if __name__ == "__main__":
 
     for printLine in prints:
         if validatePrint(printLine, rules):
-            middle = int(len(printLine) / 2)
-            total += printLine[middle]
+            total += getMiddle(printLine)
 
     print(total)
