@@ -3,6 +3,10 @@ import main1 as base
 def reorderLine(line, rules):
     befInLine = getBefInLine(line, rules)
 
+    line.sort(key=lambda x : befInLine[x])
+
+    return line
+
 def getBefInLine(line, rules):
     befInLine = {}
 
@@ -11,7 +15,7 @@ def getBefInLine(line, rules):
     for num in line:
         rule = rules[num]
 
-        befInLine[num] = {}
+        befInLine[num] = set()
 
         for n in rule:
             if n in inLine:
@@ -19,10 +23,15 @@ def getBefInLine(line, rules):
 
     return befInLine
 
-    
-
 if __name__ == "__main__":
     rules, prints = base.readFile("2024\\Day5\\test.txt")
 
     invalidLines = [line for line in prints if not base.validatePrint(line, rules)]
 
+    total = 0
+
+    for line in invalidLines:
+        orderedLine = reorderLine(line, rules)
+        total += base.getMiddle(orderedLine)
+
+    print(total)
