@@ -24,7 +24,7 @@ def getBefInLine(line, rules):
     return befInLine
 
 if __name__ == "__main__":
-    rules, prints = base.readFile("2024\\Day5\\test.txt")
+    rules, prints = base.readFile("2024\\Day5\\input.txt")
 
     invalidLines = [line for line in prints if not base.validatePrint(line, rules)]
 
