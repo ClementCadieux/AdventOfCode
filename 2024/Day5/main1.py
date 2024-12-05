@@ -47,7 +47,7 @@ def validatePrint(printLine, rules):
     return True
 
 if __name__ == "__main__":
-    rules, prints = readFile("2024\\Day5\\test.txt")
+    rules, prints = readFile("2024\\Day5\\input.txt")
 
     total = 0
 
