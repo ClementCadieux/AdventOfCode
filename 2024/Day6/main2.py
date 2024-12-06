@@ -60,6 +60,8 @@ def getTotal(getDirToLook, lines, corners):
                         elif lines[idx][j] == "#":
                             break
 
+    return total
+
 if __name__ == "__main__":
     lines = base.readFile("2024\\Day6\\test.txt")
 
@@ -71,7 +73,7 @@ if __name__ == "__main__":
 
     total = getTotal(getDirToLook, lines, corners)
     
-
+    print(total)
 
 
     
