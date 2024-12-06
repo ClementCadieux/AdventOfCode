@@ -7,3 +7,10 @@ def readFile(path):
 
     return lines
 
+def findGuard(lines):
+    for i in range(len(lines)):
+        for j in range(len(lines[i])):
+            if lines[i][j] == "^":
+                return (i,j)
+    
+    return None
