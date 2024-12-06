@@ -5,6 +5,4 @@ if __name__ == "__main__":
 
     i, j = base.findGuard(lines)
 
-    lines = base.processGuard
-
-    print(base.loopSpots)
+    
