@@ -77,7 +77,7 @@ def countX(lines):
     return total
 
 if __name__ == "__main__":
-    lines = readFile("2024\\Day6\\test.txt")
+    lines = readFile("2024\\Day6\\input.txt")
 
     i, j = findGuard(lines)
 
