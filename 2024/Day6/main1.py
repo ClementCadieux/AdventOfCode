@@ -70,21 +70,21 @@ def getDir(lines, inMap, i, j, dir):
     
     return (inMap, dir)
 
-def countX(lines):
+def countGuardPos(lines):
     total = 0
 
     for line in lines:
-        total += len(re.findall("X", line))
+        total += len(re.findall("[\\^><v]", line))
 
     return total
 
 if __name__ == "__main__":
-    lines = readFile("2024\\Day6\\input.txt")
+    lines = readFile("2024\\Day6\\test.txt")
 
     i, j = findGuard(lines)
 
     lines = processGuard(lines, i, j)
 
-    total = countX(lines)
+    total = countGuardPos(lines)
 
     print(total)
