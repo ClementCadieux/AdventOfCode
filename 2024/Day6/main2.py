@@ -1,6 +1,16 @@
 import main1 as base
 
+def backGuard(lines, i, j):
+    for idx in range(i + 1, len(lines)):
+        if lines[idx][j] == "#":
+            break
+        lines[idx] = lines[idx][:j] + "^" + lines[idx][j + 1:]
+
+    return lines
+
 def processGuard(lines, i, j):
+    loopSpots = 0
+
     inMap = True
 
     dir = 0
@@ -10,11 +20,26 @@ def processGuard(lines, i, j):
         inMap, dir = getDir(lines, inMap, i, j, dir)
         
         dirChar = "^" if dir == 0 else ">" if dir == 1 else "v" if dir == 2 else "<"
+
+        match dirChar:
+            case "^":
+                if lines[i][j] == ">":
+                    loopSpots += 1
+            case ">":
+                if lines[i][j] == "v":
+                    loopSpots += 1
+            case "v":
+                if lines[i][j] == "<":
+                    loopSpots += 1
+            case "<":
+                if lines[i][j] == "^":
+                    loopSpots += 1
+
         lines[i] = lines[i][:j] + dirChar + lines[i][j + 1:]
 
         if inMap:
             match dir:
-                case 0:
+                case 0:                    
                     i -= 1
                 case 1:
                     j += 1
@@ -23,7 +48,7 @@ def processGuard(lines, i, j):
                 case 3:
                     j -= 1
 
-    return lines
+    return lines, loopSpots
         
 def getDir(lines, inMap, i, j, dir):
     match dir:
@@ -76,12 +101,14 @@ def getDir(lines, inMap, i, j, dir):
     return (inMap, dir)
 
 if __name__ == "__main__":
-    lines = base.readFile("2024\\Day6\\test.txt")
+    lines = base.readFile("2024\\Day6\\input.txt")
 
     i, j = base.findGuard(lines)
 
-    lines = processGuard(lines, i, j)
+    lines = backGuard(lines, i, j)
 
+    lines, loopSpots = processGuard(lines, i, j)
 
+    print(loopSpots)
 
     
