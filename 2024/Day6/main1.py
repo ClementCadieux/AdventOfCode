@@ -23,9 +23,9 @@ def processGuard(lines, i, j):
     dir = 0
 
     while inMap:
-        lines[i][j] = "X"
+        lines[i] = lines[i][:j] + "X" + lines[i][j + 1:]
 
-        inMap, dir = getDir(lines, i, j, dir)
+        inMap, dir = getDir(lines, inMap, i, j, dir)
 
         if inMap:
             match dir:
@@ -37,8 +37,10 @@ def processGuard(lines, i, j):
                     i += 1
                 case 3:
                     j -= 1
+
+    return lines
         
-def getDir(lines, i, j, dir):
+def getDir(lines, inMap, i, j, dir):
     match dir:
         case 0:
             if i == 0:
@@ -70,6 +72,17 @@ def countX(lines):
     total = 0
 
     for line in lines:
-        total += re.findall("X", line)
+        total += len(re.findall("X", line))
 
     return total
+
+if __name__ == "__main__":
+    lines = readFile("2024\\Day6\\test.txt")
+
+    i, j = findGuard(lines)
+
+    lines = processGuard(lines, i, j)
+
+    total = countX(lines)
+
+    print(total)
