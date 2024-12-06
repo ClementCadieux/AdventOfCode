@@ -3,7 +3,7 @@ import copy
 
 total = 0
 
-def processGuard(lines, i, j, dir):
+def processGuard(lines, i, j, dir, obstacle):
     inMap = True
 
     while inMap:
@@ -35,25 +35,25 @@ def obstacleInFront(lines, i, j, dirChar):
             if i != 0:
                 linesCopy[i - 1] = linesCopy[i - 1][:j] + "#" + linesCopy[i - 1][j + 1:]
 
-                processGuard(linesCopy, i, j, 0)
+                processGuard(linesCopy, i, j, 0, True)
         
         case ">":
             if j != len(lines[i]) - 1:                
                 linesCopy[i] = linesCopy[i][:j + 1] + "#" + linesCopy[i][j + 2:]
 
-                processGuard(linesCopy, i, j, 1)
+                processGuard(linesCopy, i, j, 1, True)
         
         case "v":
             if i != len(lines) - 1:
                 linesCopy[i + 1] = linesCopy[i + 1][:j] + "#" + linesCopy[i + 1][j + 1:]
 
-                processGuard(linesCopy, i, j, 2)
+                processGuard(linesCopy, i, j, 2, True)
 
         case "<":
             if j != 0:            
                 linesCopy[i] = linesCopy[i][:j - 1] + "#" + linesCopy[i][j:]
 
-                processGuard(linesCopy, i, j, 3)
+                processGuard(linesCopy, i, j, 3, True)
             
     
 
@@ -62,6 +62,6 @@ if __name__ == "__main__":
 
     i, j = base.findGuard(lines)
 
-    lines = processGuard(lines, i, j)
+    lines = processGuard(lines, i, j, 0, False)
 
     print(total)
