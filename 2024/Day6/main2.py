@@ -31,24 +31,46 @@ def getDir(lines, inMap, i, j, dir):
                 inMap = False
             elif lines[i-1][j] == "#":
                 dir += 1
+
+                for idx in range(j, -1, -1):
+                    if lines[i][idx] == "#":
+                        break
+                    lines[i] = lines[i][:idx] + ">" + lines[i][idx + 1:]
+
             
         case 1:
             if j == len(lines[0]) - 1:
                 inMap = False
             elif lines[i][j + 1] == "#":
                 dir += 1
+
+                for idx in range(i, -1, -1):
+                    if lines[idx][j] == "#":
+                        break
+                    lines[idx] = lines[idx][:j] + "v" + lines[idx][j + 1:]
                 
         case 2:
             if i == len(lines) - 1:
                 inMap = False
             elif lines[i + 1][j] == "#":
                 dir += 1
+
+                for idx in range(j, len(lines[i])):
+                    if lines[i][idx] == "#":
+                        break
+                    lines[i] = lines[i][:idx] + "<" + lines[i][idx + 1:]
             
         case 3:
             if j == 0:
                 inMap = False
             elif lines[i][j - 1] == "#":
                 dir = 0
+
+                for idx in range(i, len(lines)):
+                    if lines[idx][j] == "#":
+                        break
+                    lines[idx] = lines[idx][:j] + "^" + lines[idx][j + 1:]
+
     
     return (inMap, dir)
 
