@@ -23,9 +23,11 @@ def processGuard(lines, i, j):
     dir = 0
 
     while inMap:
-        lines[i] = lines[i][:j] + "X" + lines[i][j + 1:]
 
         inMap, dir = getDir(lines, inMap, i, j, dir)
+        
+        dirChar = "^" if dir == 0 else ">" if dir == 1 else "v" if dir == 2 else "<"
+        lines[i] = lines[i][:j] + dirChar + lines[i][j + 1:]
 
         if inMap:
             match dir:
