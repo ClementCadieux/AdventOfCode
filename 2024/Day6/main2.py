@@ -4,3 +4,7 @@ if __name__ == "__main__":
     lines = base.readFile("2024\\Day6\\test.txt")
 
     i, j = base.findGuard(lines)
+
+    lines = base.processGuard
+
+    print(base.loopSpots)
