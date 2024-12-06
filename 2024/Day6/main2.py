@@ -101,7 +101,7 @@ def getDir(lines, inMap, i, j, dir):
     return (inMap, dir)
 
 if __name__ == "__main__":
-    lines = base.readFile("2024\\Day6\\input.txt")
+    lines = base.readFile("2024\\Day6\\test2.txt")
 
     i, j = base.findGuard(lines)
 
