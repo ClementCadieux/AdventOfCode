@@ -23,10 +23,22 @@ def processGuard(lines, i, j):
     while inMap:
         lines[i][j] = "X"
 
-        getDir(lines, i, j, dir)
+        inMap, dir = getDir(lines, i, j, dir)
+
+        if inMap:
+            match dir:
+                case 0:
+                    i -= 1
+                case 1:
+                    j += 1
+                case 2:
+                    i += 1
+                case 3:
+                    j -= 1
+        
 
 def getDir(lines, i, j, dir):
-    match(dir):
+    match dir:
         case 0:
             if i == 0:
                 inMap = False
