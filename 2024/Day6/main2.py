@@ -14,6 +14,7 @@ def processGuard(lines, i, j, dir, obstacle, tilesByDir):
 
         if (i,j) in tilesByDir[dir]:
             total.add((i, j))
+            print(len(total))
             return
 
         dirChar = "^" if dir == 0 else ">" if dir == 1 else "v" if dir == 2 else "<"
@@ -65,7 +66,7 @@ def obstacleInFront(lines, i, j, dir, tilesByDir):
     
 
 if __name__ == "__main__":
-    lines = base.readFile("2024\\Day6\\test.txt")
+    lines = base.readFile("2024\\Day6\\input.txt")
 
     i, j = base.findGuard(lines)
 

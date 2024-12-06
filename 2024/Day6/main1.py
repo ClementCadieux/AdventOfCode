@@ -63,7 +63,7 @@ def getDir(lines, inMap, i, j, dir):
                 dir += 1
             
         case 3:
-            if j == 0:
+            if j <= 0:
                 inMap = False
             elif lines[i][j - 1] == "#":
                 dir = 0
