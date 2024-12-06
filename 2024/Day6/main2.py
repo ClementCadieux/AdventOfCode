@@ -23,7 +23,7 @@ def processGuard(lines, i, j, dir, obstacle, tilesByDir):
         
         tilesByDir[dir].append((i, j))
 
-        if not obstacle and (i, j) not in total:
+        if not obstacle:
             obstacleInFront(lines, i, j, dir, tilesByDir) 
 
         if inMap:
