@@ -5,10 +5,17 @@ def getDirToLook(lines, corner):
 
     dirAtCorner = lines[i][j]
 
-    iBef = i - 1 if dirAtCorner == "<" else i + 1 if dirAtCorner == ">" else i
-    jBef = j - 1 if dirAtCorner == "v" else j + 1 if dirAtCorner == "^" else j
+    dirToLook = ""
 
-    dirToLook = lines[iBef][jBef]
+    match dirAtCorner:
+        case "v":
+            dirToLook = ">"
+        case ">":
+            dirToLook = "^"
+        case "^":
+            dirToLook = "<"
+        case "<":
+            dirToLook = "v"
 
     return dirToLook
 
@@ -22,7 +29,9 @@ if __name__ == "__main__":
     corners = base.corners
 
     for corner in corners:
-        getDirToLook(lines, corner)
+        dirToLook = getDirToLook(lines, corner)
+
+
 
     
 
