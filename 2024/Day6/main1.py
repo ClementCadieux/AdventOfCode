@@ -49,28 +49,24 @@ def getDir(lines, inMap, i, j, dir):
                 inMap = False
             elif lines[i-1][j] == "#":
                 dir += 1
-                corners.append((i,j))
             
         case 1:
             if j == len(lines[0]) - 1:
                 inMap = False
             elif lines[i][j + 1] == "#":
                 dir += 1
-                corners.append((i,j))
                 
         case 2:
             if i == len(lines) - 1:
                 inMap = False
             elif lines[i + 1][j] == "#":
                 dir += 1
-                corners.append((i,j))
             
         case 3:
             if j == 0:
                 inMap = False
             elif lines[i][j - 1] == "#":
                 dir = 0
-                corners.append((i,j))
     
     return (inMap, dir)
 
@@ -81,8 +77,6 @@ def countGuardPos(lines):
         total += len(re.findall("[\\^><v]", line))
 
     return total
-
-corners = []
 
 if __name__ == "__main__":
     lines = readFile("2024\\Day6\\test.txt")
