@@ -1,3 +1,5 @@
+import re
+
 def readFile(path):
     file = open(path, "r")
 
@@ -36,7 +38,6 @@ def processGuard(lines, i, j):
                 case 3:
                     j -= 1
         
-
 def getDir(lines, i, j, dir):
     match dir:
         case 0:
@@ -64,3 +65,11 @@ def getDir(lines, i, j, dir):
                 dir = 0
     
     return (inMap, dir)
+
+def countX(lines):
+    total = 0
+
+    for line in lines:
+        total += re.findall("X", line)
+
+    return total
