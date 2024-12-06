@@ -1,7 +1,5 @@
 import main1 as base
 
-corners = []
-
 def processGuard(lines, i, j):
     inMap = True
 
@@ -35,8 +33,6 @@ def getDir(lines, inMap, i, j, dir):
             elif lines[i-1][j] == "#":
                 dir += 1
 
-                corners.append((i, j))
-
                 for idx in range(j, -1, -1):
                     if lines[i][idx] == "#":
                         break
@@ -49,8 +45,6 @@ def getDir(lines, inMap, i, j, dir):
             elif lines[i][j + 1] == "#":
                 dir += 1
 
-                corners.append((i, j))
-
                 for idx in range(i, -1, -1):
                     if lines[idx][j] == "#":
                         break
@@ -62,8 +56,6 @@ def getDir(lines, inMap, i, j, dir):
             elif lines[i + 1][j] == "#":
                 dir += 1
 
-                corners.append((i, j))
-
                 for idx in range(j, len(lines[i])):
                     if lines[i][idx] == "#":
                         break
@@ -74,8 +66,6 @@ def getDir(lines, inMap, i, j, dir):
                 inMap = False
             elif lines[i][j - 1] == "#":
                 dir = 0
-
-                corners.append((i, j))
 
                 for idx in range(i, len(lines)):
                     if lines[idx][j] == "#":
