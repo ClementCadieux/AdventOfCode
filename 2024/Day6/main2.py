@@ -2,20 +2,24 @@ import main1 as base
 import copy
 
 total = set()
+orig = ()
 
 def processGuard(lines, i, j, dir, obstacle, tilesByDir):
-    global total
+    global orig
 
     inMap = True
 
     while inMap:
+        changed = True
+        while changed:
+            inMap, newDir = base.getDir(lines, inMap, i, j, dir)
+            if dir != newDir:
+                dir = newDir
+            else:
+                changed = False      
 
-        inMap, dir = base.getDir(lines, inMap, i, j, dir)
-
-        if (i,j) in tilesByDir[dir]:
-            total.add((i, j))
-            print(len(total))
-            return
+        if (i,j) in tilesByDir[dir] and obstacle:
+            return lines, True
 
         dirChar = "^" if dir == 0 else ">" if dir == 1 else "v" if dir == 2 else "<"
 
@@ -23,7 +27,7 @@ def processGuard(lines, i, j, dir, obstacle, tilesByDir):
         
         tilesByDir[dir].append((i, j))
 
-        if not obstacle:
+        if not obstacle and (i, j) != orig:
             obstacleInFront(lines, i, j, dir, tilesByDir) 
 
         if inMap:
@@ -37,41 +41,57 @@ def processGuard(lines, i, j, dir, obstacle, tilesByDir):
                 case 3:
                     j -= 1
 
-    return lines
+    return lines, False
         
 def obstacleInFront(lines, i, j, dir, tilesByDir):
+    global total
     linesCopy = copy.deepcopy(lines)
     tilesByDirCopy = copy.deepcopy(tilesByDir)
+
+    trap = ()
 
     match dir:
         case 0:
             if i != 0:
                 linesCopy[i - 1] = linesCopy[i - 1][:j] + "#" + linesCopy[i - 1][j + 1:]
+
+                trap = (i - 1, j)
         
         case 1:
             if j != len(lines[i]) - 1:                
                 linesCopy[i] = linesCopy[i][:j + 1] + "#" + linesCopy[i][j + 2:]
+
+                trap = (i, j + 1)
         
         case 2:
             if i != len(lines) - 1:
                 linesCopy[i + 1] = linesCopy[i + 1][:j] + "#" + linesCopy[i + 1][j + 1:]
 
+                trap = (i + 1, j)
+
         case 3:
             if j != 0:            
                 linesCopy[i] = linesCopy[i][:j - 1] + "#" + linesCopy[i][j:]
+
+                trap = (i, j - 1)
     
     
-    processGuard(linesCopy, i, j, dir, True, tilesByDirCopy)
+    lines, foundLoop = processGuard(linesCopy, i, j, dir, True, tilesByDirCopy)
+
+    if foundLoop and trap != ():
+        total.add(trap)
+        print(len(total))
             
     
 
 if __name__ == "__main__":
     lines = base.readFile("2024\\Day6\\input.txt")
 
-    i, j = base.findGuard(lines)
+    orig = base.findGuard(lines)
 
     tilesByDir = [[] for x in range(4)]
 
-    lines = processGuard(lines, i, j, 0, False, tilesByDir)
+    lines = processGuard(lines, orig[0], orig[1], 0, False, tilesByDir)
 
     print(len(total))
+    print(total)
