@@ -34,9 +34,6 @@ def isValid(total, curr, currInd, vals):
     if curr > total:
         return False
     
-    if curr == total:
-        return False
-    
     mulRes = isValid(total, curr * vals[currInd], currInd + 1, vals)
 
     if mulRes:
@@ -45,7 +42,7 @@ def isValid(total, curr, currInd, vals):
     return isValid(total, curr + vals[currInd], currInd + 1, vals)
 
 if __name__ == "__main__":
-    lines = readFile("2024\\Day7\\test.txt")
+    lines = readFile("2024\\Day7\\input.txt")
 
     total = 0
 
@@ -54,7 +51,8 @@ if __name__ == "__main__":
         intKey = int(key)
 
         if isValid(intKey, vals[0], 1, vals):
-            print(intKey)
             total += intKey
+        else:
+            print(intKey)
 
     print(total)
