@@ -2,19 +2,25 @@ import main1 as base
 import copy
 
 total = set()
-orig = ()
+firstTurn = False
+firstLine = []
 
 def processGuard(lines, i, j, dir, obstacle, tilesByDir):
-    global orig
-
+    global firstTurn
+    global firstLine
     inMap = True
 
     while inMap:
+        if not firstTurn:
+            firstLine.append((i,j))
+
         changed = True
+
         while changed:
             inMap, newDir = base.getDir(lines, inMap, i, j, dir)
             if dir != newDir:
                 dir = newDir
+                firstTurn = True
             else:
                 changed = False      
 
@@ -27,7 +33,7 @@ def processGuard(lines, i, j, dir, obstacle, tilesByDir):
         
         tilesByDir[dir].append((i, j))
 
-        if not obstacle and (i, j) != orig:
+        if not obstacle and firstTurn:
             obstacleInFront(lines, i, j, dir, tilesByDir) 
 
         if inMap:
@@ -45,6 +51,7 @@ def processGuard(lines, i, j, dir, obstacle, tilesByDir):
         
 def obstacleInFront(lines, i, j, dir, tilesByDir):
     global total
+    global firstLine
     linesCopy = copy.deepcopy(lines)
     tilesByDirCopy = copy.deepcopy(tilesByDir)
 
@@ -75,8 +82,9 @@ def obstacleInFront(lines, i, j, dir, tilesByDir):
 
                 trap = (i, j - 1)
     
-    
-    lines, foundLoop = processGuard(linesCopy, i, j, dir, True, tilesByDirCopy)
+    foundLoop = False
+    if trap not in firstLine:
+        lines, foundLoop = processGuard(linesCopy, i, j, dir, True, tilesByDirCopy)
 
     if foundLoop and trap != ():
         total.add(trap)
@@ -85,7 +93,7 @@ def obstacleInFront(lines, i, j, dir, tilesByDir):
     
 
 if __name__ == "__main__":
-    lines = base.readFile("2024\\Day6\\input.txt")
+    lines = base.readFile("2024\\Day6\\test5")
 
     orig = base.findGuard(lines)
 
