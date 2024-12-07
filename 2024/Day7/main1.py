@@ -52,7 +52,5 @@ if __name__ == "__main__":
 
         if isValid(intKey, vals[0], 1, vals):
             total += intKey
-        else:
-            print(intKey)
 
     print(total)
