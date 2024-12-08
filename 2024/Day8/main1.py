@@ -22,3 +22,10 @@ def getAntennaLocations(lines):
                 antennaLocations[tile].append((i, j))
     
     return antennaLocations
+
+if __name__ == "__main__":
+    lines = readFile("2024\\Day8\\test.txt")
+
+    antennaLocations = getAntennaLocations(lines)
+
+    
