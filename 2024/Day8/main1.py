@@ -56,7 +56,7 @@ def countAntinodes(lines):
     return total
 
 if __name__ == "__main__":
-    lines = readFile("2024\\Day8\\test.txt")
+    lines = readFile("2024\\Day8\\input.txt")
 
     antennaLocations = getAntennaLocations(lines)
 
