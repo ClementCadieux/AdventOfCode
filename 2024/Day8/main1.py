@@ -45,10 +45,24 @@ def getAntinodes(lines, locations):
         
     return lines
             
-            
+def countAntinodes(lines):
+    total = 0
+
+    for line in lines:
+        for tile in line:
+            if tile == "#":
+                total += 1
+    
+    return total
 
 if __name__ == "__main__":
     lines = readFile("2024\\Day8\\test.txt")
 
     antennaLocations = getAntennaLocations(lines)
 
+    for antenna in antennaLocations:
+        lines = getAntinodes(lines, antennaLocations[antenna])
+    
+    total = countAntinodes(lines)
+
+    print(total)
