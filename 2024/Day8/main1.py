@@ -33,15 +33,15 @@ def getAntinodes(lines, locations):
             xDiff = currLocation[0] - nextLocation[0]
             yDiff = currLocation[1] - nextLocation[1]
 
-            antinodeSpot1 = (currLocation[0] - xDiff, currLocation[1] - yDiff)
+            antinodeSpot1 = (currLocation[0] + xDiff, currLocation[1] + yDiff)
 
-            antinodeSpot2 = (nextLocation[0] + xDiff, nextLocation[1] + yDiff)
+            antinodeSpot2 = (nextLocation[0] - xDiff, nextLocation[1] - yDiff)
 
             if antinodeSpot1[0] >= 0 and antinodeSpot1[0] < len(lines) and antinodeSpot1[1] >= 0 and antinodeSpot1[1] < len(lines[0]):
-                lines[antinodeSpot1[0]][antinodeSpot1[1]] = "#"
+                lines[antinodeSpot1[0]] = lines[antinodeSpot1[0]][:antinodeSpot1[1]] + "#" + lines[antinodeSpot1[0]][antinodeSpot1[1] + 1:]
             
             if antinodeSpot2[0] >= 0 and antinodeSpot2[0] < len(lines) and antinodeSpot2[1] >= 0 and antinodeSpot2[1] < len(lines[0]):
-                lines[antinodeSpot2[0]][antinodeSpot2[1]] = "#"
+                lines[antinodeSpot2[0]] = lines[antinodeSpot2[0]][:antinodeSpot2[1]] + "#" + lines[antinodeSpot2[0]][antinodeSpot2[1] + 1:]
         
     return lines
             
