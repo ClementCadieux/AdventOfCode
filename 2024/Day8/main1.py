@@ -23,9 +23,32 @@ def getAntennaLocations(lines):
     
     return antennaLocations
 
+def getAntinodes(lines, locations):
+    for i in range(len(locations) - 1):
+        currLocation = locations[i]
+
+        for j in range(i + 1, len(locations)):
+            nextLocation = locations[j]
+
+            xDiff = currLocation[0] - nextLocation[0]
+            yDiff = currLocation[1] - nextLocation[1]
+
+            antinodeSpot1 = (currLocation[0] - xDiff, currLocation[1] - yDiff)
+
+            antinodeSpot2 = (nextLocation[0] + xDiff, nextLocation[1] + yDiff)
+
+            if antinodeSpot1[0] >= 0 and antinodeSpot1[0] < len(lines) and antinodeSpot1[1] >= 0 and antinodeSpot1[1] < len(lines[0]):
+                lines[antinodeSpot1[0]][antinodeSpot1[1]] = "#"
+            
+            if antinodeSpot2[0] >= 0 and antinodeSpot2[0] < len(lines) and antinodeSpot2[1] >= 0 and antinodeSpot2[1] < len(lines[0]):
+                lines[antinodeSpot2[0]][antinodeSpot2[1]] = "#"
+        
+    return lines
+            
+            
+
 if __name__ == "__main__":
     lines = readFile("2024\\Day8\\test.txt")
 
     antennaLocations = getAntennaLocations(lines)
 
-    
