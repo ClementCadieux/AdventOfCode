@@ -17,5 +17,22 @@ def genMap(line):
 
     return lineMap
 
+def compact(lineMap):
+    right = len(lineMap) - 1
+    left = 0
+
+    while left < right:
+        while left < right and lineMap[left] != ".":
+            left += 1
+        
+        while right > left and lineMap[right] == ".":
+            right -= 1
+
+        if left != right:
+            lineMap[left] = lineMap[right]
+            lineMap[right] = "."
+
+    return lineMap    
+
 if __name__ == "__main__":
     print("")
