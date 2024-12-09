@@ -1,7 +1,9 @@
 import main1 as base
 
 def compact(fileMetaDatas, emptyLengths):
-    return None
+    
+    
+    return fileMetaDatas
 
 def genLineInfo(line):
     emptyLengths = []
@@ -23,14 +25,19 @@ def genLineInfo(line):
     
     return fileMetaDatas, emptyLengths
 
+def genLine(lineMetadatas, emptyLengths):
+    return None
+
 if __name__ == "__main__":
     line = base.readFile("2024\\Day9\\test.txt")
 
     fileMetaDatas, emptyLengths = genLineInfo(line)
 
-    resLine = compact(fileMetaDatas, emptyLengths, totalLength)
+    fileMetaDatas = compact(fileMetaDatas, emptyLengths)
 
-    print(resLine)
+    fileMetaDatas.sort(lambda x : x[0])
+
+    resLine = genLine(fileMetaDatas, emptyLengths)
 
     total = base.checkSum(resLine)
 
