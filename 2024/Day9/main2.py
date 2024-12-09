@@ -1,2 +1,3 @@
-def compact(lineMap):
-    return None
+def compact(lineMap, filesByLength):
+    for length in filesByLength:
+        filesByLength[length].sort()
