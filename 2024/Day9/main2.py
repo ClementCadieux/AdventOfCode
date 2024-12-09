@@ -45,7 +45,28 @@ def genLineInfo(line):
     return fileMetaDatas, emptyLengths
 
 def genLine(lineMetadatas, emptyLengths):
-    return None
+    resLine = []
+
+    fileIndex = 0
+    emptyIndex = 0
+
+    while fileIndex < len(lineMetadatas):
+        currIndex = len(resLine)
+
+        currFile = fileMetaDatas[fileIndex]
+
+        if currFile[0] == currIndex:
+            for i in range(currFile[1]):
+                resLine.append(currFile[2])
+            fileIndex += 1
+        else: 
+            if emptyIndex < len(emptyLengths):           
+                currEmpty = emptyLengths[emptyIndex]
+                for i in range(currEmpty[1]):
+                    resLine.append(0)
+                emptyIndex += 1
+    
+    return resLine
 
 if __name__ == "__main__":
     line = base.readFile("2024\\Day9\\test.txt")
@@ -55,11 +76,10 @@ if __name__ == "__main__":
     fileMetaDatas, emptyLengths = compact(fileMetaDatas, emptyLengths)
 
     fileMetaDatas.sort(key=lambda x : x[0])
+    emptyLengths = [emptyLength for emptyLength in emptyLengths if emptyLength[1] != 0]
 
-    print(fileMetaDatas)
+    resLine = genLine(fileMetaDatas, emptyLengths)
 
-    # resLine = genLine(fileMetaDatas, emptyLengths)
+    total = base.checkSum(resLine)
 
-    # total = base.checkSum(resLine)
-
-    # print(total)
+    print(total)
