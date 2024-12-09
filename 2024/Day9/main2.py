@@ -51,7 +51,6 @@ def genLine(lineMetadatas, emptyLengths):
 
     fileIndex = 0
     emptyIndex = 0
-
     while fileIndex < len(lineMetadatas):
         currIndex = len(resLine)
 
@@ -71,7 +70,7 @@ def genLine(lineMetadatas, emptyLengths):
     return resLine
 
 if __name__ == "__main__":
-    line = base.readFile("2024\\Day9\\test.txt")
+    line = base.readFile("2024\\Day9\\input.txt")
 
     fileMetaDatas, emptyLengths = genLineInfo(line)
 
