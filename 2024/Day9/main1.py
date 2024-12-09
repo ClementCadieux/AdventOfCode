@@ -7,23 +7,16 @@ def readFile(path):
 
 def genMap(line):
     lineMap = []
-    filesByLength = {}
-
+    
     for i in range(len(line)):
         charToAdd = str(int(i / 2)) if i % 2 == 0 else "."
 
         length = int(line[i])
 
-        if charToAdd != ".":
-            if length  not in filesByLength:
-                filesByLength[length] = []
-
-            filesByLength[length].append(charToAdd)
-
         for j in range(length):
             lineMap.append(charToAdd)
 
-    return lineMap, filesByLength
+    return lineMap
 
 def compact(lineMap):
     right = len(lineMap) - 1
@@ -46,19 +39,17 @@ def checkSum(lineMap):
     total = 0
 
     for i in range(len(lineMap)):
-        if lineMap[i] == ".":
-            break
+        if lineMap[i] != ".":
+            val = int(lineMap[i])
 
-        val = int(lineMap[i])
-
-        total += val * i
+            total += val * i
 
     return total
 
 if __name__ == "__main__":
     line = readFile("2024\\Day9\\input.txt")
 
-    lineMap, filesByLength = genMap(line)
+    lineMap = genMap(line)
 
     lineMap = compact(lineMap)
 
