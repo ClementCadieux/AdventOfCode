@@ -3,39 +3,7 @@ import main1 as base
 def compact(fileMetaDatas, emptyLengths, totalLength):
     resLine = []
 
-    leftFileIndex = 0
-    rightFileIndex = len(fileMetaDatas) - 1
-    emptyIndex = 0
-
-    while leftFileIndex <= rightFileIndex:
-        currIndex = len(resLine)
-
-        leftFile = fileMetaDatas[leftFileIndex]
-        rightFile = fileMetaDatas[rightFileIndex]
-        nextEmpty = None if emptyIndex == len(emptyLengths) else emptyLengths[emptyIndex]
-
-        if currIndex == leftFile[0]:
-            for i in range(leftFile[1]):
-                resLine.append(leftFileIndex)
-            leftFileIndex += 1
-        else:
-            emptyLength = nextEmpty[1]
-
-            while rightFile[1] > emptyLength and rightFileIndex > leftFileIndex:
-                rightFileIndex -= 1
-                rightFile = fileMetaDatas[rightFileIndex]
-
-            while rightFile[1] <= emptyLength:
-                for i in range(rightFile[1]):
-                    resLine.append(rightFileIndex)
-                rightFileIndex -= 1
-                emptyLength -= rightFile[1]
-                rightFile = fileMetaDatas[rightFileIndex]
-
-            for i in range(emptyLength):
-                resLine.append(0)
-            
-            emptyIndex += 1
+    
 
     return resLine
 
