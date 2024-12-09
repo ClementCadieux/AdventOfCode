@@ -8,11 +8,17 @@ def compact(fileMetaDatas, emptyLengths):
 
         emptyIdx = 0
 
-        while emptyIdx < len(emptyLengths) and emptyLengths[emptyIdx][0] <= file[0]:
+        while emptyIdx < len(emptyLengths) and emptyLengths[emptyIdx][0] < file[0]:
             empty = emptyLengths[emptyIdx]
 
-            if empty[1] <= file[1]:
-                print("yo")
+            if empty[1] >= file[1]:
+                fileMetaDatas[fileIndex] = (empty[0], file[1], file[2])
+                emptyLengths[emptyIdx] = (empty[0] + file[1], empty[1] - file[1])
+                if empty[1] == 0:
+                    del emptyLengths[emptyIdx]
+                break
+            else:
+                emptyIdx += 1
 
         fileIndex -= 1
     
@@ -48,10 +54,12 @@ if __name__ == "__main__":
 
     fileMetaDatas, emptyLengths = compact(fileMetaDatas, emptyLengths)
 
-    fileMetaDatas.sort(lambda x : x[0])
+    fileMetaDatas.sort(key=lambda x : x[0])
 
-    resLine = genLine(fileMetaDatas, emptyLengths)
+    print(fileMetaDatas)
 
-    total = base.checkSum(resLine)
+    # resLine = genLine(fileMetaDatas, emptyLengths)
 
-    print(total)
+    # total = base.checkSum(resLine)
+
+    # print(total)
