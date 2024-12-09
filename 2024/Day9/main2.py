@@ -1,9 +1,22 @@
 import main1 as base
 
 def compact(fileMetaDatas, emptyLengths):
+    fileIndex = len(fileMetaDatas) - 1
+
+    while fileIndex >= 0:
+        file = fileMetaDatas[fileIndex]
+
+        emptyIdx = 0
+
+        while emptyIdx < len(emptyLengths) and emptyLengths[emptyIdx][0] <= file[0]:
+            empty = emptyLengths[emptyIdx]
+
+            if empty[1] <= file[1]:
+                print("yo")
+
+        fileIndex -= 1
     
-    
-    return fileMetaDatas
+    return fileMetaDatas, emptyLengths
 
 def genLineInfo(line):
     emptyLengths = []
@@ -33,7 +46,7 @@ if __name__ == "__main__":
 
     fileMetaDatas, emptyLengths = genLineInfo(line)
 
-    fileMetaDatas = compact(fileMetaDatas, emptyLengths)
+    fileMetaDatas, emptyLengths = compact(fileMetaDatas, emptyLengths)
 
     fileMetaDatas.sort(lambda x : x[0])
 
