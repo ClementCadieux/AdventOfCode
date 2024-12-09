@@ -3,7 +3,7 @@ def compact(lineMap):
 
 def genLineInfo(line):
     emptyLengths = []
-    fileMetaDatas = {}
+    fileMetaDatas = []
 
     currIndex = 0
 
@@ -15,7 +15,7 @@ def genLineInfo(line):
         if charId == ".":
             emptyLengths.append((currIndex, length))
         else:
-            fileMetaDatas[charId] = (length, currIndex)
+            fileMetaDatas.append((length, currIndex))
 
         currIndex += length
     
