@@ -3,7 +3,7 @@ import main1 as base
 def compact(fileMetaDatas, emptyLengths, totalLength):
     resLine = []
 
-    
+
 
     return resLine
 
@@ -16,12 +16,12 @@ def genLineInfo(line):
     for i in range(len(line)):
         length = int(line[i])
 
-        charId = str(int(i / 2)) if i % 2 == 0 else "."
+        charId = int(i / 2) if i % 2 == 0 else "."
 
         if charId == ".":
             emptyLengths.append((currIndex, length))
         else:
-            fileMetaDatas.append((currIndex, length))
+            fileMetaDatas.append((currIndex, length, charId))
 
         currIndex += length
     
