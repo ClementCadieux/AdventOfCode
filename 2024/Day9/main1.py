@@ -34,6 +34,19 @@ def compact(lineMap):
 
     return lineMap    
 
+def checkSum(lineMap):
+    total = 0
+
+    for i in range(len(lineMap)):
+        if lineMap[i] == ".":
+            break
+
+        val = int(lineMap[i])
+
+        total += val * i
+
+    return total
+
 if __name__ == "__main__":
     line = readFile("2024\\Day9\\test2.txt")
 
@@ -41,4 +54,6 @@ if __name__ == "__main__":
 
     lineMap = compact(lineMap)
 
-    print(lineMap)
+    total = checkSum(lineMap)
+
+    print(total)
