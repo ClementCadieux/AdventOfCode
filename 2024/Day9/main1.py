@@ -6,14 +6,14 @@ def readFile(path):
     return line
 
 def genMap(line):
-    lineMap = ""
+    lineMap = []
     for i in range(len(line)):
         charToAdd = str(int(i / 2)) if i % 2 == 0 else "."
 
         length = int(line[i])
 
         for j in range(length):
-            lineMap += charToAdd
+            lineMap.append(charToAdd)
 
     return lineMap
 
