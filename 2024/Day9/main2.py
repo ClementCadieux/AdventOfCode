@@ -3,7 +3,18 @@ import main1 as base
 def compact(fileMetaDatas, emptyLengths, totalLength):
     resLine = []
 
-    
+    leftFileIndex = 0
+    rightFileIndex = len(fileMetaDatas) - 1
+    emptyIndex = 0
+
+    while leftFileIndex < rightFileIndex:
+        currIndex = len(resLine)
+
+        leftFile = fileMetaDatas[leftFileIndex]
+        rightFile = fileMetaDatas[rightFileIndex]
+        nextEmpty = emptyLengths[emptyIndex]
+
+        if currIndex == leftFile[0]
 
     return resLine
 
@@ -21,7 +32,7 @@ def genLineInfo(line):
         if charId == ".":
             emptyLengths.append((currIndex, length))
         else:
-            fileMetaDatas.append((length, currIndex))
+            fileMetaDatas.append((currIndex, length))
 
         currIndex += length
     
