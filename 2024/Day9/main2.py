@@ -1,4 +1,6 @@
-def compact(lineMap):
+import main1 as base
+
+def compact(fileMetaDatas, emptyLengths):
     return None
 
 def genLineInfo(line):
@@ -19,4 +21,9 @@ def genLineInfo(line):
 
         currIndex += length
     
-    return fileMetaDatas, emptyLengths
+    return fileMetaDatas, emptyLengths, currIndex
+
+if __name__ == "__main__":
+    line = base.readFile("2024\\Day9\\test2.txt")
+
+    fileMetaDatas, emptyLengths, totalLength = genLineInfo(line)
