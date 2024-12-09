@@ -35,4 +35,10 @@ def compact(lineMap):
     return lineMap    
 
 if __name__ == "__main__":
-    print("")
+    line = readFile("2024\\Day9\\test2.txt")
+
+    lineMap = genMap(line)
+
+    lineMap = compact(lineMap)
+
+    print(lineMap)
