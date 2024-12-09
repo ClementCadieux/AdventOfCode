@@ -48,7 +48,7 @@ def checkSum(lineMap):
     return total
 
 if __name__ == "__main__":
-    line = readFile("2024\\Day9\\test2.txt")
+    line = readFile("2024\\Day9\\input.txt")
 
     lineMap = genMap(line)
 
