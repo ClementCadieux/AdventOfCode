@@ -1,11 +1,7 @@
 import main1 as base
 
-def compact(fileMetaDatas, emptyLengths, totalLength):
-    resLine = []
-
-
-
-    return resLine
+def compact(fileMetaDatas, emptyLengths):
+    return None
 
 def genLineInfo(line):
     emptyLengths = []
@@ -25,12 +21,12 @@ def genLineInfo(line):
 
         currIndex += length
     
-    return fileMetaDatas, emptyLengths, currIndex
+    return fileMetaDatas, emptyLengths
 
 if __name__ == "__main__":
     line = base.readFile("2024\\Day9\\test.txt")
 
-    fileMetaDatas, emptyLengths, totalLength = genLineInfo(line)
+    fileMetaDatas, emptyLengths = genLineInfo(line)
 
     resLine = compact(fileMetaDatas, emptyLengths, totalLength)
 
