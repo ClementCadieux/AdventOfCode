@@ -12,8 +12,10 @@ def compact(fileMetaDatas, emptyLengths):
             empty = emptyLengths[emptyIdx]
 
             if empty[1] >= file[1]:
+                emptyLengths.append((file[0], file[1]))
                 fileMetaDatas[fileIndex] = (empty[0], file[1], file[2])
                 emptyLengths[emptyIdx] = (empty[0] + file[1], empty[1] - file[1])
+                
                 if empty[1] == 0:
                     del emptyLengths[emptyIdx]
                 break
@@ -77,6 +79,7 @@ if __name__ == "__main__":
 
     fileMetaDatas.sort(key=lambda x : x[0])
     emptyLengths = [emptyLength for emptyLength in emptyLengths if emptyLength[1] != 0]
+    emptyLengths.sort(key=lambda x: x[0])
 
     resLine = genLine(fileMetaDatas, emptyLengths)
 
