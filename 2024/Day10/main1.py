@@ -9,6 +9,16 @@ def readFile(path):
 
     return intLines
 
+def findZeroes(lines):
+    zeroSpots = []
+
+    for i in range(len(lines)):
+        for j in range(len(lines[i])):
+            if lines[i][j] == 0:
+                zeroSpots.append((i, j))
+
+    return zeroSpots
+
 if __name__ == "__main__":
     lines = readFile("2024\\Day10\\test2.txt")
 
