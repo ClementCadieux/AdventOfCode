@@ -59,8 +59,14 @@ def checkSum(filesMetaData):
         length = file[0]
         val = file[1]
 
-        for i in range(startIndex, startIndex + length):
-            score += val * i
+        # length 2: 2*index + 1
+        # length 3: 3*index + 3
+        # length 4: 4*index + 6
+        # length 5: 5*index + 10
+
+        mul = (length * startIndex) + (length * int((length - 1)/2))
+
+        score += val * mul
 
     return score
 
