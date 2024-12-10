@@ -1,4 +1,5 @@
 import main1 as base1
+import time
 
 def getLineInfo(line):
     emptysByLength = []
@@ -69,7 +70,13 @@ if __name__ == "__main__":
 
     emptysByLength, filesMetaData = getLineInfo(line)
 
+    bef = time.time()
+
     filesMetaData = compact(emptysByLength, filesMetaData)
+
+    aft = time.time()
+
+    print("Compact: " + str(aft - bef))
 
     score = checkSum(filesMetaData)
 
