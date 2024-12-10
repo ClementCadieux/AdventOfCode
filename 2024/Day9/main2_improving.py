@@ -46,9 +46,13 @@ def compact(emptysByLength, filesMetaData):
             newEmptyIndex = minIdx + fileLength
 
             del emptysByLength[emptysIdx][0]
-            emptysByLength[newEmptyLength].append(newEmptyIndex)
-
-            emptysByLength[newEmptyLength].sort()
+            
+            for j in range(len(emptysByLength[newEmptyLength])):
+                if emptysByLength[newEmptyLength][j] > newEmptyIndex:
+                    emptysByLength[newEmptyLength].insert(j, newEmptyIndex)
+                    break
+                if j == len(emptysByLength[newEmptyLength]) - 1:
+                    emptysByLength[newEmptyLength].append(newEmptyIndex)
         
     return filesMetaData
 
