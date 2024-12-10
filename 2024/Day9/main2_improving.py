@@ -65,7 +65,7 @@ def checkSum(filesMetaData):
     return score
 
 if __name__ == "__main__":
-    line = base1.readFile("2024\\Day9\\test.txt")
+    line = base1.readFile("2024\\Day9\\input.txt")
 
     emptysByLength, filesMetaData = getLineInfo(line)
 
