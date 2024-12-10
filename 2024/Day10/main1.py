@@ -27,7 +27,33 @@ def findZeroes(lines):
 def hikingScore(i, j):
     global lines
     
-    
+    val = lines[i][j]
+
+    if val == 9:
+        return 1
+
+    lines[i][j] = -1
+
+    up = -1 if i == 0 else lines[i - 1][j]
+    down = -1 if i == len(lines) - 1 else lines[i + 1][j]
+    left = -1 if j == 0 else lines[i][j - 1]
+    right = -1 if j == len(lines[i]) - 1 else lines[i][j + 1]
+
+    score = 0
+
+    if up == val + 1:
+        score += hikingScore(i - 1, j)
+
+    if down == val + 1:
+        score += hikingScore(i + 1, j)
+
+    if left == val + 1:
+        score += hikingScore(i, j - 1)
+
+    if right == val + 1:
+        score += hikingScore(i, j + 1)
+
+    return score
 
 if __name__ == "__main__":
     lines = readFile("2024\\Day10\\test2.txt")
