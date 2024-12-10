@@ -35,10 +35,10 @@ def getHikeTrails(lines, nines):
 
 
 def propagate(lines, hikeTrails, i, j, val):
+    height = lines[i][j]
+
     if height == 0:
         return hikeTrails
-
-    height = lines[i][j]
 
     upHeight = -1 if i == 0 else lines[i - 1][j]
     upVals = [val] if i == 0 else hikeTrails[i - 1][j]
@@ -71,16 +71,18 @@ def propagate(lines, hikeTrails, i, j, val):
     return hikeTrails
 
 if __name__ == "__main__":
-    lines = readFile("2024\\Day10\\test.txt")
+    lines = readFile("2024\\Day10\\test2.txt")
 
     nines, zeroes = findNinesAndZeroes(lines)
 
     hikeTrails = getHikeTrails(lines, nines)
 
-    score = 0
+    print(hikeTrails)
 
-    for zero in zeroes:
-        score += hikeTrails[zero[0]][zero[1]]
+    # score = 0
 
-    print(score)
+    # for zero in zeroes:
+    #     score += hikeTrails[zero[0]][zero[1]]
+
+    # print(score)
     
