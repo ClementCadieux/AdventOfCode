@@ -28,11 +28,10 @@ def hikingScore(i, j):
     global lines
     
     val = lines[i][j]
+    lines[i][j] = -1
 
     if val == 9:
         return 1
-
-    lines[i][j] = -1
 
     up = -1 if i == 0 else lines[i - 1][j]
     down = -1 if i == len(lines) - 1 else lines[i + 1][j]
@@ -52,6 +51,8 @@ def hikingScore(i, j):
 
     if right == val + 1:
         score += hikingScore(i, j + 1)
+
+    lines[i][j] = val
 
     return score
 
