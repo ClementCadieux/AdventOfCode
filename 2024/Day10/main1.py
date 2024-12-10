@@ -1,5 +1,3 @@
-import functools
-
 lines = []
 
 def readFile(path):
@@ -23,7 +21,6 @@ def findZeroes(lines):
 
     return zeroSpots
 
-@functools.lru_cache(maxsize=None)
 def hikingScore(i, j):
     global lines
     
