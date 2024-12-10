@@ -70,18 +70,17 @@ def checkSum(filesMetaData):
     return score
 
 if __name__ == "__main__":
+    begin = time.time()
     line = base1.readFile("2024\\Day9\\input.txt")
 
     emptysByLength, filesMetaData = getLineInfo(line)
 
-    bef = time.time()
-
     filesMetaData = compact(emptysByLength, filesMetaData)
-
-    aft = time.time()
-
-    print("Compact: " + str(aft - bef))
 
     score = checkSum(filesMetaData)
 
     print(score)
+
+    end = time.time()
+
+    print(end - begin)
