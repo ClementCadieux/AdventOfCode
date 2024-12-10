@@ -29,7 +29,10 @@ def getHikeTrails(lines, nines):
 
     for i in range(len(nines)):
         nine = nines[i]
-        hikeTrails[nine[0]][nine[1]].append(2 ** i)
+        propagate(lines, hikeTrails, nine[0], nine[1], 2 ** i)
+
+    return hikeTrails
+
 
 def propagate(lines, hikeTrails, i, j, val):
     if height == 0:
