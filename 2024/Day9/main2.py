@@ -1,4 +1,5 @@
 import main1 as base
+import time
 
 def compact(fileMetaDatas, emptyLengths):
     fileIndex = len(fileMetaDatas) - 1
@@ -70,6 +71,7 @@ def genLine(lineMetadatas, emptyLengths):
     return resLine
 
 if __name__ == "__main__":
+    begin  = time.time()
     line = base.readFile("2024\\Day9\\input.txt")
 
     fileMetaDatas, emptyLengths = genLineInfo(line)
@@ -85,3 +87,7 @@ if __name__ == "__main__":
     total = base.checkSum(resLine)
 
     print(total)
+
+    end = time.time()
+
+    print(end - begin)
