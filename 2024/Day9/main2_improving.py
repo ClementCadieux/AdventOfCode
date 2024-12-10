@@ -52,6 +52,17 @@ def compact(emptysByLength, filesMetaData):
         
     return filesMetaData
 
+def checkSum(filesMetaData):
+    score = 0
+    for file in filesMetaData:
+        startIndex = file[2]
+        length = file[0]
+        val = file[1]
+
+        for i in range(startIndex, startIndex + length):
+            score += val * i
+
+    return score
 
 if __name__ == "__main__":
     line = base1.readFile("2024\\Day9\\test.txt")
@@ -60,4 +71,6 @@ if __name__ == "__main__":
 
     filesMetaData = compact(emptysByLength, filesMetaData)
 
-    print(filesMetaData)
+    score = checkSum(filesMetaData)
+
+    print(score)
