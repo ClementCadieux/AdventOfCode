@@ -1,5 +1,4 @@
 import main1 as base1
-import main2 as base2
 
 def getLineInfo(line):
     emptysByLength = []
