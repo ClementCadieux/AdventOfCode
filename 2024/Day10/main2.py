@@ -38,7 +38,7 @@ def hikingScore(i, j):
     return score
 
 if __name__ == "__main__":
-    lines = base.readFile("2024\\Day10\\test.txt")
+    lines = base.readFile("2024\\Day10\\input.txt")
 
     nines, zeroSpots = base.findNinesAndZeroes(lines)
 
