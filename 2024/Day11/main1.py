@@ -1,4 +1,5 @@
 import functools
+import time
 
 def readFile(path):
     file = open(path, "r")
@@ -27,13 +28,20 @@ def processNum(num, remaining):
     
     return processNum(int(strNum[:int(length/2)]), remaining - 1) + processNum(int(strNum[int(length/2):]), remaining - 1)
 
-if __name__ == "__main__":
+def main(blinks):
+    bef = time.time()
+
     line = readFile("2024\\Day11\\input.txt")
 
     total = 0
 
     for num in line:
-        total += processNum(num, 25)
+        total += processNum(num, blinks)
 
     print(total)
 
+    aft = time.time()
+    print(aft - bef)
+
+if __name__ == "__main__":
+    main(25)
