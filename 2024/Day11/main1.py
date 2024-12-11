@@ -28,7 +28,7 @@ def processNum(num, remaining):
     return processNum(int(strNum[:int(length/2)]), remaining - 1) + processNum(int(strNum[int(length/2):]), remaining - 1)
 
 if __name__ == "__main__":
-    line = readFile("2024\\Day11\\test.txt")
+    line = readFile("2024\\Day11\\input.txt")
 
     total = 0
 
