@@ -24,7 +24,7 @@ def makeRegionsNumbers(lines):
     return newGrid
 
 def propagateRegion(lines, newGrid, regionNumber, regionLetter, i, j):
-    if i == len(lines) - 1 or i == -1 or j == len(lines[i]) - 1 or j == -1:
+    if i == len(lines) or i == -1 or j == len(lines[i]) or j == -1:
         return
 
     if lines[i][j] != regionLetter or newGrid[i][j] != -1:
@@ -37,3 +37,7 @@ def propagateRegion(lines, newGrid, regionNumber, regionLetter, i, j):
     propagateRegion(lines, newGrid, regionNumber, regionLetter, i, j - 1)
     propagateRegion(lines, newGrid, regionNumber, regionLetter, i, j + 1)
     
+if __name__ == "__main__":
+    lines = readFile("2024\\Day12\\input.txt")
+
+    newGrid = makeRegionsNumbers(lines)
