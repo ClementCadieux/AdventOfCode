@@ -1,4 +1,5 @@
 import main1 as base
+import time
 
 def calcRegionInfo(lines):
     sideGrid = sideByTiles(lines)
@@ -55,12 +56,18 @@ def sideByTiles(lines):
     return sideGrid
 
 if __name__ == "__main__":
+    start = time.time()
+    
     lines = base.readFile("2024\\Day12\\input.txt")
 
     lines  = base.makeRegionsNumbers(lines)
 
     regionInfo = calcRegionInfo(lines)
-    
+
     cost = base.calcCost(regionInfo)
 
     print(cost)
+
+    end = time.time()
+
+    print(end - start)
