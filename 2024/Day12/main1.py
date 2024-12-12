@@ -68,7 +68,7 @@ def calcCost(regionInfo):
     return cost
 
 if __name__ == "__main__":
-    lines = readFile("2024\\Day12\\test.txt")
+    lines = readFile("2024\\Day12\\input.txt")
 
     lines = makeRegionsNumbers(lines)
 
