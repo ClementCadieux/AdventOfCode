@@ -7,9 +7,6 @@ def readFile(path):
 
     return lines
 
-# make each tile a tuple with two values:
-# (region tt belongs to, number of fences)
-
 def makeRegionsNumbers(lines):
     newGrid = [[-1 for tile in line] for line in lines]
 
@@ -36,8 +33,37 @@ def propagateRegion(lines, newGrid, regionNumber, regionLetter, i, j):
     propagateRegion(lines, newGrid, regionNumber, regionLetter, i + 1, j)
     propagateRegion(lines, newGrid, regionNumber, regionLetter, i, j - 1)
     propagateRegion(lines, newGrid, regionNumber, regionLetter, i, j + 1)
-    
+
+def calcRegionInfo(lines):
+    regionInfo = []
+
+    for i in range(len(lines)):
+        for j in range(len(lines[i])):
+            regionNumber = lines[i][j]
+
+            while regionNumber <= len(regionInfo):
+                regionInfo.append([0, 0])
+
+            regionInfo[regionNumber][0] += 1
+
+            fenceLeft = j == 0 or lines[i][j - 1] != regionNumber
+            fenceRight = j == len(lines[i]) - 1 or lines[i][j + 1] != regionNumber
+            fenceUp = i == 0 or lines[i - 1][j] != regionNumber
+            fenceDown = i == len(lines) - 1 or lines[i + 1][j] != regionNumber
+
+            fences = 0
+            fences += 1 if fenceLeft else 0
+            fences += 1 if fenceRight else 0
+            fences += 1 if fenceUp else 0
+            fences += 1 if fenceDown else 0
+
+            regionInfo[regionNumber][1] += fences
+
+    return regionInfo
+ 
 if __name__ == "__main__":
     lines = readFile("2024\\Day12\\input.txt")
 
-    newGrid = makeRegionsNumbers(lines)
+    lines = makeRegionsNumbers(lines)
+
+    regionInfo = calcRegionInfo(lines)
