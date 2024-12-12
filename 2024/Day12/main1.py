@@ -41,7 +41,7 @@ def calcRegionInfo(lines):
         for j in range(len(lines[i])):
             regionNumber = lines[i][j]
 
-            while regionNumber <= len(regionInfo):
+            while regionNumber >= len(regionInfo):
                 regionInfo.append([0, 0])
 
             regionInfo[regionNumber][0] += 1
