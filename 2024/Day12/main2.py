@@ -55,14 +55,12 @@ def sideByTiles(lines):
     return sideGrid
 
 if __name__ == "__main__":
-    lines = base.readFile("2024\\Day12\\test2.txt")
+    lines = base.readFile("2024\\Day12\\input.txt")
 
     lines  = base.makeRegionsNumbers(lines)
 
     regionInfo = calcRegionInfo(lines)
-
-    print(regionInfo)
-
+    
     cost = base.calcCost(regionInfo)
 
     print(cost)
