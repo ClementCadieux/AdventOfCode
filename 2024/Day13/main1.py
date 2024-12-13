@@ -8,7 +8,7 @@ def readFile(path):
     for i in range(len(lines)):
         line = lines[i]
 
-        if i != 0 and i % 3 == 0:
+        if (i + 1) % 4 == 0:
             machines.append([])
         else:
             splitLine = line.split(":")
@@ -16,9 +16,15 @@ def readFile(path):
             right = splitLine[1]
 
             rightSplit = right.split(",")
-            xVal = int(rightSplit[0].split("+")[1])
-            yVal = int(rightSplit[1].split("+")[1])
+
+            xVal = int(rightSplit[0].split("+" if len(machines[-1]) != 2 else "=")[1])
+            yVal = int(rightSplit[1].split("+" if len(machines[-1]) != 2 else "=")[1])
 
             machines[-1].append((xVal, yVal))
 
     return machines
+
+if __name__ == "__main__":
+    machines = readFile("2024\\Day13\\test.txt")
+
+    
