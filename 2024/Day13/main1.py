@@ -1,3 +1,5 @@
+import time
+
 def readFile(path):
     file = open(path, "r")
 
@@ -24,49 +26,38 @@ def readFile(path):
 
     return machines
 
-def calcOptMachine(machine):
-    right = machine[0]
+def calcOptPrice(machine):
     left = machine[1]
+    right = machine[0]
     prize = machine[2]
 
-    optPrice = -1
+    aCoef = right[0] - right[1]
+    bCoef = left[0] - left[1]
+    prizeSub = prize[0] - prize[1]
 
-    for i in range(100, -1, -1):
-        startPos = (left[0] * i, left[1] * i)
+    prizeStep = prizeSub/aCoef
+    bCoef /= aCoef
 
-        xToGo = prize[0] - startPos[0]
-        yToGo = prize[1] - startPos[1]
+    bPress = round((prize[0] - (right[0] * prizeStep)) / (left[0] - (right[0] * bCoef)))
+    aPress = round(prizeStep - (bCoef * bPress))
 
-        rightXPossible = xToGo % right[0] == 0
-
-        if not rightXPossible:
-            continue
-
-        rightXPushes = int(xToGo / right[0])
-
-        if rightXPushes > 100:
-            continue
-
-        yRightMove = rightXPushes * right[1]
-
-        if yRightMove != yToGo:
-            continue
-
-        price = 3 * rightXPushes + i
-
-        if optPrice == -1 or price < optPrice:
-            optPrice = price
-        elif optPrice != -1 and price > optPrice:
-            break
-
-    return optPrice if optPrice != -1 else 0
+    if bPress * left[0] + aPress * right[0] != prize[0] or bPress * left[1] + aPress * right[1] != prize[1]:
+        return 0
+    
+    return 3*aPress + bPress
 
 if __name__ == "__main__":
+    start = time.time()
+
     machines = readFile("2024\\Day13\\input.txt")
 
     total = 0
 
     for i in range(len(machines)):
-        total += calcOptMachine(machines[i])
+        total += calcOptPrice(machines[i])
     
     print(total)
+
+    end = time.time()
+
+    print(end - start)
