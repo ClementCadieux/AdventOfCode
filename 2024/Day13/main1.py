@@ -24,7 +24,43 @@ def readFile(path):
 
     return machines
 
+def calcOptMachine(machine):
+    right = machine[0]
+    left = machine[1]
+    prize = machine[2]
+
+    optPrice = -1
+
+    for i in range(100, -1, -1):
+        startPos = (left[0] * i, left[1] * i)
+
+        xToGo = prize[0] - startPos[0]
+        yToGo = prize[1] - startPos[1]
+
+        rightXPossible = xToGo % right[0] == 0
+
+        if not rightXPossible:
+            continue
+
+        rightXPushes = int(xToGo / right[0])
+
+        if rightXPushes > 100:
+            continue
+
+        yRightMove = rightXPushes * right[1]
+
+        if yRightMove != yToGo:
+            continue
+
+        price = 3 * rightXPushes + i
+
+        if optPrice == -1 or price < optPrice:
+            optPrice = price
+        elif optPrice != -1 and price > optPrice:
+            break
+
+    return optPrice if optPrice != -1 else 0
+
 if __name__ == "__main__":
     machines = readFile("2024\\Day13\\test.txt")
 
-    
