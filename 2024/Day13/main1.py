@@ -62,7 +62,7 @@ def calcOptMachine(machine):
     return optPrice if optPrice != -1 else 0
 
 if __name__ == "__main__":
-    machines = readFile("2024\\Day13\\test.txt")
+    machines = readFile("2024\\Day13\\input.txt")
 
     total = 0
 
