@@ -64,3 +64,9 @@ def calcOptMachine(machine):
 if __name__ == "__main__":
     machines = readFile("2024\\Day13\\test.txt")
 
+    total = 0
+
+    for i in range(len(machines)):
+        total += calcOptMachine(machines[i])
+    
+    print(total)
