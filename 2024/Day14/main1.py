@@ -21,17 +21,19 @@ def readFile(path):
     
     return robots
 
-def moveRobots(seconds, robots):
+def moveRobots(seconds, robots, xBounds, yBounds):
     for robot in robots:
         xMovement = robot[1][0] * seconds
         yMovement = robot[1][1] * seconds
 
         robot[0][0] += xMovement
-        robot[0][1] += yMovement 
+        robot[0][1] += yMovement
+
+        robot[0][0] %= xBounds
+        robot[0][1] %= yBounds
 
 if __name__ == "__main__":
     robots = readFile("2024\\Day14\\test.txt")
 
-    moveRobots(100, robots)
+    moveRobots(100, robots, 11, 7)
 
-    print(robots)
