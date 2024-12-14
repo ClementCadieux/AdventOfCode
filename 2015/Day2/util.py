@@ -10,3 +10,8 @@ def readFile(path):
     lines = [[int(length) for length in line] for line in lines]
 
     return lines
+
+def getAreas(present):
+    areas = [present[0] * present[1], present[0] * present[2], present[1] * present[2]]
+
+    return areas
