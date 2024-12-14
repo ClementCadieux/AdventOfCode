@@ -15,3 +15,16 @@ def getAreas(present):
     areas = [present[0] * present[1], present[0] * present[2], present[1] * present[2]]
 
     return areas
+
+def getCost(present):
+    minSide = -1
+    cost = 0
+
+    for area in present:
+        cost += area*2
+
+        if minSide == -1 or area < minSide:
+            minSide = area
+    
+    cost += minSide
+    return cost
