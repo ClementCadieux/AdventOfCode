@@ -1,3 +1,5 @@
+import sys
+
 def readFile(path):
     file = open(path, "r")
 
@@ -18,7 +20,8 @@ def readFile(path):
     return left,right
 
 if __name__ == "__main__":
-    left, right = readFile("2024\\Day1\\input.txt")
+    filePath = sys.argv[1]
+    left, right = readFile(filePath)
 
     left.sort()
     right.sort()
