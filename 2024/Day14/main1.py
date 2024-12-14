@@ -61,10 +61,18 @@ def quadrantCalc(robots, xBounds, yBounds):
     return quadrantTotals
 
 if __name__ == "__main__":
-    robots = readFile("2024\\Day14\\test.txt")
+    robots = readFile("2024\\Day14\\input.txt")
 
-    moveRobots(100, robots, 11, 7)
+    xBounds = 101
+    yBounds = 103
 
-    quadrantTotals = quadrantCalc(robots, 11, 7)
+    moveRobots(100, robots, xBounds, yBounds)
 
-    print(quadrantTotals)
+    quadrantTotals = quadrantCalc(robots, xBounds, yBounds)
+
+    total = 1
+
+    for quadrant in quadrantTotals:
+        total *= quadrant
+
+    print(total)
