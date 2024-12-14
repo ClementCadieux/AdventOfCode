@@ -32,8 +32,39 @@ def moveRobots(seconds, robots, xBounds, yBounds):
         robot[0][0] %= xBounds
         robot[0][1] %= yBounds
 
+def quadrantCalc(robots, xBounds, yBounds):
+    quadrantTotals = [0, 0, 0, 0]
+
+    for robot in robots:
+        robotX = robot[0][0]
+        robotY = robot[0][1]
+
+        quandrantX = 0 if robotX < int(xBounds/2) else 1 if robotX > int(xBounds/2) else -1
+        quandrantY = 0 if robotY < int(yBounds/2) else 1 if robotY > int(yBounds/2) else -1
+
+        quandrantIndex = -1
+
+        if quandrantX == 0:
+            if quandrantY == 0:
+                quandrantIndex = 0
+            elif quandrantY == 1:
+                quandrantIndex = 2
+        elif quandrantX == 1:
+            if quandrantY == 0:
+                quandrantIndex = 1
+            elif quandrantY == 1:
+                quandrantIndex = 3
+
+        if quandrantIndex != -1:
+            quadrantTotals[quandrantIndex] += 1
+
+    return quadrantTotals
+
 if __name__ == "__main__":
     robots = readFile("2024\\Day14\\test.txt")
 
     moveRobots(100, robots, 11, 7)
 
+    quadrantTotals = quadrantCalc(robots, 11, 7)
+
+    print(quadrantTotals)
