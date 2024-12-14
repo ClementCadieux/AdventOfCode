@@ -28,3 +28,9 @@ def getCost(present):
     
     cost += minSide
     return cost
+
+def getRibbonPerimeter(present):
+    perimeter = 2 * min(present[0]+present[1], present[1]+present[2], present[2]+present[0])
+    perimeter += present[0]*present[1]*present[2]
+
+    return perimeter
