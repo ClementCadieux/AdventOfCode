@@ -11,3 +11,6 @@ robotI, robotJ = util.findRobot(grid)
 
 util.processInstructions(grid, instructions, robotI, robotJ)
 
+total = util.getCoords(grid)
+
+print(total)
