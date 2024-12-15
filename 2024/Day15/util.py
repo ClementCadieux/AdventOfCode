@@ -23,3 +23,10 @@ def readFile(path):
     instruction = list(instruction)
 
     return grid, instruction
+
+def findRobot(grid):
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if grid[i][j] == "@":
+                return i,j
+
