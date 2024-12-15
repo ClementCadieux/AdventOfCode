@@ -1,7 +1,13 @@
 import sys
 import util
 
-filePath = sys.argv[1]
+args = sys.argv
 
-grid, instruction = util.readFile(filePath)
+filePath = "2024\\Day15\\test1.txt" if len(args) == 1 else args[1]
+
+grid, instructions = util.readFile(filePath)
+
+robotI, robotJ = util.findRobot(grid)
+
+util.processInstructions(grid, instructions, robotI, robotJ)
 
