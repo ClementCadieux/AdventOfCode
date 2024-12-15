@@ -46,26 +46,29 @@ def processInstructions(grid, instructions, robotI, robotJ):
             case "v":
                 direction[0] += 1
         
-        movePossible = False
+        moveRobot(grid, currPos, direction)
 
-        cellToCheck = [currPos[0] + direction[0], currPos[1] + direction[1]]
+def moveRobot(grid, currPos, direction):
+    movePossible = False
 
-        while not movePossible and grid[cellToCheck[0]][cellToCheck[1]] != "#":
-            if grid[cellToCheck[0]][cellToCheck[1]] == ".":
-                movePossible = True
-            else:
-                cellToCheck[0] += direction[0]
-                cellToCheck[1] += direction[1]
+    cellToCheck = [currPos[0] + direction[0], currPos[1] + direction[1]]
 
-        if movePossible:
-            while cellToCheck[0] != currPos[0] or cellToCheck[1] != currPos[1]:
-                grid[cellToCheck[0]][cellToCheck[1]] = grid[cellToCheck[0] - direction[0]][cellToCheck[1] - direction[1]]
-                cellToCheck[0] -= direction[0]
-                cellToCheck[1] -= direction[1]
+    while not movePossible and grid[cellToCheck[0]][cellToCheck[1]] != "#":
+        if grid[cellToCheck[0]][cellToCheck[1]] == ".":
+            movePossible = True
+        else:
+            cellToCheck[0] += direction[0]
+            cellToCheck[1] += direction[1]
 
-            grid[currPos[0]][currPos[1]] = "."
-            currPos[0] += direction[0]
-            currPos[1] += direction[1]
+    if movePossible:
+        while cellToCheck[0] != currPos[0] or cellToCheck[1] != currPos[1]:
+            grid[cellToCheck[0]][cellToCheck[1]] = grid[cellToCheck[0] - direction[0]][cellToCheck[1] - direction[1]]
+            cellToCheck[0] -= direction[0]
+            cellToCheck[1] -= direction[1]
+
+        grid[currPos[0]][currPos[1]] = "."
+        currPos[0] += direction[0]
+        currPos[1] += direction[1]
         
 def getCoords(grid):
     total = 0
@@ -122,4 +125,4 @@ def isMovePossible(grid, currPos, direction):
     
     return True
 
-        
+      
