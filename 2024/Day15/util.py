@@ -76,3 +76,28 @@ def getCoords(grid):
                 total += 100*i + j
 
     return total
+
+def doubleGrid(grid):
+    newGrid = []
+
+    for line in grid:
+        newLine = []
+
+        for tile in line:
+            match tile:
+                case "@":
+                    newLine.append("@")
+                    newLine.append(".")
+                case ".":
+                    newLine.append(".")
+                    newLine.append(".")
+                case "#":
+                    newLine.append("#")
+                    newLine.append("#")
+                case "O":
+                    newLine.append("[")
+                    newLine.append("]")
+        
+        newGrid.append(newLine)
+    
+    return newGrid
