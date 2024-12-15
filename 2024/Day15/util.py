@@ -70,12 +70,12 @@ def moveRobot(grid, currPos, direction):
         currPos[0] += direction[0]
         currPos[1] += direction[1]
         
-def getCoordsSingleWidth(grid):
+def getCoords(grid):
     total = 0
 
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            if grid[i][j] == "O":
+            if grid[i][j] == "O" or grid[i][j] == "[":
                 total += 100*i + j
 
     return total

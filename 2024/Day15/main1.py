@@ -11,6 +11,6 @@ robotI, robotJ = util.findRobot(grid)
 
 util.processInstructionsSingleWidth(grid, instructions, robotI, robotJ)
 
-total = util.getCoordsSingleWidth(grid)
+total = util.getCoords(grid)
 
 print(total)
