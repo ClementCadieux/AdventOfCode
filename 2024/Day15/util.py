@@ -30,7 +30,7 @@ def findRobot(grid):
             if grid[i][j] == "@":
                 return i,j
 
-def processInstructions(grid, instructions, robotI, robotJ):
+def processInstructionsSingleWidth(grid, instructions, robotI, robotJ):
     currPos = [robotI, robotJ]
 
     for instruction in instructions:
@@ -70,7 +70,7 @@ def moveRobot(grid, currPos, direction):
         currPos[0] += direction[0]
         currPos[1] += direction[1]
         
-def getCoords(grid):
+def getCoordsSingleWidth(grid):
     total = 0
 
     for i in range(len(grid)):

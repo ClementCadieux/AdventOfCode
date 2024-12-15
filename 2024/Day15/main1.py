@@ -9,8 +9,8 @@ grid, instructions = util.readFile(filePath)
 
 robotI, robotJ = util.findRobot(grid)
 
-util.processInstructions(grid, instructions, robotI, robotJ)
+util.processInstructionsSingleWidth(grid, instructions, robotI, robotJ)
 
-total = util.getCoords(grid)
+total = util.getCoordsSingleWidth(grid)
 
 print(total)
