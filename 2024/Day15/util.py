@@ -159,7 +159,13 @@ def processInstructionsDoubleWidth(grid, instructions, robotI, robotJ):
                     moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1] + 1), direction)
                 grid[currPos[0] + direction[0]][currPos[1]] = grid[currPos[0]][currPos[1]]
                 grid[currPos[0]][currPos[1]] = "."
+                
+                currPos[0] += direction[0]
+                currPos[1] += direction[1]
 
+        for line in grid:
+            print(line)
+        print("-------------------")
 
 def moveDoubleVert(grid, currPos, direction):
     if grid[currPos[0]][currPos[1]] == "." or grid[currPos[0]][currPos[1]] == "#":

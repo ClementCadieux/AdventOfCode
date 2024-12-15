@@ -9,3 +9,7 @@ grid, instructions = util.readFile(filePath)
 
 grid = util.doubleGrid(grid)
 
+robotI, robotJ = util.findRobot(grid)
+
+util.processInstructionsDoubleWidth(grid, instructions, robotI, robotJ)
+
