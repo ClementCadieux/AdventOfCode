@@ -3,7 +3,7 @@ import util
 
 args = sys.argv
 
-filePath = "2024\\Day15\\test3.txt" if len(args) == 1 else args[1]
+filePath = "2024\\Day15\\test2.txt" if len(args) == 1 else args[1]
 
 grid, instructions = util.readFile(filePath)
 

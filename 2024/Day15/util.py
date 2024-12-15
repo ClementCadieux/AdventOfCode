@@ -116,7 +116,9 @@ def isMovePossible(grid, currPos, direction):
         return isMovePossible(grid, leftMove, direction)
 
     rightMovePossible = True if grid[rightMove[0]][rightMove[1]] == "." else isMovePossible(grid, rightMove, direction)
-            
+
+    if not rightMovePossible:
+        return False            
 
     if grid[leftMove[0]][leftMove[1]] == "]":
         leftMovePossible = isMovePossible(grid, (leftMove[0], leftMove[1] - 1), direction)
@@ -129,6 +131,7 @@ def processInstructionsDoubleWidth(grid, instructions, robotI, robotJ):
     currPos = [robotI, robotJ]
 
     for instruction in instructions:
+        print(instruction)
         direction = [0, 0]
 
         match instruction:
@@ -144,14 +147,12 @@ def processInstructionsDoubleWidth(grid, instructions, robotI, robotJ):
         if instruction == "<" or instruction == ">":
             moveRobot(grid, currPos, direction)
         else:
-            possible = True
+            possible = grid[currPos[0] + direction[0]][currPos[1]] != "#"
             
-            if grid[currPos[0] + direction[0]][currPos[1]] == "[":
+            if possible and grid[currPos[0] + direction[0]][currPos[1]] == "[":
                 possible = isMovePossible(grid, (currPos[0] + direction[0], currPos[1]), direction)
-            elif grid[currPos[0] + direction[0]][currPos[1]] == "]":
+            elif possible and grid[currPos[0] + direction[0]][currPos[1]] == "]":
                 possible = isMovePossible(grid, (currPos[0] + direction[0], currPos[1] - 1), direction)
-                if possible and grid[currPos[0] + direction[0]][currPos[1] + 1] == "[":
-                    possible = isMovePossible(grid, (currPos[0] + direction[0], currPos[1] + 1), direction)
             
             if possible:
                 moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1]), direction)
@@ -160,7 +161,7 @@ def processInstructionsDoubleWidth(grid, instructions, robotI, robotJ):
                 
                 currPos[0] += direction[0]
                 currPos[1] += direction[1]
-
+        
 def moveDoubleVert(grid, currPos, direction):
     if grid[currPos[0]][currPos[1]] == "." or grid[currPos[0]][currPos[1]] == "#":
         return
@@ -182,9 +183,11 @@ def moveDoubleVert(grid, currPos, direction):
     if grid[currPos[0] + direction[0]][currPos[1]] == "]":
         moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1] - 1), direction)
 
-        if grid[currPos[0] + direction[0]][currPos[1] + 1] == "[":
-            moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1] + 1), direction)
+    if grid[currPos[0] + direction[0]][currPos[1] + 1] == "[":
+        moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1] + 1), direction)
         
+    
+
     grid[currPos[0] + direction[0]][currPos[1]] = grid[currPos[0]][currPos[1]]
     grid[currPos[0] + direction[0]][currPos[1] + 1] = grid[currPos[0]][currPos[1] + 1]
     grid[currPos[0]][currPos[1]] = "."
