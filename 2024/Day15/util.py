@@ -12,7 +12,7 @@ def readFile(path):
 
     for line in lines:
         if line == "":
-            gridTime == False
+            gridTime = False
             continue
 
         if gridTime:
