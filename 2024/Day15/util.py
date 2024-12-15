@@ -102,3 +102,24 @@ def doubleGrid(grid):
     
     return newGrid
 
+def isMovePossible(grid, currPos, direction):
+    leftMove = (currPos[0] + direction[0], currPos[1])
+    rightMove = (currPos[0] + direction[0], currPos[1] + 1)
+
+    if grid[leftMove[0]][leftMove[1]] == "#" or grid[rightMove[0]][rightMove[1]] == "#":
+        return False
+
+    if grid[leftMove[0]][leftMove[1]] == "[":
+        return isMovePossible(grid, leftMove, direction)
+
+    rightMovePossible = True if grid[rightMove[0]][rightMove[1]] == "." else isMovePossible(grid, rightMove, direction)
+            
+
+    if grid[leftMove[0]][leftMove[1]] == "]":
+        leftMovePossible = isMovePossible(grid, (leftMove[0], leftMove[1] - 1), direction)
+
+        return leftMovePossible and rightMovePossible
+    
+    return True
+
+        
