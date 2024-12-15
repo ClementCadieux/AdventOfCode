@@ -131,7 +131,6 @@ def processInstructionsDoubleWidth(grid, instructions, robotI, robotJ):
     currPos = [robotI, robotJ]
 
     for instruction in instructions:
-        print(instruction)
         direction = [0, 0]
 
         match instruction:
