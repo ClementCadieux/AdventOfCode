@@ -125,4 +125,69 @@ def isMovePossible(grid, currPos, direction):
     
     return True
 
-      
+def processInstructionsDoubleWidth(grid, instructions, robotI, robotJ):
+    currPos = [robotI, robotJ]
+
+    for instruction in instructions:
+        direction = [0, 0]
+
+        match instruction:
+            case "^":
+                direction[0] -= 1
+            case "<":
+                direction[1] -= 1
+            case ">":
+                direction[1] += 1
+            case "v":
+                direction[0] += 1
+        
+        if instruction == "<" or instruction == ">":
+            moveRobot(grid, currPos, direction)
+        else:
+            possible = True
+            
+            if grid[currPos[0] + direction[0]][currPos[1]] == "[":
+                possible = isMovePossible(grid, (currPos[0] + direction[0], currPos[1]), direction)
+            elif grid[currPos[0] + direction[0]][currPos[1]] == "]":
+                possible = isMovePossible(grid, (currPos[0] + direction[0], currPos[1] - 1), direction)
+                if possible and grid[currPos[0] + direction[0]][currPos[1] + 1] == "[":
+                    possible = isMovePossible(grid, (currPos[0] + direction[0], currPos[1] + 1), direction)
+            
+            if possible:
+                moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1]), direction)
+                if grid[currPos[0] + direction[0]][currPos[1] + 1] == "[":
+                    moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1] + 1), direction)
+                grid[currPos[0] + direction[0]][currPos[1]] = grid[currPos[0]][currPos[1]]
+                grid[currPos[0]][currPos[1]] = "."
+
+
+def moveDoubleVert(grid, currPos, direction):
+    if grid[currPos[0]][currPos[1]] == "." or grid[currPos[0]][currPos[1]] == "#":
+        return
+    
+    if grid[currPos[0]][currPos[1]] == "]":
+        moveDoubleVert(grid, (currPos[0], currPos[1] - 1), direction)
+        grid[currPos[0] + direction[0]][currPos[1]] = grid[currPos[0]][currPos[1]]
+        return
+    
+    if grid[currPos[0] + direction[0]][currPos[1]] == "[":
+        moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1]), direction)
+        
+        grid[currPos[0] + direction[0]][currPos[1]] = grid[currPos[0]][currPos[1]]
+        grid[currPos[0] + direction[0]][currPos[1] + 1] = grid[currPos[0]][currPos[1] + 1]
+        grid[currPos[0]][currPos[1]] = "."
+        grid[currPos[0]][currPos[1] + 1] = "."
+        return
+    
+    
+    if grid[currPos[0] + direction[0]][currPos[1]] == "]":
+        moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1] - 1), direction)
+
+        if grid[currPos[0] + direction[0]][currPos[1] + 1] == "[":
+            moveDoubleVert(grid, (currPos[0] + direction[0], currPos[1] + 1), direction)
+        
+        grid[currPos[0] + direction[0]][currPos[1]] = grid[currPos[0]][currPos[1]]
+        grid[currPos[0] + direction[0]][currPos[1] + 1] = grid[currPos[0]][currPos[1] + 1]
+        grid[currPos[0]][currPos[1]] = "."
+        grid[currPos[0]][currPos[1] + 1] = "."
+        return
