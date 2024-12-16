@@ -7,7 +7,7 @@ def readFile(path):
 
     return lines
 
-def scoreTile(scores, maze, i, j, score, direction):
+def scoreTile():
     
 
     
