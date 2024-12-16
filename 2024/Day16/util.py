@@ -7,7 +7,3 @@ def readFile(path):
 
     return lines
 
-def scoreTile():
-    
-
-    
