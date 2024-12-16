@@ -9,3 +9,11 @@ lines = util.readFile(filePath)
 
 scores = [[0 for tile in line] for line in lines]
 
+if lines[2][-2] != "#":
+    util.scoreTile(scores, lines, 2, len(lines[1]) - 2, 1, 0)
+if lines[1][-3] != "#":
+    util.scoreTile(scores, lines, 1, len(lines[1]) - 2, 1, 3)
+
+score = scores[-2][1]
+
+print(score)
