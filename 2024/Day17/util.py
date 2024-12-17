@@ -127,4 +127,4 @@ def processSequence(a, splitCommands):
     for command in splitCommands:
         a, b, c, pointer = processOp(a, b, c, 0, command[0], command[1])
     
-    return outputLine[-1]
+    return outputLine[-1], a

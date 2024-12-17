@@ -9,3 +9,5 @@ a, b, c, instructions = util.readFile(filePath)
 
 splitCommands = util.splitInstructions(instructions)
 
+
+val, a = util.processSequence(a, splitCommands)
