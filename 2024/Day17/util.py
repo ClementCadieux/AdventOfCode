@@ -61,7 +61,7 @@ def op3(a, operand, pointer):
     return operand, True
 
 def op4(b, c):
-    return b % c
+    return b | c
 
 def op5(a, b, c, operand):
     global outputLine
