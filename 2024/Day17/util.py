@@ -49,3 +49,6 @@ def op0(a, b, c, operand):
                 return a
             return int(a/(c**2))
     return a
+
+def op1(b, operand):
+    return b | operand
