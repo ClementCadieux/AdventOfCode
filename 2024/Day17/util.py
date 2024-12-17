@@ -76,32 +76,37 @@ def processIntrusctions(a, b, c, instructions):
         operation = instructions[pointer]
         operand = instructions[pointer + 1]
 
-        match operation:
-            case 0:
-                a = op067(a, b, c, operand)
+        a, b, c, pointer = processOp(a, b, c, pointer, operation, operand)
+
+def processOp(a, b, c, pointer, operation, operand):
+    match operation:
+        case 0:
+            a = op067(a, b, c, operand)
+            pointer += 2
+        case 1:
+            b = op1(b, operand)
+            pointer += 2
+        case 2:
+            b = op2(a, b, c, operand)
+            pointer += 2
+        case 3:
+            pointer, jumped = op3(a, operand, pointer)
+            if not jumped:
                 pointer += 2
-            case 1:
-                b = op1(b, operand)
-                pointer += 2
-            case 2:
-                b = op2(a, b, c, operand)
-                pointer += 2
-            case 3:
-                pointer, jumped = op3(a, operand, pointer)
-                if not jumped:
-                    pointer += 2
-            case 4:
-                b = op4(b, c)
-                pointer += 2
-            case 5:
-                op5(a, b, c, operand)
-                pointer += 2
-            case 6:
-                b = op067(a, b, c, operand)
-                pointer += 2
-            case 7:
-                c = op067(a, b, c, operand)
-                pointer += 2
+        case 4:
+            b = op4(b, c)
+            pointer += 2
+        case 5:
+            op5(a, b, c, operand)
+            pointer += 2
+        case 6:
+            b = op067(a, b, c, operand)
+            pointer += 2
+        case 7:
+            c = op067(a, b, c, operand)
+            pointer += 2
+    
+    return (a, b, c, pointer)
 
 def splitInstructions(instructions):
     instructionsList = []
@@ -113,4 +118,9 @@ def splitInstructions(instructions):
         i += 1
     
     return instructionsList
+
+def processSequence(a, splitCommands):
+    a = a
+    b = 0
+    c = 0
 
