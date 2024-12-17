@@ -131,12 +131,12 @@ def processSequence(a, splitCommands):
     
     return outputLine[-1]
 
-def reverseEngineer(instructions, splitCommands, currOutputIndex, a):
+def reverseEngineer(instructions, splitCommands, currOutputIndex, a, aDivideFactor):
     if currOutputIndex == -1:
         return a
     
-    lowerBound = a * 8
-    upperBound = (a + 1) * 8
+    lowerBound = a * aDivideFactor
+    upperBound = (a + 1) * aDivideFactor
     
     expectedOutput = instructions[currOutputIndex]
 
@@ -144,7 +144,7 @@ def reverseEngineer(instructions, splitCommands, currOutputIndex, a):
         output = processSequence(i, splitCommands)
 
         if output == expectedOutput:
-            result = reverseEngineer(instructions, splitCommands, currOutputIndex - 1, i)
+            result = reverseEngineer(instructions, splitCommands, currOutputIndex - 1, i, aDivideFactor)
 
             if result != -1:
                 return result
