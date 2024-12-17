@@ -110,12 +110,14 @@ def processOp(a, b, c, pointer, operation, operand):
 
 def splitInstructions(instructions):
     instructionsList = []
+
+    i = 0
     
-    for i in range(len(instructions) - 1):
+    while i < len(instructions) - 1:
         instruction = [instructions[i], instructions[i + 1]]
 
         instructionsList.append(instruction)
-        i += 1
+        i += 2
     
     return instructionsList
 
@@ -128,3 +130,24 @@ def processSequence(a, splitCommands):
         a, b, c, pointer = processOp(a, b, c, 0, command[0], command[1])
     
     return outputLine[-1]
+
+def reverseEngineer(instructions, splitCommands, currOutputIndex, a):
+    if currOutputIndex == -1:
+        return a
+    
+    lowerBound = a * 8
+    upperBound = (a + 1) * 8
+    
+    expectedOutput = instructions[currOutputIndex]
+
+    for i in range(lowerBound, upperBound):
+        output = processSequence(i, splitCommands)
+
+        if output == expectedOutput:
+            result = reverseEngineer(instructions, splitCommands, currOutputIndex - 1, i)
+
+            if result != -1:
+                return result
+            
+    return -1
+    

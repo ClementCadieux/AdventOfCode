@@ -9,3 +9,8 @@ a, b, c, instructions = util.readFile(filePath)
 
 splitCommands = util.splitInstructions(instructions)
 
+currOutputIndex = len(instructions) - 1
+
+result = util.reverseEngineer(instructions, splitCommands, currOutputIndex, 0)
+
+print(result)
