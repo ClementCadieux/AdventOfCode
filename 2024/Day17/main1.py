@@ -10,7 +10,6 @@ a, b, c, instructions = util.readFile(filePath)
 pointer = 0
 
 while pointer < len(instructions) - 1:
-    print(pointer)
     operation = instructions[pointer]
     operand = instructions[pointer + 1]
 
