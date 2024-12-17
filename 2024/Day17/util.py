@@ -47,7 +47,7 @@ def op067(a, b, c, operand):
     return int(a/(2**power))
 
 def op1(b, operand):
-    return b | operand
+    return b ^ operand
 
 def op2(a, b, c, operand):
     numerator = comboOperand(a, b, c, operand)
@@ -61,7 +61,7 @@ def op3(a, operand, pointer):
     return operand, True
 
 def op4(b, c):
-    return b | c
+    return b ^ c
 
 def op5(a, b, c, operand):
     global outputLine
