@@ -102,3 +102,14 @@ def processIntrusctions(a, b, c, instructions):
             case 7:
                 c = op067(a, b, c, operand)
                 pointer += 2
+
+def splitInstructions(instructions):
+    instructionsList = []
+    
+    for i in range(len(instructions) - 1):
+        instruction = [instructions[i], instructions[i + 1]]
+
+        instructionsList.append(instruction)
+        i += 1
+    
+    return instructionsList
