@@ -42,7 +42,7 @@ def comboOperand(a, b, c, operand):
             return operand
 
 def op067(a, b, c, operand):
-    power = comboOperand(a, b, c, operand) ** 2
+    power = comboOperand(a, b, c, operand)
 
     return int(a/(2**power))
 
