@@ -59,9 +59,9 @@ def op2(a, b, c, operand):
 
 def op3(a, operand, pointer):
     if a == 0:
-        return pointer
+        return pointer, False
     
-    return operand
+    return operand, True
 
 def op4(b, c):
     return b % c
