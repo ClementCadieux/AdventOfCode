@@ -11,7 +11,7 @@ splitCommands = util.splitInstructions(instructions)
 
 currOutputIndex = len(instructions) - 1
 
-aDivideFactor = 2
+aDivideFactor = util.aDivideFactor(splitCommands)
 
 result = util.reverseEngineer(instructions, splitCommands, currOutputIndex, 0, aDivideFactor)
 

@@ -151,3 +151,11 @@ def reverseEngineer(instructions, splitCommands, currOutputIndex, a, aDivideFact
             
     return -1
     
+def aDivideFactor(splitCommands):
+    baseDivideFactor = 1
+
+    for command in splitCommands:
+        if command[0] == 0:
+            baseDivideFactor *= 2 ** command[1]
+
+    return baseDivideFactor
