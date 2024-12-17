@@ -54,3 +54,10 @@ def op2(a, b, c, operand):
     numerator = comboOperand(a, b, c, operand)
 
     return numerator % 8
+
+def op3(a, operand, pointer):
+    if a == 0:
+        return pointer
+    
+    return operand
+
