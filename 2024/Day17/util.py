@@ -28,7 +28,7 @@ def setRegister(line):
 
     return num
 
-outputLine = ""
+outputLine = []
 
 def comboOperand(a, b, c, operand):
     match operand:
@@ -67,9 +67,7 @@ def op5(a, b, c, operand):
     global outputLine
     output = op2(a, b, c, operand)
 
-    if len(outputLine) != 0:
-        outputLine += ","
-    outputLine += str(output)
+    outputLine.append(output)
 
 def processIntrusctions(a, b, c, instructions):
     pointer = 0
