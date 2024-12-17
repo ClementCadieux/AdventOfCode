@@ -113,3 +113,4 @@ def splitInstructions(instructions):
         i += 1
     
     return instructionsList
+
