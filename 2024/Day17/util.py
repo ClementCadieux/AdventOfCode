@@ -41,7 +41,7 @@ def comboOperand(a, b, c, operand):
         case _:
             return operand
 
-def op0(a, b, c, operand):
+def op067(a, b, c, operand):
     denominator = comboOperand(a, b, c, operand) ** 2
 
     if denominator != 0:
