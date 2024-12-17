@@ -28,6 +28,8 @@ def setRegister(line):
 
     return num
 
+outputLine = ""
+
 def comboOperand(a, b, c, operand):
     match operand:
         case 4:
@@ -61,3 +63,13 @@ def op3(a, operand, pointer):
     
     return operand
 
+def op4(b, c):
+    return b % c
+
+def op5(a, b, c, operand):
+    global outputLine
+    output = op2(a, b, c, operand)
+
+    if len(outputLine) != 0:
+        outputLine += ","
+    outputLine += str(output)
