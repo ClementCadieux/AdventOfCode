@@ -1,3 +1,5 @@
+import sys
+
 def readFile(filePath):
     file = open(filePath, "r")
 
@@ -20,6 +22,7 @@ def genGrid(coords, bound, sim):
 
     return grid
 
+sys.setrecursionlimit(5000)
 def scoreTile(grid, scoreGrid, i, j, score):
     if scoreGrid[i][j] <= score or grid[i][j] == "#":
         return
