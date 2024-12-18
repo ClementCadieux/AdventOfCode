@@ -15,10 +15,17 @@ coordsList = util.readFile(filePath)
 grid = util.genGrid(coordsList, bound, sim)
 
 scoreGrid = [[bound**2 + 1 for y in range(bound)] for x in range(bound)]
+unvisited = set()
 
-util.scoreTile(grid, scoreGrid, bound - 1, bound - 1, 0)
+for i in range(bound):
+    for j in range(bound):
+        unvisited.add((i, j))
 
-print(scoreGrid[0][0])
+scoreGrid[0][0] = 0
+
+util.dijkstra(scoreGrid, grid, 0, 0, unvisited)
+
+print(scoreGrid[-1][-1])
 
 end = time.time()
 
