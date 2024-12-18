@@ -64,3 +64,21 @@ def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes):
     minNode = nonInfinityNodes[0]
 
     dijkstra(scoreGrid, grid, minNode[0], minNode[1], unvisited, nonInfinityNodes)
+
+def main(bound, sim, coordsList):
+    grid = genGrid(coordsList, bound, sim)
+
+    scoreGrid = [[bound**2 + 1 for y in range(bound)] for x in range(bound)]
+    unvisited = set()
+
+    for i in range(bound):
+        for j in range(bound):
+            unvisited.add((i, j))
+
+    scoreGrid[0][0] = 0
+
+    nonInfinityNodes = []
+    nonInfinityNodes.append((0, 0))
+
+    dijkstra(scoreGrid, grid, 0, 0, unvisited, nonInfinityNodes)
+    return scoreGrid[-1][-1]

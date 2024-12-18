@@ -12,23 +12,9 @@ sim = 12 if len(args) == 1 else int(args[3])
 
 coordsList = util.readFile(filePath)
 
-grid = util.genGrid(coordsList, bound, sim)
+result = util.main(bound, sim, coordsList)
 
-scoreGrid = [[bound**2 + 1 for y in range(bound)] for x in range(bound)]
-unvisited = set()
-
-for i in range(bound):
-    for j in range(bound):
-        unvisited.add((i, j))
-
-scoreGrid[0][0] = 0
-
-nonInfinityNodes = []
-nonInfinityNodes.append((0, 0))
-
-util.dijkstra(scoreGrid, grid, 0, 0, unvisited, nonInfinityNodes)
-
-print(scoreGrid[-1][-1])
+print(result)
 
 end = time.time()
 
