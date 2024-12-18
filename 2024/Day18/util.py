@@ -47,3 +47,6 @@ def scoreTile(grid, scoreGrid, i, j, score):
         scoreTile(grid, scoreGrid, left[0], left[1], score + 1)
     if rightPossible:
         scoreTile(grid, scoreGrid, right[0], right[1], score + 1)
+
+def smarterSearch():
+    return None
