@@ -11,5 +11,5 @@ coordsList = util.readFile(filePath)
 
 grid = util.genGrid(coordsList, bound, sim)
 
-for line in grid:
-    print(line)
+emptyScoreGrid = [[bound**2 + 1 for y in range(bound)] for x in range(bound)]
+

@@ -19,3 +19,4 @@ def genGrid(coords, bound, sim):
         grid[coord[1]][coord[0]] = "#"
 
     return grid
+
