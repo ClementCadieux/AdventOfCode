@@ -19,7 +19,7 @@ scores[-2][1] = 0
 nonInfinityNodes = []
 nonInfinityNodes.append(((len(lines) - 2, 1), 0, 0))
 
-util.dijkstra(scores, lines, len(lines) - 2, 1, unvisited, nonInfinityNodes, 1)
+util.dijkstra(scores, lines, len(lines) - 2, 1, unvisited, nonInfinityNodes, 1, 0)
 
 score = scores[1][-2]
 
