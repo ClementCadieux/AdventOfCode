@@ -57,3 +57,6 @@ def scoreTile(scores, maze, i, j, score, direction):
     # seen.remove((i, j))
 
     return up or right or down or left
+
+def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction):
+    return None
