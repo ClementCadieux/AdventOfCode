@@ -60,8 +60,9 @@ def scoreTile(scores, maze, i, j, score, direction):
 
 sys.setrecursionlimit(5000)
 def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction):
-    if (i, j) not in unvisited:
-        return
+    while (i, j) not in unvisited:
+        nonInfinityNodes.pop(0)
+        (i,j), newDirection, score = nonInfinityNodes[0]
 
     unvisited.remove((i, j))
     nonInfinityNodes.pop(0)
@@ -85,26 +86,54 @@ def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction):
         scoreGrid[up[0]][up[1]] = score + 1
         if direction != 0:
             scoreGrid[up[0]][up[1]] += 1000
-        nonInfinityNodes.append((up, 0))
+        inserted = False
+        for i in range(len(nonInfinityNodes)):
+            if nonInfinityNodes[i][2] > scoreGrid[up[0]][up[1]]:
+                nonInfinityNodes.insert(i, (up, 0, scoreGrid[up[0]][up[1]]))
+                inserted = True
+                break
+        if not inserted:
+            nonInfinityNodes.append((up, 0, scoreGrid[up[0]][up[1]]))
     if downPossible:
         scoreGrid[down[0]][down[1]] = score + 1
         if direction != 2:
             scoreGrid[down[0]][down[1]] += 1000
-        nonInfinityNodes.append((down, 2))
+        inserted = False
+        for i in range(len(nonInfinityNodes)):
+            if nonInfinityNodes[i][2] > scoreGrid[down[0]][down[1]]:
+                nonInfinityNodes.insert(i, (down, 2, scoreGrid[down[0]][down[1]]))
+                inserted = True
+                break
+        if not inserted:
+            nonInfinityNodes.append((down, 2, scoreGrid[down[0]][down[1]]))
     if leftPossible:
         scoreGrid[left[0]][left[1]] = score + 1
         if direction != 3:
             scoreGrid[left[0]][left[1]] += 1000
-        nonInfinityNodes.append((left, 3))
+        inserted = False
+        for i in range(len(nonInfinityNodes)):
+            if nonInfinityNodes[i][2] > scoreGrid[left[0]][left[1]]:
+                nonInfinityNodes.insert(i, (left, 3, scoreGrid[left[0]][left[1]]))
+                inserted = True
+                break
+        if not inserted:
+            nonInfinityNodes.append((left, 3, scoreGrid[left[0]][left[1]]))
     if rightPossible:
         scoreGrid[right[0]][right[1]] = score + 1
         if direction != 1:
             scoreGrid[right[0]][right[1]] += 1000
-        nonInfinityNodes.append((right, 1))
+        inserted = False
+        for i in range(len(nonInfinityNodes)):
+            if nonInfinityNodes[i][2] > scoreGrid[right[0]][right[1]]:
+                nonInfinityNodes.insert(i, (right, 1, scoreGrid[right[0]][right[1]]))
+                inserted = True
+                break
+        if not inserted:
+            nonInfinityNodes.append((right, 1, scoreGrid[right[0]][right[1]]))
 
     if len(nonInfinityNodes) == 0:
         return
     
-    minNode, newDirection = nonInfinityNodes[0]
+    minNode, newDirection, score = nonInfinityNodes[0]
 
     dijkstra(scoreGrid, grid, minNode[0], minNode[1], unvisited, nonInfinityNodes, newDirection)
