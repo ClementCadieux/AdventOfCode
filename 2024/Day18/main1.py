@@ -23,7 +23,10 @@ for i in range(bound):
 
 scoreGrid[0][0] = 0
 
-util.dijkstra(scoreGrid, grid, 0, 0, unvisited)
+nonInfinityNodes = []
+nonInfinityNodes.append((0, 0))
+
+util.dijkstra(scoreGrid, grid, 0, 0, unvisited, nonInfinityNodes)
 
 print(scoreGrid[-1][-1])
 
