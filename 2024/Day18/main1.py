@@ -1,5 +1,8 @@
 import sys
 import util
+import time
+
+start = time.time()
 
 args = sys.argv
 
@@ -16,3 +19,7 @@ scoreGrid = [[bound**2 + 1 for y in range(bound)] for x in range(bound)]
 util.scoreTile(grid, scoreGrid, bound - 1, bound - 1, 0)
 
 print(scoreGrid[0][0])
+
+end = time.time()
+
+print(end - start)
