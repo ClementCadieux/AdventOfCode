@@ -16,7 +16,7 @@ def readFile(filePath):
 def genGrid(coords, bound, sim):
     grid = [["." for j in range(bound)] for i in range(bound)]
 
-    for i in range(sim):
+    for i in range(sim + 1):
         coord = coords[i]
         grid[coord[1]][coord[0]] = "#"
 

@@ -14,12 +14,25 @@ coordsList = util.readFile(filePath)
 left = 0
 right = len(coordsList)
 
-while left < right:
+while left < right - 1:    
     mid = int((left + right)/2)
 
-    grid = util.genGrid(coordsList, bound, mid)
+    res = util.main(bound, mid, coordsList)
 
-    scoreGrid = [[bound**2 + 1 for y in range(bound)] for x in range(bound)]
+
+
+    if res == bound**2 + 1:
+        right = mid
+    else:
+        left = mid
+
+if left == right - 1:
+    res = util.main(bound, left, coordsList)
+
+    if res != bound**2 + 1:
+        left = right
+
+print(coordsList[left])    
 
 end = time.time()
 
