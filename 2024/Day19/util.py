@@ -58,3 +58,30 @@ def possibleDesign(design, index, towelsByFirst, cache):
     cache[index] = validDesign
 
     return validDesign
+
+def countAllDesigns(design, index, towelsByFirst, cache):
+    if index == len(design):
+        return 1
+    
+    if cache[index] != -1:
+        return cache[index]
+    
+    cache[index] = 0
+
+    currChar = design[index]
+
+    lengthToEnd = len(design) - index
+
+    towels = [] if currChar not in towelsByFirst else towelsByFirst[currChar]
+
+    for towel in towels:
+        if len(towel) <= lengthToEnd:
+            valid = True
+            for i in range(len(towel)):
+                if towel[i] != design[index + i]:
+                    valid = False
+                    break
+            if valid:
+                cache[index] += countAllDesigns(design, index + len(towel), towelsByFirst, cache)
+    
+    return cache[index]
