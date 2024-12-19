@@ -28,9 +28,12 @@ def readFile(path):
 
     return towelsByFirst, designs
 
-def possibleDesign(design, index, towelsByFirst):
+def possibleDesign(design, index, towelsByFirst, cache):
     if index == len(design):
         return True
+
+    if not cache[index]:
+        return False
     
     currChar = design[index]
 
@@ -48,8 +51,10 @@ def possibleDesign(design, index, towelsByFirst):
                     valid = False
                     break
             if valid:
-                validDesign = possibleDesign(design, index + len(towel), towelsByFirst)
+                validDesign = possibleDesign(design, index + len(towel), towelsByFirst, cache)
         if validDesign:
             break
+    
+    cache[index] = validDesign
 
     return validDesign

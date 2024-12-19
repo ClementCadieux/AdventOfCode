@@ -13,7 +13,8 @@ towelsByFirst, designs = util.readFile(filePath)
 count = 0
 
 for design in designs:
-    valid = util.possibleDesign(design, 0, towelsByFirst)
+    cache = [True for i in range(len(design))]
+    valid = util.possibleDesign(design, 0, towelsByFirst, cache)
     if valid:
         count += 1
 
