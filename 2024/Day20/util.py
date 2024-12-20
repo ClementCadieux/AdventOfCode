@@ -93,16 +93,16 @@ def findShortcuts(grid, shortcuts):
             shortcutLeftPossible = j != 1 and grid[i][j - 1] == "#" and grid[i][j - 2] != "#"
             shortcutRightPossible = j != len(grid[i]) - 2 and grid[i][j + 1] == "#" and grid[i][j + 2] != "#"
 
-            shortcupUpScore = 0 if not shortcutUpPossible else grid[i - 2][j] - grid[i][j]
+            shortcupUpScore = 0 if not shortcutUpPossible else grid[i - 2][j] - grid[i][j] - 2
             if shortcupUpScore < 0:
                 shortcupUpScore = 0
-            shortcupDownScore = 0 if not shortcutDownPossible else grid[i + 2][j] - grid[i][j]
+            shortcupDownScore = 0 if not shortcutDownPossible else grid[i + 2][j] - grid[i][j] - 2
             if shortcupDownScore < 0:
                 shortcupDownScore = 0
-            shortcupLeftScore = 0 if not shortcutLeftPossible else grid[i][j - 2] - grid[i][j]
+            shortcupLeftScore = 0 if not shortcutLeftPossible else grid[i][j - 2] - grid[i][j] - 2
             if shortcupLeftScore < 0:
                 shortcupLeftScore = 0
-            shortcupRightScore = 0 if not shortcutRightPossible else grid[i][j + 2] - grid[i][j]
+            shortcupRightScore = 0 if not shortcutRightPossible else grid[i][j + 2] - grid[i][j] - 2
             if shortcupRightScore < 0:
                 shortcupRightScore = 0
 
