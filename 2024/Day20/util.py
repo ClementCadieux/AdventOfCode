@@ -110,3 +110,6 @@ def findShortcuts(grid, shortcuts):
             shortcuts[shortcupDownScore] += 1
             shortcuts[shortcupLeftScore] += 1
             shortcuts[shortcupRightScore] += 1
+
+def findShortcutsPart2(grid, shortcutsByScore):
+    return None

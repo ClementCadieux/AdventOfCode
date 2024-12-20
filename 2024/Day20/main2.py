@@ -17,7 +17,7 @@ maxScore = util.scorePath(grid, start)
 
 shortcutsByScore = [0 for i in range(maxScore + 1)]
 
-util.findShortcuts(grid, shortcutsByScore)
+util.findShortcutsPart2(grid, shortcutsByScore)
 
 total = 0
 
