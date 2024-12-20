@@ -80,3 +80,8 @@ def scorePath(grid, start):
         score += 1
 
     grid[i][j] = score
+
+    return grid[i][j]
+
+def findShortcuts(grid, shortcuts):
+    
