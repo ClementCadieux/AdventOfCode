@@ -10,5 +10,5 @@ start = time.time()
 
 grid = util.readFile(filePath)
 
-start, end = util.findStartAndEnd(grid)
+start = util.findStart(grid)
 

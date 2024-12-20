@@ -9,30 +9,9 @@ def readFile(path):
 
     return grid
 
-def findStartAndEnd(grid):
-    startI = -1
-    startJ = -1
-
-    endI = -1
-    endJ = -1
-
-    foundStart = False
-    foundEnd = False
-
+def findStart(grid):
     for i in range(len(grid)):
         for j in range(len(grid[i])):
             if grid[i][j] == "S":
-                foundStart = True
-                startI = i
-                startJ = j
-            elif grid[i][j] == "E":
-                foundEnd = True
-                endI = i
-                endJ = j
-            
-            if foundStart and foundEnd:
-                break
-        if foundStart and foundEnd:
-            break
-    
-    return ((startI, startJ), (endI, endJ))
+                return (i,j)
+
