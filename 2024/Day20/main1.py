@@ -12,3 +12,7 @@ grid = util.readFile(filePath)
 
 start = util.findStart(grid)
 
+util.scorePath(grid, start)
+
+for line in grid:
+    print(line)
