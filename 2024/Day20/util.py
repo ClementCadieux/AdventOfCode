@@ -84,4 +84,29 @@ def scorePath(grid, start):
     return grid[i][j]
 
 def findShortcuts(grid, shortcuts):
-    
+    for i in range(1, len(grid) - 1):
+        for j in range(1, len(grid[i]) - 1):
+            if grid[i][j] == "#":
+                continue
+            shortcutUpPossible = i != 1 and grid[i - 1][j] == "#" and grid[i - 2][j] != "#"
+            shortcutDownPossible = i != len(grid) - 2 and grid[i + 1][j] == "#" and grid[i + 2][j] != "#"
+            shortcutLeftPossible = j != 1 and grid[i][j - 1] == "#" and grid[i][j - 2] != "#"
+            shortcutRightPossible = j != len(grid[i]) - 2 and grid[i][j + 1] == "#" and grid[i][j + 2] != "#"
+
+            shortcupUpScore = 0 if not shortcutUpPossible else grid[i - 2][j] - grid[i][j]
+            if shortcupUpScore < 0:
+                shortcupUpScore = 0
+            shortcupDownScore = 0 if not shortcutDownPossible else grid[i + 2][j] - grid[i][j]
+            if shortcupDownScore < 0:
+                shortcupDownScore = 0
+            shortcupLeftScore = 0 if not shortcutLeftPossible else grid[i][j - 2] - grid[i][j]
+            if shortcupLeftScore < 0:
+                shortcupLeftScore = 0
+            shortcupRightScore = 0 if not shortcutRightPossible else grid[i][j + 2] - grid[i][j]
+            if shortcupRightScore < 0:
+                shortcupRightScore = 0
+
+            shortcuts[shortcupUpScore] += 1
+            shortcuts[shortcupDownScore] += 1
+            shortcuts[shortcupLeftScore] += 1
+            shortcuts[shortcupRightScore] += 1

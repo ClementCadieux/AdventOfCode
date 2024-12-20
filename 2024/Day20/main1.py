@@ -5,7 +5,7 @@ import time
 args = sys.argv
 
 filePath = "2024\\Day20\\test.txt" if len(args) == 1 else args[1]
-minScore = 50 if len(args) == 1 else args[2]
+minScore = 50 if len(args) == 1 else int(args[2])
 
 start = time.time()
 
