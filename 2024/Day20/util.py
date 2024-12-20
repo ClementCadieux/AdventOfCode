@@ -111,5 +111,28 @@ def findShortcuts(grid, shortcuts):
             shortcuts[shortcupLeftScore] += 1
             shortcuts[shortcupRightScore] += 1
 
-def findShortcutsPart2(grid, shortcutsByScore):
-    return None
+def findShortcutsPart2(grid, minScore):
+    total = 0
+
+    for i in range(1, len(grid) - 1):
+        for j in range(1, len(grid[i]) - 1):
+            if grid[i][j] == "#":
+                continue
+            
+            for shortI in range(max(i - 20, 0), min(i + 20, len(grid) - 1) + 1):
+                for shortJ  in range(max(j - 20, 0), min(j + 20, len(grid[i]) - 1) + 1):
+                    if grid[shortI][shortJ] != "#":
+                        distance = abs(shortI - i) + abs(shortJ - j)
+
+                        if distance > 20:
+                            continue
+
+                        scoreDiff = grid[shortI][shortJ] - grid[i][j]
+
+                        shortcutScore = scoreDiff - distance
+
+                        if shortcutScore >= minScore:
+                            total += 1
+
+    return total
+            
