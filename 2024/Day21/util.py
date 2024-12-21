@@ -1,5 +1,3 @@
-import functools
-
 def readFile(path):
     file = open(path, "r")
 
@@ -266,15 +264,15 @@ def main(filePath, keyboards):
     score = 0
 
     sequenceDict = buildSequenceDict()
-    lengthsByPair = buildLengthsByPairs(15 if keyboards == 25 else keyboards, sequenceDict)
+    lengthsByPair = buildLengthsByPairs(min(15, keyboards), sequenceDict)
     
     sequence = ""
 
     for code in codes:
         sequence = buildNextSequence(code, sequenceDict, "A")
 
-        if keyboards == 25:
-            for i in range(10):
+        if keyboards > 15:
+            for i in range(keyboards - 15):
                 sequence = buildNextSequence(sequence, sequenceDict, "A")
 
         length = 0
