@@ -12,8 +12,8 @@ def codeScore(code, sequenceLength):
 
     return numCode*sequenceLength
 
-def arrowAIndex(coord):
-    match coord:
+def arrowIndex(arrow):
+    match arrow:
         case ">":
             return 0
         case "<":
@@ -219,3 +219,23 @@ def buildSequenceDict():
     sequencePerTile["A"].append["A"]
     
     return sequencePerTile
+
+def buildNextSequence(sequence, sequenceDict):
+    currChar = "A"
+
+    result = ""
+
+    for i in len(sequence):
+        nextChar = sequence[i]
+
+        charIndex = arrowIndex(nextChar) if not nextChar.isdigit() else int(nextChar)
+
+        if currChar == "A" and not nextChar.isdigit() and nextChar != "A":
+            charIndex += 10
+
+        result += sequenceDict[currChar][charIndex]
+
+        currChar = nextChar
+    
+    return result
+        
