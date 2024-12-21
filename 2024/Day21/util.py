@@ -1,3 +1,5 @@
+import functools
+
 def readFile(path):
     file = open(path, "r")
 
@@ -221,13 +223,31 @@ def buildSequenceDict():
     
     return sequencePerTile
 
-def buildNextSequence(sequence, sequenceDict):
+def buildNextSequence(sequence):
+    splitSequence = sequence.split("A")
+
+    splitSequence = [subSequence + "A" for subSequence in splitSequence]
+
+    splitSequence = splitSequence[:-1]
+
+    result = ""
+
+    for subSequence in splitSequence:
+        result += getNextSequence(subSequence)
+
+    return result
+
+sequenceDict = buildSequenceDict()
+
+@functools.lru_cache(maxsize=None)
+def getNextSequence(subSequence):
+    global sequenceDict
     currChar = "A"
 
     result = ""
 
-    for i in range(len(sequence)):
-        nextChar = sequence[i]
+    for i in range(len(subSequence)):
+        nextChar = subSequence[i]
 
         charIndex = arrowIndex(nextChar) if not nextChar.isdigit() else int(nextChar)
 
@@ -243,8 +263,6 @@ def buildNextSequence(sequence, sequenceDict):
 def main(filePath, keyboards):
     codes = readFile(filePath)
 
-    sequenceDict = buildSequenceDict()
-
     score = 0
 
     sequence = ""
@@ -252,7 +270,7 @@ def main(filePath, keyboards):
     for code in codes:
         sequence = code
         for i in range(keyboards):
-            sequence = buildNextSequence(sequence, sequenceDict)
+            sequence = buildNextSequence(sequence)
 
         score += codeScore(code, len(sequence))
     return score
