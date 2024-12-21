@@ -225,7 +225,7 @@ def buildNextSequence(sequence, sequenceDict):
 
     result = ""
 
-    for i in len(sequence):
+    for i in range(len(sequence)):
         nextChar = sequence[i]
 
         charIndex = arrowIndex(nextChar) if not nextChar.isdigit() else int(nextChar)
