@@ -170,35 +170,35 @@ def buildSequenceDict():
 
     sequencePerTile[">"] = []
 
-    sequencePerTile[">"].append["A"]
-    sequencePerTile[">"].append["<<A"]
-    sequencePerTile[">"].append["<^A"]
-    sequencePerTile[">"].append["<A"]
-    sequencePerTile[">"].append["^A"]
+    sequencePerTile[">"].append("A")
+    sequencePerTile[">"].append("<<A")
+    sequencePerTile[">"].append("<^A")
+    sequencePerTile[">"].append("<A")
+    sequencePerTile[">"].append("^A")
 
     sequencePerTile["<"] = []
 
-    sequencePerTile["<"].append[">>A"]
-    sequencePerTile["<"].append["A"]
-    sequencePerTile["<"].append[">^A"]
-    sequencePerTile["<"].append[">A"]
-    sequencePerTile["<"].append[">>^A"]
+    sequencePerTile["<"].append(">>A")
+    sequencePerTile["<"].append("A")
+    sequencePerTile["<"].append(">^A")
+    sequencePerTile["<"].append(">A")
+    sequencePerTile["<"].append(">>^A")
 
     sequencePerTile["^"] = []
 
-    sequencePerTile["^"].append["v>A"]
-    sequencePerTile["^"].append["v<A"]
-    sequencePerTile["^"].append["A"]
-    sequencePerTile["^"].append["vA"]
-    sequencePerTile["^"].append[">A"]
+    sequencePerTile["^"].append("v>A")
+    sequencePerTile["^"].append("v<A")
+    sequencePerTile["^"].append("A")
+    sequencePerTile["^"].append("vA")
+    sequencePerTile["^"].append(">A")
 
     sequencePerTile["v"] = []
 
-    sequencePerTile["v"].append[">A"]
-    sequencePerTile["v"].append["<A"]
-    sequencePerTile["v"].append["^A"]
-    sequencePerTile["v"].append["A"]
-    sequencePerTile["v"].append["^>A"]
+    sequencePerTile["v"].append(">A")
+    sequencePerTile["v"].append("<A")
+    sequencePerTile["v"].append("^A")
+    sequencePerTile["v"].append("A")
+    sequencePerTile["v"].append("^>A")
 
     sequencePerTile["A"] = []
 
@@ -212,11 +212,11 @@ def buildSequenceDict():
     sequencePerTile["A"].append("^^^<<A")
     sequencePerTile["A"].append("^^^<A")
     sequencePerTile["A"].append("^^^A")
-    sequencePerTile["A"].append["vA"]
-    sequencePerTile["A"].append["v<<A"]
-    sequencePerTile["A"].append["<A"]
-    sequencePerTile["A"].append["<vA"]
-    sequencePerTile["A"].append["A"]
+    sequencePerTile["A"].append("vA")
+    sequencePerTile["A"].append("v<<A")
+    sequencePerTile["A"].append("<A")
+    sequencePerTile["A"].append("<vA")
+    sequencePerTile["A"].append("A")
     
     return sequencePerTile
 

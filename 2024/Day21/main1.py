@@ -10,4 +10,10 @@ startTime = time.time()
 
 codes = util.readFile(filePath)
 
-print(codes)
+sequenceDict = util.buildSequenceDict()
+
+code = codes[0]
+
+codeSequence = util.buildNextSequence(code, sequenceDict)
+
+print(codeSequence)
