@@ -239,3 +239,4 @@ def buildNextSequence(sequence, sequenceDict):
         currChar = nextChar
     
     return result
+

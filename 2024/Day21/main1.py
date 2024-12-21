@@ -24,3 +24,7 @@ for code in codes:
     score += util.codeScore(code, len(sequence))
 
 print(score)
+
+endTime = time.time()
+
+print(endTime - startTime)
