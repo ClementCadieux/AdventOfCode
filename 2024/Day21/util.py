@@ -223,8 +223,8 @@ def buildSequenceDict():
     
     return sequencePerTile
 
-def buildNextSequence(sequence, sequenceDict):
-    currChar = "A"
+def buildNextSequence(sequence, sequenceDict, start):
+    currChar = start
 
     result = ""
 
@@ -242,19 +242,47 @@ def buildNextSequence(sequence, sequenceDict):
     
     return result
 
+def buildLengthsByPairs(keyboards, sequenceDict):
+    lengthsByPair = {}
+
+    arrows = ["<", ">", "^", "v", "A"]
+
+    for leftArrow in arrows:
+        for rightArrow in arrows:
+            pair = leftArrow + rightArrow
+            sequence = pair
+
+            for i in range(keyboards):
+                sequence = buildNextSequence(sequence, sequenceDict, sequence[0])
+
+            lengthsByPair[pair] = len(sequence) - 1
+    
+    return lengthsByPair
+
+
 def main(filePath, keyboards):
     codes = readFile(filePath)
 
     score = 0
 
     sequenceDict = buildSequenceDict()
+    lengthsByPair = buildLengthsByPairs(15 if keyboards == 25 else keyboards, sequenceDict)
     
     sequence = ""
 
     for code in codes:
-        sequence = code
-        for i in range(keyboards):
-            sequence = buildNextSequence(sequence, sequenceDict)
+        sequence = buildNextSequence(code, sequenceDict, "A")
 
-        score += codeScore(code, len(sequence))
+        if keyboards == 25:
+            for i in range(10):
+                sequence = buildNextSequence(sequence, sequenceDict, "A")
+
+        length = 0
+
+        for i in range(len(sequence)):
+            pair = ("A" if i == 0 else sequence[i - 1]) + sequence[i]
+
+            length += lengthsByPair[pair]
+
+        score += codeScore(code, length)
     return score
