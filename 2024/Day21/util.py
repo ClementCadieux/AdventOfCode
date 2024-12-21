@@ -79,7 +79,7 @@ def buildSequenceDict():
     sequencePerTile["3"].append("^<<A")
     sequencePerTile["3"].append("^<A")
     sequencePerTile["3"].append("^A")
-    sequencePerTile["3"].append("^^<<A")
+    sequencePerTile["3"].append("<<^^A")
     sequencePerTile["3"].append("^^<A")
     sequencePerTile["3"].append("^^A")
     sequencePerTile["3"].append("vA")   
@@ -172,7 +172,7 @@ def buildSequenceDict():
 
     sequencePerTile[">"].append("A")
     sequencePerTile[">"].append("<<A")
-    sequencePerTile[">"].append("^<A")
+    sequencePerTile[">"].append("<^A")
     sequencePerTile[">"].append("<A")
     sequencePerTile[">"].append("^A")
 
@@ -186,7 +186,7 @@ def buildSequenceDict():
 
     sequencePerTile["^"] = []
 
-    sequencePerTile["^"].append(">vA")
+    sequencePerTile["^"].append("v>A")
     sequencePerTile["^"].append("v<A")
     sequencePerTile["^"].append("A")
     sequencePerTile["^"].append("vA")
@@ -209,7 +209,7 @@ def buildSequenceDict():
     sequencePerTile["A"].append("^^<<A")
     sequencePerTile["A"].append("^^<A")
     sequencePerTile["A"].append("^^A")
-    sequencePerTile["A"].append("^^^<<A")
+    sequencePerTile["A"].append("^<<^^A")
     sequencePerTile["A"].append("^^^<A")
     sequencePerTile["A"].append("^^^A")
     sequencePerTile["A"].append("vA")
@@ -238,4 +238,3 @@ def buildNextSequence(sequence, sequenceDict):
         currChar = nextChar
     
     return result
-        
