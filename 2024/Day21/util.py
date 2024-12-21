@@ -28,6 +28,20 @@ def arrowAIndex(coord):
 def buildSequenceDict():
     sequencePerTile = {}    
 
+    sequencePerTile["0"] = []
+
+    sequencePerTile["0"].append("A")
+    sequencePerTile["0"].append("^<A")
+    sequencePerTile["0"].append("^A")
+    sequencePerTile["0"].append("^>A")
+    sequencePerTile["0"].append("^^<A")
+    sequencePerTile["0"].append("^^A")
+    sequencePerTile["0"].append("^^>A")
+    sequencePerTile["0"].append("^^^<A")
+    sequencePerTile["0"].append("^^^A")
+    sequencePerTile["0"].append("^^^>A")
+    sequencePerTile["0"].append(">A")
+
     sequencePerTile["1"] = []
 
     sequencePerTile["1"].append(">vA")
