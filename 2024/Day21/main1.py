@@ -12,8 +12,13 @@ codes = util.readFile(filePath)
 
 sequenceDict = util.buildSequenceDict()
 
-code = codes[0]
+score = 0
 
-codeSequence = util.buildNextSequence(code, sequenceDict)
+for code in codes:
+    sequence = code
+    for i in range(3):
+        sequence = util.buildNextSequence(sequence, sequenceDict)
+    
+    score += util.codeScore(code, len(sequence))
 
-print(codeSequence)
+print(score)
