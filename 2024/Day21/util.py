@@ -240,3 +240,19 @@ def buildNextSequence(sequence, sequenceDict):
     
     return result
 
+def main(filePath, keyboards):
+    codes = readFile(filePath)
+
+    sequenceDict = buildSequenceDict()
+
+    score = 0
+
+    sequence = ""
+
+    for code in codes:
+        sequence = code
+        for i in range(keyboards):
+            sequence = buildNextSequence(sequence, sequenceDict)
+
+        score += codeScore(code, len(sequence))
+    return score
