@@ -101,7 +101,7 @@ def buildSequenceDict():
     sequencePerTile["5"] = []
 
     sequencePerTile["5"].append("vvA")
-    sequencePerTile["5"].append("<vA")
+    sequencePerTile["5"].append("v<A")
     sequencePerTile["5"].append("vA")
     sequencePerTile["5"].append(">vA")
     sequencePerTile["5"].append("<A")
@@ -115,7 +115,7 @@ def buildSequenceDict():
     sequencePerTile["6"] = []
 
     sequencePerTile["6"].append("vv<A")
-    sequencePerTile["6"].append("<<vA")
+    sequencePerTile["6"].append("v<<A")
     sequencePerTile["6"].append("<vA")
     sequencePerTile["6"].append("vA")
     sequencePerTile["6"].append("<<A")
@@ -133,8 +133,8 @@ def buildSequenceDict():
     sequencePerTile["7"].append(">vvA")
     sequencePerTile["7"].append(">>vvA")
     sequencePerTile["7"].append("vA")
-    sequencePerTile["7"].append("v>A")
-    sequencePerTile["7"].append("v>>A")
+    sequencePerTile["7"].append(">vA")
+    sequencePerTile["7"].append(">>vA")
     sequencePerTile["7"].append("A")
     sequencePerTile["7"].append(">A")
     sequencePerTile["7"].append(">>A")
@@ -143,12 +143,12 @@ def buildSequenceDict():
     sequencePerTile["8"] = []
 
     sequencePerTile["8"].append("vvvA")
-    sequencePerTile["8"].append("<vvA")
+    sequencePerTile["8"].append("vv<A")
     sequencePerTile["8"].append("vvA")
     sequencePerTile["8"].append(">vvA")
-    sequencePerTile["8"].append("<vA")
+    sequencePerTile["8"].append("v<A")
     sequencePerTile["8"].append("vA")
-    sequencePerTile["8"].append("v>A")
+    sequencePerTile["8"].append(">vA")
     sequencePerTile["8"].append("<A")
     sequencePerTile["8"].append("A")
     sequencePerTile["8"].append(">A")
@@ -157,11 +157,11 @@ def buildSequenceDict():
     sequencePerTile["9"] = []
 
     sequencePerTile["9"].append("vvv<A")
-    sequencePerTile["9"].append("<<vvA")
-    sequencePerTile["9"].append("<vvA")
+    sequencePerTile["9"].append("vv<<A")
+    sequencePerTile["9"].append("vv<A")
     sequencePerTile["9"].append("vvA")
-    sequencePerTile["9"].append("<<vA")
-    sequencePerTile["9"].append("<vA")
+    sequencePerTile["9"].append("v<<A")
+    sequencePerTile["9"].append("v<A")
     sequencePerTile["9"].append("vA")
     sequencePerTile["9"].append("<<A")
     sequencePerTile["9"].append("<A")
@@ -172,7 +172,7 @@ def buildSequenceDict():
 
     sequencePerTile[">"].append("A")
     sequencePerTile[">"].append("<<A")
-    sequencePerTile[">"].append("<^A")
+    sequencePerTile[">"].append("^<A")
     sequencePerTile[">"].append("<A")
     sequencePerTile[">"].append("^A")
 
@@ -186,7 +186,7 @@ def buildSequenceDict():
 
     sequencePerTile["^"] = []
 
-    sequencePerTile["^"].append("v>A")
+    sequencePerTile["^"].append(">vA")
     sequencePerTile["^"].append("v<A")
     sequencePerTile["^"].append("A")
     sequencePerTile["^"].append("vA")
@@ -215,7 +215,7 @@ def buildSequenceDict():
     sequencePerTile["A"].append("vA")
     sequencePerTile["A"].append("v<<A")
     sequencePerTile["A"].append("<A")
-    sequencePerTile["A"].append("<vA")
+    sequencePerTile["A"].append("v<A")
     sequencePerTile["A"].append("A")
     
     return sequencePerTile
