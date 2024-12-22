@@ -1,5 +1,3 @@
-import functools
-
 def readFile(path):
     file = open(path, "r")
 
@@ -9,7 +7,6 @@ def readFile(path):
 
     return lines
 
-@functools.lru_cache(maxsize=None)
 def calcNum(num):
     mixVal = num*64
     num = num^mixVal
