@@ -34,7 +34,7 @@ def getChangeSequence(priceSequence):
 
     return strChangeSequence[1:-1]
 
-def keepChangeSequence(num, priceSequence, changeSequenceDict):
+def keepChangeSequence(num, priceSequence, changeSequenceDict, allSequences):
     num = calcNumPart1(num)
 
     priceSequence.append(num)
@@ -46,5 +46,6 @@ def keepChangeSequence(num, priceSequence, changeSequenceDict):
 
     if changeSequence not in changeSequenceDict and len(changeSequence.split(",")) == 4:
         changeSequenceDict[changeSequence] = priceSequence[-1]%10
+        allSequences.add(changeSequence)
 
-    return (num,priceSequence,changeSequenceDict)
+    return (num,priceSequence,changeSequenceDict,allSequences)

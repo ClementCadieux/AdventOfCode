@@ -10,16 +10,32 @@ startTime = time.time()
 
 nums = util.readFile(filePath)
 
-num = 123
-priceSequence = [num]
-changeSequenceDict = {}
+changeSequences = []
 
-for i in range(11):
-    num, priceSequence, changeSequenceDict = util.keepChangeSequence(num, priceSequence, changeSequenceDict)
+allSequences = set()
 
+for val in nums:
+    num = val
+    priceSequence = [num]
+    changeSequenceDict = {}
 
-for sequence in changeSequenceDict:
-    print(sequence, changeSequenceDict[sequence])
+    for i in range(2000):
+        num, priceSequence, changeSequenceDict, allSequences = util.keepChangeSequence(num, priceSequence, changeSequenceDict, allSequences)
+
+    changeSequences.append(changeSequenceDict)
+
+maxTotal = 0
+
+for sequence in allSequences:
+    total = 0
+
+    for changeSequenceDict in changeSequences:
+        total += 0 if sequence not in changeSequenceDict else changeSequenceDict[sequence]
+
+    if total > maxTotal:
+        maxTotal = total
+
+print(maxTotal)
 
 endTime = time.time()
 
