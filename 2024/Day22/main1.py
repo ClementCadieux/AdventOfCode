@@ -16,7 +16,7 @@ total = 0
 for val in nums:
     num = val
     for i in range(2000):
-        num = util.calcNum(num)
+        num = util.calcNumPart1(num)
 
     total += num
 

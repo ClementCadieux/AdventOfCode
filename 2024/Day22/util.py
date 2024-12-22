@@ -7,7 +7,7 @@ def readFile(path):
 
     return lines
 
-def calcNum(num):
+def calcNumPart1(num):
     mixVal = num*64
     num = num^mixVal
     num %= 16777216
