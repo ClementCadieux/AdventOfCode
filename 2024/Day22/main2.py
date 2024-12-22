@@ -10,6 +10,17 @@ startTime = time.time()
 
 nums = util.readFile(filePath)
 
+num = 123
+priceSequence = [num]
+changeSequenceDict = {}
+
+for i in range(11):
+    num, priceSequence, changeSequenceDict = util.keepChangeSequence(num, priceSequence, changeSequenceDict)
+
+
+for sequence in changeSequenceDict:
+    print(sequence, changeSequenceDict[sequence])
+
 endTime = time.time()
 
 print(endTime - startTime)
