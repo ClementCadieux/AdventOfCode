@@ -12,7 +12,6 @@ nums = util.readFile(filePath)
 
 total = 0
 
-
 for val in nums:
     num = val
     for i in range(2000):
