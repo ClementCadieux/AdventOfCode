@@ -12,7 +12,21 @@ connections = util.readFile(filePath)
 
 tripleConnections = util.getTripleConnections(connections)
 
-for connection in tripleConnections:
-    print(connection)
+total = 0
 
-print(len(tripleConnections))
+for connection in tripleConnections:
+    containsT = False
+    
+    for node in connection:
+        if node[0] == "t":
+            containsT = True
+            break
+    
+    if containsT:
+        total += 1
+
+print(total)
+
+endTime = time.time()
+
+print(endTime - startTime)
