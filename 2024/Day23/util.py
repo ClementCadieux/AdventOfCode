@@ -22,3 +22,30 @@ def readFile(path):
         connections[right].add(left)
 
     return connections
+
+def getTripleConnections(connections):
+    tripleConnections = set()
+
+    for node in connections:
+        seenNodes = set()
+        connectTo = connections[node]
+
+        for nextNode in connectTo:
+            nextConnectTo = connections[nextNode]
+
+            intersectSet = connectTo & nextConnectTo
+
+            for thirdNode in intersectSet:
+                if thirdNode in seenNodes:
+                    continue
+                group = (node, nextNode, thirdNode)
+
+                tripleConnections.add(group)
+                if node in connections[thirdNode]:
+                    connections[thirdNode].remove(node)
+
+            seenNodes.add(nextNode)
+        
+        connections[node].clear()
+    return tripleConnections
+    
