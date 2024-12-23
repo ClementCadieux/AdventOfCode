@@ -1,6 +1,7 @@
 import sys
 import util
 import time
+import copy
 
 args = sys.argv
 
@@ -10,3 +11,11 @@ startTime = time.time()
 
 connections = util.readFile(filePath)
 
+connectionsCopy = copy.deepcopy(connections)
+
+tripleConnections = util.getTripleConnections(connections)
+
+util.buildLongestConnections(tripleConnections, connectionsCopy)
+
+for connection in tripleConnections:
+    print(connection)
