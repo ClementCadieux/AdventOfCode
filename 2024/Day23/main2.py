@@ -13,15 +13,28 @@ connections = util.readFile(filePath)
 
 connectionsCopy = copy.deepcopy(connections)
 
+connectionsCopy2 = copy.deepcopy(connections)
+
 tripleConnections = util.getTripleConnections(connections)
 
 util.buildLongestConnections(tripleConnections, connectionsCopy)
 
-longestConnection = tripleConnections[0]
+longestConnection = set()
 
 for connection in tripleConnections:
     if len(connection) > len(longestConnection):
-        longestConnection = connection
+        valid = True
+
+        for node in connection:
+            for subNode in connection:
+                if subNode != node and subNode not in connectionsCopy2[node]:
+                    valid = False
+                    break
+            if not valid:
+                break
+        
+        if valid:
+            longestConnection = connection
 
 listConnection = list(longestConnection)
 

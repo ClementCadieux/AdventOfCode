@@ -1,5 +1,3 @@
-import copy
-
 def readFile(path):
     file = open(path, "r")
 
@@ -64,7 +62,7 @@ def buildLongestConnections(tripleConnections, connections):
                 allConnections = connections[node]
                 assigned = True
             else:
-                allConnections = allConnections & connections[node]
+                allConnections &= connections[node]
 
         tripleConnection.update(allConnections)            
 
