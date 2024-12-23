@@ -17,5 +17,25 @@ tripleConnections = util.getTripleConnections(connections)
 
 util.buildLongestConnections(tripleConnections, connectionsCopy)
 
+longestConnection = tripleConnections[0]
+
 for connection in tripleConnections:
-    print(connection)
+    if len(connection) > len(longestConnection):
+        longestConnection = connection
+
+listConnection = list(longestConnection)
+
+listConnection.sort()
+
+res = ""
+
+for node in listConnection:
+    if len(res) != 0:
+        res += ","
+    res += node
+
+print(res)
+
+endTime = time.time()
+
+print(endTime - startTime)
