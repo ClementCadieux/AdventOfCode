@@ -76,22 +76,22 @@ def processOps(nodes):
                     changed = True
                     nodes[i] = node
 
-def getZBinary(nodes, nodeIndex):
+def getBinary(nodes, nodeIndex, letter):
     res = ""
 
-    zNum = 0
+    num = 0
 
-    zNode = "z" + ("0" if zNum < 10 else "") + str(zNum)
+    node = letter + ("0" if num < 10 else "") + str(num)
 
-    while zNode in nodeIndex:
-        value = nodes[nodeIndex[zNode]]
+    while node in nodeIndex:
+        value = nodes[nodeIndex[node]]
 
         bit = "1" if value else "0"
 
         res = bit + res
 
-        zNum += 1
+        num += 1
 
-        zNode = "z" + ("0" if zNum < 10 else "") + str(zNum)
+        node = "z" + ("0" if num < 10 else "") + str(num)
     
     return res

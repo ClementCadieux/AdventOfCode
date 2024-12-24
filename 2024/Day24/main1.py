@@ -12,7 +12,7 @@ nodes, nodeIndex = util.readFile(filePath)
 
 util.processOps(nodes)
 
-resStr = util.getZBinary(nodes, nodeIndex)
+resStr = util.getBinary(nodes, nodeIndex, "z")
 
 res = int(resStr, 2)
 
