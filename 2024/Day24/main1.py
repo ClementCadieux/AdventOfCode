@@ -10,7 +10,7 @@ startTime = time.time()
 
 nodes, nodeIndex = util.readFile(filePath)
 
-util.processOps(nodes)
+util.processOps(nodes, nodeIndex)
 
 resStr = util.getBinary(nodes, nodeIndex, "z")
 

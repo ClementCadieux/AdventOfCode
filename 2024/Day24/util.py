@@ -46,11 +46,11 @@ def readFile(path):
                 nodeIndex[targetNode] = len(nodes)
                 nodes.append(-1)
 
-            nodes[nodeIndex[targetNode]] = (nodeIndex[opLeftNode], op, nodeIndex[opRightNode])
+            nodes[nodeIndex[targetNode]] = (opLeftNode, op, opRightNode)
 
     return (nodes, nodeIndex)
 
-def processOps(nodes):
+def processOps(nodes, nodeIndex):
     changed = True
 
     while changed:
@@ -59,8 +59,8 @@ def processOps(nodes):
         for i in range(len(nodes)):
             node = nodes[i]
             if not isinstance(node, bool):
-                leftNode = nodes[node[0]]
-                rightNode = nodes[node[2]]
+                leftNode = nodes[nodeIndex[node[0]]]
+                rightNode = nodes[nodeIndex[node[2]]]
 
                 validOp = isinstance(leftNode, bool) and isinstance(rightNode, bool)
 
