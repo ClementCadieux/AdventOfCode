@@ -6,6 +6,7 @@ def readFile(path):
     lines = [line[:-1] if line[-1] == "\n" else line for line in lines]
 
     nodeIndex = {}
+    zNodes = {}
     nodes = []
 
     inWires = True
@@ -22,6 +23,9 @@ def readFile(path):
 
                 nodeIndex[node] = len(nodes)
                 nodes.append(value)
+                
+                if node[0] == "z":
+                    zNodes[node] = nodeIndex[node]
         else:
             splitLine = line.split("->")
 
@@ -47,8 +51,10 @@ def readFile(path):
                 nodes.append(-1)
 
             nodes[nodeIndex[targetNode]] = (nodeIndex[opLeftNode], op, nodeIndex[opRightNode])
+            if targetNode[0] == "z":
+                zNodes[node] = nodeIndex[node]
 
-    return nodes
+    return nodes, zNodes
 
 def processOps(nodes):
     changed = True
@@ -75,3 +81,4 @@ def processOps(nodes):
 
                     changed = True
                     nodes[i] = node
+
