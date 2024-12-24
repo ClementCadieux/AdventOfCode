@@ -14,3 +14,10 @@ util.processOps(nodes)
 
 resStr = util.getZBinary(nodes, nodeIndex)
 
+res = int(resStr, 2)
+
+print(res)
+
+endTime = time.time()
+
+print(endTime - startTime)
