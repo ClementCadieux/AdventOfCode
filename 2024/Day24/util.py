@@ -95,18 +95,4 @@ def getBinary(nodes, nodeIndex, letter):
         node = letter + ("0" if num < 10 else "") + str(num)
     
     return res
-
-def breakdownOp(nodes, nodeIndex):
-    for node in nodes:
-        if not isinstance(node, bool):
-            value = node
-
-            left = value[0]
-
-            if left[0] != "x" and left[0] != "y":
-                value[0] = nodes[nodeIndex[left]]
-
-            right = value[2]
-
-            if right[0] != "x" and right[0] != "y":
-                value[2] = nodes[nodeIndex[right]]
+    
