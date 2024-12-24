@@ -10,9 +10,18 @@ startTime = time.time()
 
 nodes, nodeIndex = util.readFile(filePath)
 
-util.processOps(nodes)
+num = 0
 
+node = "z" + ("0" if num < 10 else "") + str(num)
 
+while node in nodeIndex:
+    value = nodes[nodeIndex[node]]
+
+    
+
+    num += 1
+
+    node = "z" + ("0" if num < 10 else "") + str(num)
 
 endTime = time.time()
 

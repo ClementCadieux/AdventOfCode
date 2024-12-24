@@ -46,7 +46,7 @@ def readFile(path):
                 nodeIndex[targetNode] = len(nodes)
                 nodes.append(-1)
 
-            nodes[nodeIndex[targetNode]] = (opLeftNode, op, opRightNode)
+            nodes[nodeIndex[targetNode]] = [opLeftNode, op, opRightNode]
 
     return (nodes, nodeIndex)
 
