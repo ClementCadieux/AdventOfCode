@@ -92,6 +92,6 @@ def getBinary(nodes, nodeIndex, letter):
 
         num += 1
 
-        node = "z" + ("0" if num < 10 else "") + str(num)
+        node = letter + ("0" if num < 10 else "") + str(num)
     
     return res
