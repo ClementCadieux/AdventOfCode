@@ -10,6 +10,8 @@ startTime = time.time()
 
 nodes, nodeIndex = util.readFile(filePath)
 
+util.visualDisplay(nodes, nodeIndex)
+
 endTime = time.time()
 
 print(endTime - startTime)
