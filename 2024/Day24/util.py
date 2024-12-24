@@ -50,3 +50,28 @@ def readFile(path):
 
     return nodes
 
+def processOps(nodes):
+    changed = True
+
+    while changed:
+        changed = False
+
+        for i in range(len(nodes)):
+            node = nodes[i]
+            if not isinstance(node, bool):
+                leftNode = nodes[node[0]]
+                rightNode = nodes[node[2]]
+
+                validOp = isinstance(leftNode, bool) and isinstance(rightNode, bool)
+
+                if validOp:
+                    match node[1]:
+                        case "AND":
+                            node = leftNode and rightNode
+                        case "XOR":
+                            node = leftNode != rightNode
+                        case "OR":
+                            node = leftNode or rightNode
+
+                    changed = True
+                    nodes[i] = node

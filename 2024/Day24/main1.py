@@ -10,3 +10,7 @@ startTime = time.time()
 
 nodes = util.readFile(filePath)
 
+util.processOps(nodes)
+
+for node in nodes:
+    print(node)
