@@ -8,7 +8,7 @@ filePath = "2024\\Day24\\test.txt" if len(args) == 1 else args[1]
 
 startTime = time.time()
 
-nodes, zNodes = util.readFile(filePath)
+nodes, nodeIndex = util.readFile(filePath)
 
 util.processOps(nodes)
 
