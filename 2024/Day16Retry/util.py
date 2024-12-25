@@ -1,3 +1,6 @@
+from sys import maxsize
+import heapq
+
 def readFile(path):
     file = open(path, "r")
 
@@ -109,3 +112,42 @@ def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction, scor
             return
         
         (i,j), direction, score = nonInfinityNodes[0]
+
+def dijkstraP2(grid):
+    seen = [[[maxsize for _ in range(4)] for x in range(len(grid[0]))] for y in range(len(grid))]
+
+    velocities = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+
+    start_pos = None
+    end_pos = None
+    for j, r in enumerate(grid):
+        for i, c in enumerate(r):
+            if c == 'S':
+                start_pos = (j, i)
+            if c == 'E':
+                end_pos = (j, i)
+
+    pq = [(0, (*start_pos, 1), [start_pos])] # start facing EAST
+    paths = []
+    best_score = maxsize
+
+    while pq and pq[0][0] <= best_score:
+        score, (y, x, dir), path = heapq.heappop(pq)
+
+        if (y, x) == end_pos:
+            best_score = score
+            paths.append(path)
+            continue
+
+        if seen[y][x][dir] < score:
+            continue
+        seen[y][x][dir] = score
+
+        for i in range(4):
+            dy, dx = velocities[i]
+            ny, nx = y + dy, x + dx
+            if grid[ny][nx] != '#' and (ny, nx) not in path:
+                cost = 1 if i == dir else 1001
+                heapq.heappush(pq, (score + cost, (ny, nx, i), path + [(ny, nx)]))
+
+    return paths
