@@ -24,11 +24,38 @@ def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction, scor
         left = (i, j - 1)
         right = (i, j + 1)
 
-        upPossible = i != 0 and grid[up[0]][up[1]] != "#" and up in unvisited and up not in nonInfinityNodes and direction in [0, 1, 3]
-        downPossible = i != len(grid) - 1 and grid[down[0]][down[1]] != "#" and down in unvisited and down not in nonInfinityNodes and direction in [1, 2, 3]
-        leftPossible = j != 0 and grid[left[0]][left[1]] != "#" and left in unvisited and left not in nonInfinityNodes and direction in [0, 2, 3]
-        rightPossible = j != len(grid[i]) - 1 and grid[right[0]][right[1]] != "#" and right in unvisited and right not in nonInfinityNodes and direction in [0, 1, 2]
+        upPossibleIndex = i != 0
+        upPossibleWall = grid[up[0]][up[1]] != "#"
+        upPossibleUnvisited = up in unvisited
+        upPossibleNotInfinity = up not in nonInfinityNodes
+        upPossibleDirection = direction in [0, 1, 3]
 
+        upPossible = upPossibleIndex and upPossibleWall and upPossibleUnvisited and upPossibleNotInfinity and upPossibleDirection
+        
+        downPossibleIndex = i != len(grid) - 1
+        downPossibleWall = grid[down[0]][down[1]] != "#"
+        downPossibleUnvisited = down in unvisited
+        downPossibleNotInfinity = down not in nonInfinityNodes
+        downPossibleDirection = direction in [2, 1, 3]
+
+        downPossible = downPossibleIndex and downPossibleWall and downPossibleUnvisited and downPossibleNotInfinity and downPossibleDirection
+        
+        leftPossibleIndex = j != 0
+        leftPossibleWall = grid[left[0]][left[1]] != "#"
+        leftPossibleUnvisited = left in unvisited
+        leftPossibleNotInfinity = left not in nonInfinityNodes
+        leftPossibleDirection = direction in [0, 2, 3]
+
+        leftPossible = leftPossibleIndex and leftPossibleWall and leftPossibleUnvisited and leftPossibleNotInfinity and leftPossibleDirection
+        
+        rightPossibleIndex = j != len(grid[0]) - 1
+        rightPossibleWall = grid[right[0]][right[1]] != "#"
+        rightPossibleUnvisited = right in unvisited
+        rightPossibleNotInfinity = right not in nonInfinityNodes
+        rightPossibleDirection = direction in [0, 1, 2]
+
+        rightPossible = rightPossibleIndex and rightPossibleWall and rightPossibleUnvisited and rightPossibleNotInfinity and rightPossibleDirection
+        
         if upPossible:
             scoreGrid[up[0]][up[1]] = score + 1
             if direction != 0:

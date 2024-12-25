@@ -13,7 +13,7 @@ grid = util.readFile(filePath)
 boundI = len(grid)
 boundJ = len(grid[0])
 
-scoreGrid = [[boundJ*boundI + 1 for y in range(boundJ)] for x in range(boundI)]
+scoreGrid = [[-1 for y in range(boundJ)] for x in range(boundI)]
 unvisited = set()
 
 for i in range(boundI):
