@@ -7,7 +7,7 @@ def readFile(path):
 
     return lines
 
-def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction, score, comesFrom):
+def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction, score):
     while len(nonInfinityNodes) != 0:    
         while (i, j) not in unvisited and len(nonInfinityNodes) != 1:
             nonInfinityNodes.pop(0)
@@ -30,7 +30,6 @@ def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction, scor
         upPossibleNotInfinity = up not in nonInfinityNodes
         upPossibleDirection = direction in [0, 1, 3]
 
-        upShorter = upPossibleIndex and upPossibleWall and upPossibleUnvisited and upPossibleDirection
         upPossible = upPossibleIndex and upPossibleWall and upPossibleUnvisited and upPossibleNotInfinity and upPossibleDirection
         
         downPossibleIndex = i != len(grid) - 1
@@ -39,7 +38,6 @@ def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction, scor
         downPossibleNotInfinity = down not in nonInfinityNodes
         downPossibleDirection = direction in [2, 1, 3]
 
-        downShorter = downPossibleIndex and downPossibleWall and downPossibleUnvisited and downPossibleDirection    
         downPossible = downPossibleIndex and downPossibleWall and downPossibleUnvisited and downPossibleNotInfinity and downPossibleDirection
         
         leftPossibleIndex = j != 0
@@ -48,7 +46,6 @@ def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction, scor
         leftPossibleNotInfinity = left not in nonInfinityNodes
         leftPossibleDirection = direction in [0, 2, 3]
 
-        leftShorter = leftPossibleIndex and leftPossibleWall and leftPossibleUnvisited and leftPossibleDirection
         leftPossible = leftPossibleIndex and leftPossibleWall and leftPossibleUnvisited and leftPossibleNotInfinity and leftPossibleDirection
         
         rightPossibleIndex = j != len(grid[0]) - 1
@@ -56,18 +53,8 @@ def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction, scor
         rightPossibleUnvisited = right in unvisited
         rightPossibleNotInfinity = right not in nonInfinityNodes
         rightPossibleDirection = direction in [0, 1, 2]
-              
-        rightShorter = rightPossibleIndex and rightPossibleWall and rightPossibleUnvisited and rightPossibleDirection
-        rightPossible = rightPossibleIndex and rightPossibleWall and rightPossibleUnvisited and rightPossibleNotInfinity and rightPossibleDirection
         
-        if upShorter:
-            comesFrom[up].append((i,j))
-        if downShorter:
-            comesFrom[down].append((i,j))
-        if leftShorter:
-            comesFrom[left].append((i,j))
-        if rightShorter:
-            comesFrom[right].append((i,j))
+        rightPossible = rightPossibleIndex and rightPossibleWall and rightPossibleUnvisited and rightPossibleNotInfinity and rightPossibleDirection
 
         if upPossible:
             scoreGrid[up[0]][up[1]] = score + 1
@@ -122,22 +109,3 @@ def dijkstra(scoreGrid, grid, i, j, unvisited, nonInfinityNodes, direction, scor
             return
         
         (i,j), direction, score = nonInfinityNodes[0]
-
-def backtrackPath(comesFrom, i, j, startCoords):
-    if (i,j) == startCoords:
-        return (True, 1)
-    
-    total = 0
-    isPath = False
-
-    for tile in comesFrom[(i,j)]:
-        tileProcess = backtrackPath(comesFrom, tile[0], tile[1], startCoords)
-
-        if tileProcess[0]:
-            isPath = True
-            total += tileProcess[1]
-
-    if isPath:
-        total += 1
-        
-    return (isPath, total)
