@@ -10,8 +10,15 @@ startTime = time.time()
 
 keys, locks = util.readFile(filePath)
 
-for key in keys:
-    print(key)
+total = 0
 
-for lock in locks:
-    print(lock)
+for key in keys:
+    for lock in locks:
+        if util.matchingKey(key, lock):
+            total += 1
+
+print(total)
+
+endTime = time.time()
+
+print(endTime - startTime)

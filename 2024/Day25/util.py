@@ -42,3 +42,11 @@ def processGroup(keys, locks, currentGroup):
     currentGroup = []
     return currentGroup
             
+def matchingKey(key, lock):
+    for i in range(len(key)):
+        sum = key[i] + lock[i]
+
+        if sum > 5:
+            return False
+    
+    return True
