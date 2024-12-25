@@ -1,6 +1,3 @@
-import sys
-import time
-
 def readFile(path):
     file = open(path, "r")
 
