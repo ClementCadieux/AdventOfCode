@@ -21,4 +21,4 @@ if __name__ == "__main__":
             pointer -= 100
             count += 1
     
-    print(count + 1 if pointer == 0 else 0)
+    print(count + (1 if pointer == 0 else 0))
