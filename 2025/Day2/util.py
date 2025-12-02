@@ -1,16 +1,18 @@
 def readFile(path):
     file = open(path, "r")
 
-    rotations = []
+    ranges = []
 
-    for line in file.readlines():
-        dir = line[0]
-        num = int(line[1:])
+    inputRanges = file.readline().split(",")
 
-        polarity = -1 if dir == 'L' else 1
+    for range in inputRanges:
+        splitRange = range.split("-")
 
-        val = num * polarity
+        start = splitRange[0]
+        end = splitRange[1]
 
-        rotations.append(val)
+        rangeOutput = [start, end]
+
+        ranges.append(rangeOutput)
     
-    return rotations
+    return ranges
