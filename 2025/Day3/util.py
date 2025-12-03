@@ -3,8 +3,15 @@ def readFile(path):
 
     banks = []
 
-    for line in file.readlines():
-        batteries = [int(battery) for battery in line[:-1]]
+    lines = file.readlines()
+
+    for i in range(len(lines)):
+        line = lines[i]
+
+        if i != len(lines) - 1:
+            line = line[:-1]
+        
+        batteries = [int(battery) for battery in line]
 
         banks.append(batteries)
 
