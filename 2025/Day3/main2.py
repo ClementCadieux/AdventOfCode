@@ -11,28 +11,20 @@ if __name__ == "__main__":
     for bank in banks:   
         val = bank[0]
 
-        lastSeen = bank[0]
-
         toAdd = 11
 
         for i in range(1, len(bank)):
             battery = bank[i]
-
-            if len(bank) - i == toAdd and toAdd > 0:
-                toAdd -= 1
+            
+            while val > 0 and battery > val % 10 and toAdd < len(bank) - i:
+                val = int(val/10)
+                toAdd += 1
+            
+            if toAdd > 0:
                 val *= 10
                 val += battery
-                lastSeen = battery
-            elif battery > lastSeen:
-                val -= lastSeen
-                val += battery
-                lastSeen = battery
-            elif toAdd > 0:
                 toAdd -= 1
-                val *= 10
-                val += battery
-                lastSeen = battery
-
+        
         total += val
     
     print(total)
