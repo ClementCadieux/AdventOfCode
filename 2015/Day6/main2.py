@@ -1,13 +1,6 @@
 import sys
 from util import readFile
-
-def sumGrid(grid):
-    total = 0
-
-    for line in grid:
-        total += sum(line)
-
-    return total
+from main1 import sumGrid
 
 if __name__ == "__main__":
     filePath = "2015\\Day6\\test.txt" if len(sys.argv) < 2 else sys.argv[1]
@@ -24,19 +17,17 @@ if __name__ == "__main__":
         
         endX = instruction[1][1]
         endY = instruction[2][1]
-
+        
         for x in range(startX, endX + 1):
             for y in range(startY, endY + 1):
                 match mode:
                     case "turn on":
-                        grid[y][x] = 1
+                        grid[y][x] += 1
                     case "turn off":
-                        grid[y][x] = 0
+                        if grid[y][x] > 0:
+                            grid[y][x] -= 1
                     case "toggle":
-                        if grid[y][x] == 1:
-                            grid[y][x] = 0
-                        else:
-                            grid[y][x] = 1
+                        grid[y][x] += 2
         
     gridSum = sumGrid(grid)
 
