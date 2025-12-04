@@ -1,9 +1,7 @@
 from util import readFile
 import sys
 
-seen = set()
-
-def updateCircuit(circuit, output):
+def updateCircuit(circuit, output, seen):
     if output in seen:
         return circuit[output]
 
@@ -11,7 +9,7 @@ def updateCircuit(circuit, output):
 
     if len(newSegment) == 2:
         if newSegment[1].isalpha():
-            updateCircuit(circuit, newSegment[1])
+            updateCircuit(circuit, newSegment[1], seen)
             newSegment[1] = circuit[newSegment[1]]
 
         newSegment = ~int(newSegment[1])
@@ -24,7 +22,7 @@ def updateCircuit(circuit, output):
         changedRight = isinstance(newSegment[2], int)
 
         if newSegment[0].isalpha():
-            updateCircuit(circuit, newSegment[0])
+            updateCircuit(circuit, newSegment[0], seen)
             newSegment[0] = circuit[newSegment[0]]
             changedLeft = isinstance(newSegment[0], int)
         else:
@@ -36,7 +34,7 @@ def updateCircuit(circuit, output):
             newSegment[0] = int(newSegment[0])
 
         if newSegment[2].isalpha():
-            updateCircuit(circuit, newSegment[2])
+            updateCircuit(circuit, newSegment[2], seen)
             newSegment[2] = circuit[newSegment[2]]
             changedRight = isinstance(newSegment[2], int)
         else:
@@ -64,7 +62,7 @@ def updateCircuit(circuit, output):
                 newSegment += 65536
     else:
         if newSegment[0].isalpha():
-            newSegment[0] = updateCircuit(circuit, newSegment[0])
+            newSegment[0] = updateCircuit(circuit, newSegment[0], seen)
 
         newSegment = int(newSegment[0])
         
@@ -83,8 +81,10 @@ if __name__ == "__main__":
 
     circuit = readFile(filePath)
 
+    seen = set()
+
     for output in circuit:
-        updateCircuit(circuit, output)
+        updateCircuit(circuit, output, seen)
 
     if filePath == ".\\input.txt":
         print(circuit["a"])
