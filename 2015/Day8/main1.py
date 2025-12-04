@@ -11,21 +11,17 @@ if __name__ == "__main__":
 
     for line in lines:
         rawCount += len(line)
+        
+        processedCount = 0
 
-        processedCount = len(line) - 2
-
-        for i in range(1, len(line) - 2):
+        i = 1
+        while i < len(line) - 1:
             if line[i] == "\\":
-                processedCount -= 1
-
+                i += 4 if line[i+1] == "x" else 2
+            else:
                 i += 1
+            processedCount += 1
 
-                next = line[i]
-
-                if next == "x":
-                    i += 2
-                    processedCount -= 2
-            
         reducedCount += processedCount
 
     print(rawCount - reducedCount)
