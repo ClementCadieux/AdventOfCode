@@ -4,10 +4,10 @@ from main1 import groupThree, countAround
 
 def removePaper(newGrid, i, j):
     newGrid[i][j] -= 1
-    if i > 0:
-        newGrid[i-1][j] -= 1
-    if i < len(grid) - 1:
-        newGrid[i+1][j] -= 1
+    if j > 0:
+        newGrid[i][j - 1] -= 1
+    if j < len(grid[i]) - 1:
+        newGrid[i][j + 1] -= 1
 
     return newGrid
 
