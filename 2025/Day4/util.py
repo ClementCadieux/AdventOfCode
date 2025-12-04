@@ -3,6 +3,6 @@ def readFile(filePath):
 
     lines = file.readlines()
 
-    outputLines = [line[:-1] if line[-1] == "\\n" else line for line in lines]
+    outputLines = [line.strip("\n") for line in lines]
 
     return outputLines
