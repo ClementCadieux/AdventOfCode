@@ -6,5 +6,5 @@ if __name__ == "__main__":
 
     distances = readFile(filePath)
 
-    print(distances)
+    
     
