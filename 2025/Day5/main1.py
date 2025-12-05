@@ -10,7 +10,29 @@ def isInRange(ranges, num):
     return -1
 
 def buildSmartRanges(ranges):
+    newRanges = []
+
+    for i in len(range(ranges)):
+        currRange = ranges[i]
+
+        start = currRange[0]
+        end = currRange[1]
+
+        startIn = isInRange(newRanges, start)
+        endIn = isInRange(newRanges, end)
+
+        if startIn != -1 and endIn != -1:
+            if startIn != endIn:
+                newRanges[startIn][1] = newRanges[endIn][1]
+                newRanges.remove(newRanges[endIn])
+        elif startIn != -1:
+            newRanges[startIn][1] = end
+        elif endIn != -1:
+            newRanges[endIn][0] = start
+        else:
+            newRanges.append(currRange)
     
+    return newRanges
 
 if __name__ == "__main__":
     filePath = "2025\\Day5\\test.txt" if len(sys.argv) < 2 else sys.argv[1]
