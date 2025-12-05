@@ -4,7 +4,7 @@ import sys
 def isInRange(ranges, num):
     for i in range(len(ranges)):
         currRange = ranges[i]
-        if num >= currRange[0] or num <= currRange[1]:
+        if num >= currRange[0] and num <= currRange[1]:
             return i
         
     return -1
@@ -12,7 +12,7 @@ def isInRange(ranges, num):
 def buildSmartRanges(ranges):
     newRanges = []
 
-    for i in len(range(ranges)):
+    for i in range(len(ranges)):
         currRange = ranges[i]
 
         start = currRange[0]
@@ -39,3 +39,6 @@ if __name__ == "__main__":
 
     ranges, ids = readFile(filePath)
 
+    smartRanges = buildSmartRanges(ranges)
+
+    print(smartRanges)
