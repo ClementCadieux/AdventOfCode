@@ -10,30 +10,18 @@ def isInRange(ranges, num):
     return -1
 
 def buildSmartRanges(ranges):
-    sortedRanges = ranges.sort(lambda x : x[0])
-    newRanges = []
+    newList = []
 
-    for i in range(len(sortedRanges)):
-        currRange = sortedRanges[i]
+    for currRange in ranges:
+        start = ["start", currRange[0]]
+        end = ["end", currRange[1]]
 
-        start = currRange[0]
-        end = currRange[1]
+        newList.append(start)
+        newList.append(end)
 
-        startIn = isInRange(newRanges, start)
-        endIn = isInRange(newRanges, end)
+    sortedList = sorted(newList, key=lambda x : x[1])
 
-        if startIn != -1 and endIn != -1:
-            if startIn != endIn:
-                newRanges[startIn][1] = newRanges[endIn][1]
-                newRanges.remove(newRanges[endIn])
-        elif startIn != -1:
-            newRanges[startIn][1] = end
-        elif endIn != -1:
-            newRanges[endIn][0] = start
-        else:
-            newRanges.append(currRange)
-    
-    return newRanges
+    smartRanges = []
 
 
 if __name__ == "__main__":
