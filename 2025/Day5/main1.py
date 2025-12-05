@@ -32,7 +32,27 @@ def buildSmartRanges(ranges):
         else:
             newRanges.append(currRange)
     
-    return newRanges
+    return cleanUpRanges(newRanges)
+
+def cleanUpRanges(newRanges):
+    newRangesCopy = []
+
+    for i in range(len(newRanges)):
+        if toCopy(newRanges, i):
+            newRangesCopy.append(newRanges[i])
+
+    return newRangesCopy
+        
+def toCopy(newRanges, i):
+    currRange = newRanges[i]
+    for j in range(i + 1, len(newRanges)):
+        nextRange = newRanges[j]
+
+        if currRange[0] >= nextRange[0] and currRange[1] <= nextRange[1]:
+            return False
+        
+    return True
+
 
 if __name__ == "__main__":
     filePath = "2025\\Day5\\test.txt" if len(sys.argv) < 2 else sys.argv[1]
