@@ -19,7 +19,8 @@ def buildSmartRanges(ranges):
         newList.append(start)
         newList.append(end)
 
-    sortedList = sorted(newList, key=lambda x : x[1])
+    sortedByString = sorted(newList, key=lambda x: x[0], reverse=True)
+    sortedList = sorted(sortedByString, key=lambda x : x[1])
 
     smartRanges = []
 
