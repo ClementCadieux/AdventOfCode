@@ -10,10 +10,11 @@ def isInRange(ranges, num):
     return -1
 
 def buildSmartRanges(ranges):
+    sortedRanges = ranges.sort(lambda x : x[0])
     newRanges = []
 
-    for i in range(len(ranges)):
-        currRange = ranges[i]
+    for i in range(len(sortedRanges)):
+        currRange = sortedRanges[i]
 
         start = currRange[0]
         end = currRange[1]
@@ -32,26 +33,7 @@ def buildSmartRanges(ranges):
         else:
             newRanges.append(currRange)
     
-    return cleanUpRanges(newRanges)
-
-def cleanUpRanges(newRanges):
-    newRangesCopy = []
-
-    for i in range(len(newRanges)):
-        if toCopy(newRanges, i):
-            newRangesCopy.append(newRanges[i])
-
-    return newRangesCopy
-        
-def toCopy(newRanges, i):
-    currRange = newRanges[i]
-    for j in range(i + 1, len(newRanges)):
-        nextRange = newRanges[j]
-
-        if currRange[0] >= nextRange[0] and currRange[1] <= nextRange[1]:
-            return False
-        
-    return True
+    return newRanges
 
 
 if __name__ == "__main__":
@@ -60,15 +42,6 @@ if __name__ == "__main__":
     ranges, ids = readFile(filePath)
 
     smartRanges = buildSmartRanges(ranges)
-
-    prevLen = len(ranges)
-    newLen = len(smartRanges)
-
-    while prevLen != newLen:
-        prevLen = len(smartRanges)
-        smartRanges = buildSmartRanges(smartRanges)
-        newLen = len(smartRanges)
-
     count = 0
 
     for val in ids:

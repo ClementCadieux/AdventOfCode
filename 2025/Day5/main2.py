@@ -9,14 +9,6 @@ if __name__ == "__main__":
 
     smartRanges = buildSmartRanges(ranges)
 
-    prevLen = len(ranges)
-    newLen = len(smartRanges)
-
-    while prevLen != newLen:
-        prevLen = len(smartRanges)
-        smartRanges = buildSmartRanges(smartRanges)
-        newLen = len(smartRanges)
-
     count = 0
 
     for smartRange in smartRanges:
