@@ -23,6 +23,22 @@ def buildSmartRanges(ranges):
 
     smartRanges = []
 
+    currPointer = 0
+    lastStart = -1
+
+    for pointer in sortedList:
+        if pointer[0] == "start":
+            if currPointer == 0:
+                lastStart = pointer[1]
+            
+            currPointer += 1
+        else:
+            currPointer -= 1
+
+            if currPointer == 0:
+                smartRanges.append([lastStart, pointer[1]])
+
+    return smartRanges
 
 if __name__ == "__main__":
     filePath = "2025\\Day5\\test.txt" if len(sys.argv) < 2 else sys.argv[1]
