@@ -41,4 +41,10 @@ if __name__ == "__main__":
 
     smartRanges = buildSmartRanges(ranges)
 
-    print(smartRanges)
+    count = 0
+
+    for val in ids:
+        if isInRange(smartRanges, val) != -1:
+            count += 1
+
+    print(count)
