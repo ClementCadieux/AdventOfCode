@@ -25,3 +25,48 @@ def getProblems(lines):
         problems.append([nums, op])
 
     return problems
+
+def readFile2(filePath):
+    file = open(filePath, 'r')
+
+    lines = [line.strip("\n") for line in file.readlines()]
+
+    outputLines = []
+
+    rawOpsLine = lines[-1]
+
+    inOps = False
+    vals = ["" for _ in range(len(lines) - 1)]
+    currOp = ""
+
+    for i in range(len(rawOpsLine)):
+        if rawOpsLine[i] in {"*", "+"}:
+            inOps = True
+            currOp = rawOpsLine[i]
+        elif inOps and i != len(rawOpsLine) - 1 and rawOpsLine[i + 1] in {"*", "+"}:
+            inOps = False
+            outputLines.append([vals, currOp])
+            vals = ["" for _ in range(len(lines) - 1)]
+        
+        if inOps:
+            for j in range(len(vals)):
+                vals[j] += lines[j][i]
+    
+    outputLines.append([vals, currOp])
+
+    return outputLines
+
+def getProblems2(lines):
+    
+    problems = []
+
+    ops = lines[-1]
+
+    for i in range(len(ops)):
+        nums = []
+
+        op = ops[i]
+
+        problems.append([nums, op])
+
+    return problems
