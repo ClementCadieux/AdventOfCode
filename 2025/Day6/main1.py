@@ -1,4 +1,4 @@
-from util import readFile
+from util import readFile, getProblems
 import sys
 
 if __name__ == "__main__":
@@ -6,4 +6,21 @@ if __name__ == "__main__":
 
     lines = readFile(filePath)
 
-    print(lines)
+    problems = getProblems(lines)
+
+    total = 0
+
+    for problem in problems:
+        op = problem[1]
+
+        solution = 0
+
+        if op == "+":
+            solution = sum(problem[0])
+        else:
+            nums = problem[0]
+            solution = nums[0]*nums[1]*nums[2]
+
+        total += solution
+
+    print(total)
