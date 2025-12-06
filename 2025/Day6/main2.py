@@ -1,4 +1,4 @@
-from util import readFile2
+from util import readFile2, getProblems2
 import sys
 
 if __name__ == "__main__":
@@ -6,4 +6,6 @@ if __name__ == "__main__":
 
     lines = readFile2(filePath)
 
-    print(lines)
+    problems = getProblems2(lines)
+
+    print(problems)

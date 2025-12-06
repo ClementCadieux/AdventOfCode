@@ -60,12 +60,23 @@ def getProblems2(lines):
     
     problems = []
 
-    ops = lines[-1]
+    for problem in lines:
+        op = problem[-1]
 
-    for i in range(len(ops)):
         nums = []
 
-        op = ops[i]
+        vals = problem[0]
+
+        for i in range(len(vals[0])):
+            strNum = ""
+
+            for j in range(len(vals)):
+                strNum += vals[j][i]
+            
+            strNum = strNum.strip()
+            num = int(strNum)
+
+            nums.append(num)
 
         problems.append([nums, op])
 
