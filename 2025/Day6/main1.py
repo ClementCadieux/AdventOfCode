@@ -19,7 +19,10 @@ if __name__ == "__main__":
             solution = sum(problem[0])
         else:
             nums = problem[0]
-            solution = nums[0]*nums[1]*nums[2]
+            solution = 1
+
+            for num in nums:
+                solution *= num
 
         total += solution
 
