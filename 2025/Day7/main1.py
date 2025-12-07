@@ -4,8 +4,6 @@ import sys
 seen = set()
 
 def processBeam(grid, startI, startJ):
-    seen.add((startI, startJ))
-
     i = startI + 1
     j = startJ
 
@@ -18,14 +16,15 @@ def processBeam(grid, startI, startJ):
     if (i, j) in seen:
         return 0
 
+    seen.add((i, j))
+
     if i == len(grid):
-        seen.add((i, j))
-        return 1
+        return 0
     
     leftSplit = processBeam(grid, i, j - 1)
     rightSplit = processBeam(grid, i, j + 1)
 
-    return leftSplit + rightSplit
+    return leftSplit + rightSplit + 1
 
 if __name__ == "__main__":
     filePath = "2025\\Day7\\test.txt" if len(sys.argv) < 2 else sys.argv[1]
