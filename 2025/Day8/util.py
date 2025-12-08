@@ -62,5 +62,5 @@ def joinPair(circuits, sortedPairs):
         elif box1Circuit != box2Circuit:
             circuitWithBox1 = circuits[box1Circuit]
             circuitWithBox2 = circuits[box2Circuit]
-            circuits.remove(circuitWithBox2)
             circuits[box1Circuit] = circuitWithBox1 | circuitWithBox2
+            circuits.remove(circuitWithBox2)
