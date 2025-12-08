@@ -28,6 +28,39 @@ def calcEveryPair(boxes):
 
             distancePairs[pairKey] = distance
 
-    sortedPairs = sorted(sortedPairs, key=lambda x : distancePairs[x])
+    sortedPairs = sorted(sortedPairs, key=lambda x : -distancePairs[x])
 
-    return sortedPairs, distancePairs
+    return sortedPairs
+
+def joinPair(circuits, sortedPairs):
+    nextPair = sortedPairs.pop()
+
+    box1 = nextPair[0]
+    box2 = nextPair[1]
+
+    box1Circuit = -1
+    box2Circuit = -1
+
+    for i in range(len(circuits)):
+        circuit = circuits[i]
+        if box1 in circuit:
+            box1Circuit = i
+        
+        if box2 in circuit:
+            box2Circuit = i
+
+    if box1Circuit == -1:
+        if box2Circuit == -1:
+            circuits.append(set())
+            circuits[-1].add(box1)
+            circuits[-1].add(box2)
+        else:
+            circuits[box2Circuit].add(box1)
+    else:
+        if box2Circuit == -1:
+            circuits[box1Circuit].add(box2)
+        elif box1Circuit != box2Circuit:
+            circuitWithBox1 = circuits[box1Circuit]
+            circuitWithBox2 = circuits[box2Circuit]
+            circuits.remove(circuitWithBox2)
+            circuits[box1Circuit] = circuitWithBox1 | circuitWithBox2
