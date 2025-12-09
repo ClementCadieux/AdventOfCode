@@ -1,7 +1,7 @@
 from util import readFile
 import sys
 
-def getGrid(redTiles):
+def getGrid(redTiles, maxLine, maxCol):
     grid = [[0 for _ in range(maxCol + 1)] for _ in range(maxLine + 1)]
 
     for i in range(len(redTiles)):
@@ -12,20 +12,20 @@ def getGrid(redTiles):
             if currPoint[1] > pointAfter[1]:
                 x = currPoint[0]
                 for y in range(pointAfter[1], currPoint[1] + 1):
-                    grid[x][y] = 1
+                    grid[x][y] += 1
             else:
                 x = currPoint[0]
                 for y in range(currPoint[1], pointAfter[1] + 1):
-                    grid[x][y] = 1
+                    grid[x][y] += 1
         else:
             if currPoint[0] > pointAfter[0]:
                 y = currPoint[1]
                 for x in range(pointAfter[0], currPoint[0] + 1):
-                    grid[x][y] = 1
+                    grid[x][y] += 1
             else:
                 y = currPoint[1]
                 for x in range(currPoint[0], pointAfter[0] + 1):
-                    grid[x][y] = 1
+                    grid[x][y] += 1
 
     return grid
 
@@ -47,7 +47,10 @@ if __name__ == "__main__":
         if tile[1] > maxCol:
             maxCol = tile[1]
 
-    grid = getGrid(redTiles)
+    grid = getGrid(redTiles, maxLine, maxCol)
+
+    for line in grid:
+        print(line)
 
     maxArea = 0
 
