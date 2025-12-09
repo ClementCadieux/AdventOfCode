@@ -34,6 +34,9 @@ def getDirections(redTiles):
 
     return pointDirections, grid
 
+def checkValid(grid, pointDirections, i, j, point1, point2):
+    
+
 if __name__ == "__main__":
     filePath = "2025\\Day9\\test.txt" if len(sys.argv) < 2 else sys.argv[1]
 
@@ -58,7 +61,7 @@ if __name__ == "__main__":
         for j in range(i + 1, len(redTiles)):
             point2 = redTiles[j]
 
-            valid = True
+            valid = checkValid(grid, pointDirections, i, j, point1, point2)
 
             if valid:
                 xDiff = abs(point1[0] - point2[0]) + 1
