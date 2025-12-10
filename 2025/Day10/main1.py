@@ -1,4 +1,4 @@
-from util import readFile, processMachineState
+from util import readFile
 import sys
 
 if __name__ == "__main__":
@@ -10,9 +10,4 @@ if __name__ == "__main__":
 
     for machine in lines:
         print(machine)
-        cache = {}
-        currState = "".join(["." for _ in range(len(machine[0]))])
-
-        total += processMachineState(machine, cache, currState, -1)
-
-    print(total)
+        
