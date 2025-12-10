@@ -50,9 +50,12 @@ def processJoltage(currState, buttons, cache, buttonsIdx):
         if buttonsIdx == len(buttons):
             return sys.maxsize
         else:
+            for i in range(len(buttons)):
+                buttons[i] = sorted(buttons[i], key=lambda x : -currState[x])
+
             nextButton = buttons[buttonsIdx]
 
-            smallestCircuit = getLowestIndex(currState, nextButton)
+            smallestCircuit = nextButton[-1]
 
             presses = currState[smallestCircuit]
 
@@ -78,11 +81,3 @@ def processJoltage(currState, buttons, cache, buttonsIdx):
             cache[currState] = presses + nextProcess
 
     return cache[currState]
-
-def getLowestIndex(currState, button):
-    circuit = button[0]
-    for i in range(1, len(button)):
-        if currState[button[i]] < currState[circuit]:
-            circuit = button[i]
-        
-    return circuit
