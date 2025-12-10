@@ -1,5 +1,5 @@
 import sys
-from functools import cmp_to_key
+import math
 
 def readFile(filePath):
     file = open(filePath, 'r')
@@ -58,13 +58,13 @@ def circuitFrequency(buttons):
     return freq
 
 def processJoltage(currState, buttons, frequency):
-    buttons = sortButtons(currState, buttons, frequency)
-
-    print(buttons)
-
     presses = 0
 
-    for button in buttons:
+    while sum(currState) > 0:
+        buttons = sortButtons(currState, buttons, frequency)
+
+        button = buttons.pop(0)
+
         currPresses = min(currState[circuit] for circuit in button)
 
         for circuit in button:
@@ -75,4 +75,4 @@ def processJoltage(currState, buttons, frequency):
     return presses
 
 def sortButtons(currState, buttons, frequency):
-    return sorted(buttons, key=lambda x : (min(frequency[circuit] for circuit in x), -sum(frequency[circuit] for circuit in x), len(x)))
+    return sorted(buttons, key=lambda x: (min(frequency[c] for c in x), max(currState[c] for c in x)))      
