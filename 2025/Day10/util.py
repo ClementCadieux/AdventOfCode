@@ -15,3 +15,12 @@ def readFile(filePath):
 
     return intMiddleLines
 
+def processButtons(buttons, lightsLen):
+    output = [[0 for _ in range(lightsLen)] for button in buttons]
+
+    for i in range(len(buttons)):
+        button = buttons[i]
+        for light in button:
+            output[i][light] = 1
+
+    return output
