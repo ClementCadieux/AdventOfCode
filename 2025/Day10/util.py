@@ -1,4 +1,5 @@
 import sys
+from functools import cmp_to_key
 
 def readFile(filePath):
     file = open(filePath, 'r')
@@ -45,38 +46,41 @@ def processState(currState, targetState, buttons, currButtonIdx):
 
     return min(buttonsWithNext, buttonsWithoutNext)
 
-def processJoltage(currState, buttons, cache, buttonsIdx):
-    if currState not in cache:
-        if buttonsIdx == len(buttons):
-            return sys.maxsize
-        else:
-            for i in range(len(buttons)):
-                buttons[i] = sorted(buttons[i], key=lambda x : currState[x])
+def processJoltage(currState, buttons):
+    stateSum = sum(currState)
 
-            nextButton = buttons[buttonsIdx]
+    presses = 0
 
-            nextStateList = [currStateVal for currStateVal in currState]
+    while stateSum > 0:
+        buttons = sortButtons(currState, buttons)
+
+        nextButton = buttons[0]
+
+        for circuit in nextButton:
+            currState[circuit] -= 1
+
+        presses += 1
+
+        stateSum = sum(currState)
+
+    return presses
+
+def sortButtons(currState, buttons):
+    def compare_buttons(btn1, btn2):
+        vals1 = tuple(-currState[circuit] for circuit in btn1)
+        vals2 = tuple(-currState[circuit] for circuit in btn2)
         
-            nextProcess = sys.maxsize
-            valid = True
+        # Compare element by element (values are negated, so lower negative = higher value)
+        for v1, v2 in zip(vals1, vals2):
+            if v1 != v2:
+                return -1 if v1 < v2 else 1
+        
+        # If all compared elements are equal, prefer longer button
+        if len(vals1) != len(vals2):
+            return -1 if len(vals1) > len(vals2) else 1
+        
+        return 0
 
-            for circuit in nextButton:
-                if currState[circuit] == 0:
-                    valid = False
-                nextStateList[circuit] -= 1
+    buttons = sorted(buttons, key=cmp_to_key(compare_buttons))
 
-            nextState = tuple(nextStateList)
-
-            nextProcess = processJoltage(nextState, buttons, cache, buttonsIdx)
-
-            if nextProcess == sys.maxsize:
-                for circuit in nextButton:
-                    nextStateList[circuit] += 1
-
-                nextState = tuple(nextStateList)
-
-                nextProcess = processJoltage(nextState, buttons, cache, buttonsIdx + 1)
-
-            cache[currState] = 1 + nextProcess
-
-    return cache[currState]
+    return buttons
