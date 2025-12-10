@@ -1,4 +1,4 @@
-from util import readFile, processButtons
+from util import readFile, processJoltage
 import sys
 
 if __name__ == "__main__":
@@ -9,4 +9,16 @@ if __name__ == "__main__":
     total = 0
 
     for machine in lines:
-        print(machine)
+        targetState = tuple(machine[2])
+        currStateList = [0 for _ in range(len(targetState))]
+        currState = tuple(currStateList)
+
+        buttons = machine[1]
+
+        cache = {}
+
+        cache[targetState] = 0
+
+        total += processJoltage(currState, buttons, targetState, cache)
+
+    print(total)

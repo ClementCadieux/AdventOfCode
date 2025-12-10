@@ -48,13 +48,25 @@ def processState(currState, targetState, buttons, currButtonIdx):
 def processJoltage(currState, buttons, targetState, cache):
     if currState in cache:
         return cache[currState]
-
-    isValid = True
-
-    for i in range(len(currState)):
-        if currState[i] != targetState[i]:
-            isValid = False
-
-    if isValid:
-        return 0
     
+    cache[currState] = sys.maxsize
+
+    for button in buttons:
+        validButton = True
+        for light in button:
+            if currState[light] == targetState[light]:
+                validButton = False
+
+        if validButton:
+            stateWithButtonList = [currState[i] for i in range(len(currState))]
+            for light in button:
+                stateWithButtonList[light] += 1
+
+            stateWithButton = tuple(stateWithButtonList)
+
+            steps = processJoltage(stateWithButton, buttons, targetState, cache) + 1
+
+            if steps < cache[currState]:
+                cache[currState] = steps
+
+    return cache[currState]
