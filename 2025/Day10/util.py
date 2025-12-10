@@ -29,5 +29,18 @@ def processButtons(buttons, lightsLen):
 
     return output
 
-def processState(currState, targetState, buttons, currButton):
-    return None
+def processState(currState, targetState, buttons, currButtonIdx):
+    if targetState == currState:
+        return 0
+    
+    if currButtonIdx == len(buttons):
+        return sys.maxsize
+
+    currButton = buttons[currButtonIdx]
+    
+    valWithNext = currState ^ currButton
+    
+    buttonsWithNext = processState(valWithNext, targetState, buttons, currButtonIdx + 1) + 1
+    buttonsWithoutNext = processState(currState, targetState, buttons, currButtonIdx + 1)
+
+    return min(buttonsWithNext, buttonsWithoutNext)
