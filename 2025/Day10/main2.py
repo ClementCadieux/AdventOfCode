@@ -14,9 +14,9 @@ if __name__ == "__main__":
         buttons = machine[1]
 
         for i in range(len(buttons)):
-            buttons[i] = sorted(buttons[i], key=lambda x : -currState[x])
+            buttons[i] = sorted(buttons[i], key=lambda x : currState[x])
 
-        buttons = sorted(buttons, key=lambda x : (-currState[x[0]], -len(x)))
+        buttons = sorted(buttons, key=lambda x : (currState[x[-1]], -len(x)))
 
         cache = {}
         

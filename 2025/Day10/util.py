@@ -51,33 +51,32 @@ def processJoltage(currState, buttons, cache, buttonsIdx):
             return sys.maxsize
         else:
             for i in range(len(buttons)):
-                buttons[i] = sorted(buttons[i], key=lambda x : -currState[x])
+                buttons[i] = sorted(buttons[i], key=lambda x : currState[x])
 
             nextButton = buttons[buttonsIdx]
 
-            smallestCircuit = nextButton[-1]
-
-            presses = currState[smallestCircuit]
-
             nextStateList = [currStateVal for currStateVal in currState]
         
+            nextProcess = sys.maxsize
+            valid = True
+
             for circuit in nextButton:
-                nextStateList[circuit] -= presses
+                if currState[circuit] == 0:
+                    valid = False
+                nextStateList[circuit] -= 1
 
             nextState = tuple(nextStateList)
 
-            nextProcess = processJoltage(nextState, buttons, cache, buttonsIdx + 1)
+            nextProcess = processJoltage(nextState, buttons, cache, buttonsIdx)
 
-            while nextProcess == sys.maxsize and presses > 0:
+            if nextProcess == sys.maxsize:
                 for circuit in nextButton:
                     nextStateList[circuit] += 1
-                
-                presses -= 1
 
                 nextState = tuple(nextStateList)
 
                 nextProcess = processJoltage(nextState, buttons, cache, buttonsIdx + 1)
 
-            cache[currState] = presses + nextProcess
+            cache[currState] = 1 + nextProcess
 
     return cache[currState]
