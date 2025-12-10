@@ -57,22 +57,33 @@ def circuitFrequency(buttons):
 
     return freq
 
-def processJoltage(currState, buttons, frequency):
-    presses = 0
+def processJoltage(currState, buttons, targetState, cache):
+    if currState in cache:
+        return cache[currState]
+    
+    cache[currState] = sys.maxsize
 
-    while sum(currState) > 0:
-        buttons = sortButtons(currState, buttons, frequency)
+    for button in buttons:
+        validButton = True
+        for light in button:
+            if currState[light] == targetState[light]:
+                validButton = False
 
-        button = buttons.pop(0)
+        if validButton:
+            stateWithButtonList = [currState[i] for i in range(len(currState))]
+            for light in button:
+                stateWithButtonList[light] += 1
 
-        currPresses = min(currState[circuit] for circuit in button)
+            stateWithButton = tuple(stateWithButtonList)
 
-        for circuit in button:
-            currState[circuit] -= currPresses
+            steps = processJoltage(stateWithButton, buttons, targetState, cache) + 1
 
-        presses += currPresses
+            if steps < cache[currState]:
+                cache[currState] = steps
 
-    return presses
+    return cache[currState]
 
-def sortButtons(currState, buttons, frequency):
+def sortButtons(currState, buttons):
+    frequency = circuitFrequency(buttons)
+
     return sorted(buttons, key=lambda x: (min(frequency[c] for c in x), max(currState[c] for c in x)))      
