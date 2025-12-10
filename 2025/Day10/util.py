@@ -57,33 +57,49 @@ def circuitFrequency(buttons):
 
     return freq
 
-def processJoltage(currState, buttons, targetState, cache):
-    if currState in cache:
-        return cache[currState]
+def processJoltage(currStage, buttons, cache, buttonsIdx):
+    if sum(currStage) == 0:
+        return 0
     
-    cache[currState] = sys.maxsize
+    if currStage in cache:
+        return cache[currStage]
+    
+    if buttonsIdx == len(buttons):
+        return sys.maxsize
+    
+    newFrequency = circuitFrequency(buttons[buttonsIdx:])
+    
+    cache[currStage] = sys.maxsize
 
-    for button in buttons:
-        validButton = True
-        for light in button:
-            if currState[light] == targetState[light]:
-                validButton = False
+    for c in range(len(currStage)):
+        if currStage[c] != 0 and c not in newFrequency:
+            return cache[currStage]
 
-        if validButton:
-            stateWithButtonList = [currState[i] for i in range(len(currState))]
-            for light in button:
-                stateWithButtonList[light] += 1
+    button = buttons[buttonsIdx]
 
-            stateWithButton = tuple(stateWithButtonList)
+    presses = min(currStage[c] for c in button)
 
-            steps = processJoltage(stateWithButton, buttons, targetState, cache) + 1
+    nextStage = [c for c in currStage]
 
-            if steps < cache[currState]:
-                cache[currState] = steps
+    for c in button:
+        nextStage[c] -= presses
 
-    return cache[currState]
+    nextStageTuple = tuple(nextStage)
 
-def sortButtons(currState, buttons):
-    frequency = circuitFrequency(buttons)
+    while presses > 0:
+        process = presses + processJoltage(nextStageTuple, buttons, cache, buttonsIdx + 1)
 
-    return sorted(buttons, key=lambda x: (min(frequency[c] for c in x), max(currState[c] for c in x)))      
+        if process < cache[currStage]:
+            cache[currStage] = process
+
+        process -= 1
+
+        for c in button:
+            nextStage[c] += 1
+
+        nextStageTuple = tuple(nextStage)
+
+    return cache[currStage]
+
+def sortButtons(buttons, frequency):
+    return sorted(buttons, key=lambda x: min(frequency[c] for c in x))      
