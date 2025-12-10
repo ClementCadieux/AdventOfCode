@@ -1,4 +1,4 @@
-from util import readFile, processButtons, processState
+from util import readFile, processButtonsBin, processState
 import sys
 
 if __name__ == "__main__":
@@ -9,7 +9,7 @@ if __name__ == "__main__":
     total = 0
 
     for machine in lines:
-        machine[1] = processButtons(machine[1], len(machine[0]))
+        machine[1] = processButtonsBin(machine[1], len(machine[0]))
         binary_string = "".join(str(bit) for bit in machine[0])
         machine[0] = int(binary_string, 2)
 

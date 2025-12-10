@@ -15,7 +15,7 @@ def readFile(filePath):
 
     return intMiddleLines
 
-def processButtons(buttons, lightsLen):
+def processButtonsBin(buttons, lightsLen):
     output = [0 for _ in buttons]
 
     for i in range(len(buttons)):
@@ -26,6 +26,16 @@ def processButtons(buttons, lightsLen):
 
         binary_string = "".join(str(bit) for bit in buttonBitList)
         output[i] = int(binary_string, 2)
+
+    return output
+
+def processButtons(buttons, lightsLen):
+    output = [[0 for _ in range(lightsLen)] for _ in buttons]
+
+    for i in range(len(buttons)):
+        button = buttons[i]
+        for light in button:
+            output[i][light] = 1
 
     return output
 
