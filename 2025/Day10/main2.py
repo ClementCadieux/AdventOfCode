@@ -1,4 +1,4 @@
-from util import readFile, processJoltage
+from util import readFile, processJoltage, circuitFrequency
 import sys
 
 if __name__ == "__main__":
@@ -13,7 +13,9 @@ if __name__ == "__main__":
 
         buttons = machine[1]
 
-        total += processJoltage(currState, buttons)
+        circuitFreq = circuitFrequency(buttons)
+
+        total += processJoltage(currState, buttons, circuitFreq)
         print(total)
 
     print(total)

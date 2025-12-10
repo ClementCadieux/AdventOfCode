@@ -46,41 +46,33 @@ def processState(currState, targetState, buttons, currButtonIdx):
 
     return min(buttonsWithNext, buttonsWithoutNext)
 
-def processJoltage(currState, buttons):
-    stateSum = sum(currState)
+def circuitFrequency(buttons):
+    freq = {}
+
+    for button in buttons:
+        for circuit in button:
+            if circuit not in freq:
+                freq[circuit] = 0
+            freq[circuit] += 1
+
+    return freq
+
+def processJoltage(currState, buttons, frequency):
+    buttons = sortButtons(currState, buttons, frequency)
+
+    print(buttons)
 
     presses = 0
 
-    while stateSum > 0:
-        buttons = sortButtons(currState, buttons)
+    for button in buttons:
+        currPresses = min(currState[circuit] for circuit in button)
 
-        nextButton = buttons[0]
+        for circuit in button:
+            currState[circuit] -= currPresses
 
-        for circuit in nextButton:
-            currState[circuit] -= 1
-
-        presses += 1
-
-        stateSum = sum(currState)
+        presses += currPresses
 
     return presses
 
-def sortButtons(currState, buttons):
-    def compare_buttons(btn1, btn2):
-        vals1 = tuple(-currState[circuit] for circuit in btn1)
-        vals2 = tuple(-currState[circuit] for circuit in btn2)
-        
-        # Compare element by element (values are negated, so lower negative = higher value)
-        for v1, v2 in zip(vals1, vals2):
-            if v1 != v2:
-                return -1 if v1 < v2 else 1
-        
-        # If all compared elements are equal, prefer longer button
-        if len(vals1) != len(vals2):
-            return -1 if len(vals1) > len(vals2) else 1
-        
-        return 0
-
-    buttons = sorted(buttons, key=cmp_to_key(compare_buttons))
-
-    return buttons
+def sortButtons(currState, buttons, frequency):
+    return sorted(buttons, key=lambda x : (min(frequency[circuit] for circuit in x), -sum(frequency[circuit] for circuit in x), len(x)))
