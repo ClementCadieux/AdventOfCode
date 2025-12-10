@@ -29,16 +29,6 @@ def processButtonsBin(buttons, lightsLen):
 
     return output
 
-def processButtons(buttons, lightsLen):
-    output = [[0 for _ in range(lightsLen)] for _ in buttons]
-
-    for i in range(len(buttons)):
-        button = buttons[i]
-        for light in button:
-            output[i][light] = 1
-
-    return output
-
 def processState(currState, targetState, buttons, currButtonIdx):
     if targetState == currState:
         return 0
@@ -54,3 +44,17 @@ def processState(currState, targetState, buttons, currButtonIdx):
     buttonsWithoutNext = processState(currState, targetState, buttons, currButtonIdx + 1)
 
     return min(buttonsWithNext, buttonsWithoutNext)
+
+def processJoltage(currState, buttons, targetState, cache):
+    if currState in cache:
+        return cache[currState]
+
+    isValid = True
+
+    for i in range(len(currState)):
+        if currState[i] != targetState[i]:
+            isValid = False
+
+    if isValid:
+        return 0
+    

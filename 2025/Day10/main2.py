@@ -9,6 +9,4 @@ if __name__ == "__main__":
     total = 0
 
     for machine in lines:
-        machine[1] = processButtons(machine[1], len(machine[0]))
-
         print(machine)
