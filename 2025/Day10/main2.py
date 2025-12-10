@@ -9,16 +9,16 @@ if __name__ == "__main__":
     total = 0
 
     for machine in lines:
-        targetState = tuple(machine[2])
-        currStateList = [0 for _ in range(len(targetState))]
-        currState = tuple(currStateList)
+        currState = tuple(machine[2])
 
         buttons = machine[1]
 
+        buttons = sorted(buttons, key=lambda x : -len(x))
+
         cache = {}
+        
+        cache[tuple([0 for _ in currState])] = 0
 
-        cache[targetState] = 0
-
-        total += processJoltage(currState, buttons, targetState, cache)
+        total += processJoltage(currState, buttons, cache, 0)
 
     print(total)

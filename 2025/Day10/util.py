@@ -45,28 +45,44 @@ def processState(currState, targetState, buttons, currButtonIdx):
 
     return min(buttonsWithNext, buttonsWithoutNext)
 
-def processJoltage(currState, buttons, targetState, cache):
-    if currState in cache:
-        return cache[currState]
-    
-    cache[currState] = sys.maxsize
+def processJoltage(currState, buttons, cache, buttonsIdx):
+    if currState not in cache:
+        if buttonsIdx == len(buttons):
+            return sys.maxsize
+        else:
+            nextButton = buttons[buttonsIdx]
 
-    for button in buttons:
-        validButton = True
-        for light in button:
-            if currState[light] == targetState[light]:
-                validButton = False
+            smallestCircuit = getLowestIndex(currState, nextButton)
 
-        if validButton:
-            stateWithButtonList = [currState[i] for i in range(len(currState))]
-            for light in button:
-                stateWithButtonList[light] += 1
+            presses = currState[smallestCircuit]
 
-            stateWithButton = tuple(stateWithButtonList)
+            nextStateList = [currStateVal for currStateVal in currState]
+        
+            for circuit in nextButton:
+                nextStateList[circuit] -= presses
 
-            steps = processJoltage(stateWithButton, buttons, targetState, cache) + 1
+            nextState = tuple(nextStateList)
 
-            if steps < cache[currState]:
-                cache[currState] = steps
+            nextProcess = processJoltage(nextState, buttons, cache, buttonsIdx + 1)
+
+            while nextProcess == sys.maxsize and presses > 0:
+                for circuit in nextButton:
+                    nextStateList[circuit] += 1
+                
+                presses -= 1
+
+                nextState = tuple(nextStateList)
+
+                nextProcess = processJoltage(nextState, buttons, cache, buttonsIdx + 1)
+
+            cache[currState] = presses + nextProcess
 
     return cache[currState]
+
+def getLowestIndex(currState, button):
+    circuit = button[0]
+    for i in range(1, len(button)):
+        if currState[button[i]] < currState[circuit]:
+            circuit = button[i]
+        
+    return circuit
