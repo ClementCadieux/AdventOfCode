@@ -10,5 +10,8 @@ if __name__ == "__main__":
 
     for machine in lines:
         machine[1] = processButtons(machine[1], len(machine[0]))
+        binary_string = "".join(str(bit) for bit in machine[0])
+        machine[0] = int(binary_string, 2)
+
         print(machine)
         
