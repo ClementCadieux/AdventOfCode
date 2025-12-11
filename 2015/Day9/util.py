@@ -14,13 +14,20 @@ def readFile(filePath):
         city2 = line[0][1]
         distance = line[1]
 
-        city1Distances = [] if city1 not in resultDistance else resultDistance[city1]
-        city2Distances = [] if city2 not in resultDistance else resultDistance[city2]
+        city1Distances = {} if city1 not in resultDistance else resultDistance[city1]
+        city2Distances = {} if city2 not in resultDistance else resultDistance[city2]
 
-        city1Distances.append([city2, distance])
-        city2Distances.append([city1, distance])
+        city1Distances[city2] = distance
+        city2Distances[city1] = distance
 
         resultDistance[city1] = city1Distances
         resultDistance[city2] = city2Distances
 
     return resultDistance
+
+def sortCities(distances):
+    cities = [city for city in distances]
+
+    cities = sorted(cities, key=lambda x: min([distances[x][d] for d in distances[x]]), reverse=True)
+
+    return cities
