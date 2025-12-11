@@ -9,13 +9,13 @@ if __name__ == "__main__":
 
     cache = {}
 
-    fromSvrToFFT = pathsToTarget(circuit, "svr", "fft")
-    fromSvrToDAC = pathsToTarget(circuit, "svr", "dac")
-    fromFFTToDAC = pathsToTarget(circuit, "fft", "dac")
-    fromDACToFFT = pathsToTarget(circuit, "dac", "fft")
-    fromFFTToOut = pathsToTarget(circuit, "fft", "out")
-    fromDACToOut = pathsToTarget(circuit, "dac", "out")
+    fromSvrToFFT = pathsToTarget(circuit, "svr", "fft", ["dac", "out"])
+    fromSvrToDAC = pathsToTarget(circuit, "svr", "dac", ["fft", "out"])
+    fromFFTToDAC = pathsToTarget(circuit, "fft", "dac", ["out"])
+    fromDACToFFT = pathsToTarget(circuit, "dac", "fft", ["out"])
+    fromFFTToOut = pathsToTarget(circuit, "fft", "out", ["dac"])
+    fromDACToOut = pathsToTarget(circuit, "dac", "out", ["fft"])
 
-    total = (fromSvrToFFT + fromFFTToDAC + fromDACToOut)
+    total = (fromSvrToFFT * fromFFTToDAC * fromDACToOut) + (fromSvrToDAC  * fromDACToFFT * fromFFTToOut)
 
     print(total)

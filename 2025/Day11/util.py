@@ -27,9 +27,11 @@ def pathsToOut(circuit, cache, machine):
     
     return cache[machine]
 
-def pathsToTarget(circuit, machine, target):
+def pathsToTarget(circuit, machine, target, avoids):
     cache = {}
-    cache["out"] = 0
+    for block in avoids:
+        cache[block] = 0
+        
     cache[target] = 1
     
     return pathsToOut(circuit, cache, machine)
