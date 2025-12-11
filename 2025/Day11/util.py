@@ -27,18 +27,9 @@ def pathsToOut(circuit, cache, machine):
     
     return cache[machine]
 
-def pathsToOut2(circuit, cache, machine):
-    if machine not in cache:
-        cache[machine] = []
-
-        outputs = circuit[machine]
-
-        for output in outputs:
-            pathsFromOutput = deepcopy(pathsToOut2(circuit, cache, output))
-
-            for path in pathsFromOutput:
-                path.add(output)
-            
-            cache[machine].extend(pathsFromOutput)
+def pathsToTarget(circuit, machine, target):
+    cache = {}
+    cache["out"] = 0
+    cache[target] = 1
     
-    return cache[machine]
+    return pathsToOut(circuit, cache, machine)

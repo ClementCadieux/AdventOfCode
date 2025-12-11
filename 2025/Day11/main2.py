@@ -1,4 +1,4 @@
-from util import readFile, pathsToOut2
+from util import readFile, pathsToTarget
 import sys
 
 if __name__ == "__main__":
@@ -9,14 +9,13 @@ if __name__ == "__main__":
 
     cache = {}
 
-    cache["out"] = [set()]
+    fromSvrToFFT = pathsToTarget(circuit, "svr", "fft")
+    fromSvrToDAC = pathsToTarget(circuit, "svr", "dac")
+    fromFFTToDAC = pathsToTarget(circuit, "fft", "dac")
+    fromDACToFFT = pathsToTarget(circuit, "dac", "fft")
+    fromFFTToOut = pathsToTarget(circuit, "fft", "out")
+    fromDACToOut = pathsToTarget(circuit, "dac", "out")
 
-    pathsFromSvr = pathsToOut2(circuit, cache, "svr")
-
-    total = 0
-
-    for path in pathsFromSvr:
-        if "fft" in path and "dac" in path:
-            total += 1
+    total = (fromSvrToFFT + fromFFTToDAC + fromDACToOut)
 
     print(total)
