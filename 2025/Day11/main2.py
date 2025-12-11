@@ -1,4 +1,4 @@
-from util import readFile, pathsToOut
+from util import readFile, pathsToOut2
 import sys
 
 if __name__ == "__main__":
@@ -7,3 +7,16 @@ if __name__ == "__main__":
 
     circuit = readFile(filePath)
 
+    cache = {}
+
+    cache["out"] = [set()]
+
+    pathsFromSvr = pathsToOut2(circuit, cache, "svr")
+
+    total = 0
+
+    for path in pathsFromSvr:
+        if "fft" in path and "dac" in path:
+            total += 1
+
+    print(total)
