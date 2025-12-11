@@ -1,4 +1,4 @@
-from util import readFile, processJoltage, sortButtons, circuitFrequency
+from util import readFile
 import sys
 
 if __name__ == "__main__":
@@ -9,16 +9,8 @@ if __name__ == "__main__":
     total = 0
 
     for machine in lines:
-        currState = tuple(machine[2])
+        targetState = machine[2]
 
         buttons = machine[1]
-
-        frequency = circuitFrequency(buttons)
-
-        buttons = sortButtons(buttons, frequency)
-
-        cache = {}
-
-        total += processJoltage(currState, buttons, cache, 0)
 
     print(total)
