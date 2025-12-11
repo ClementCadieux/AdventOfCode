@@ -23,28 +23,4 @@ def readFile(filePath):
         resultDistance[city1] = city1Distances
         resultDistance[city2] = city2Distances
 
-    minDistanceCity = ""
-    minDistance = 1000
-
-    for city in resultDistance:
-        cityDistances = resultDistance[city]
-
-        sortedDistances = sorted(cityDistances, key=lambda x : x[1])
-
-        localMinDistance = sortedDistances[0][1]
-
-        if localMinDistance < minDistance:
-            minDistance = localMinDistance
-            minDistanceCity = city
-        elif localMinDistance == minDistance:
-            secondDistanceCity = resultDistance[minDistanceCity][1][1]
-            secondDistanceCurrent = sortedDistances[1][1]
-
-            if secondDistanceCurrent > secondDistanceCity:
-                minDistance = localMinDistance
-                minDistanceCity = city
-
-
-        resultDistance[city] = sortedDistances
-
-    return resultDistance, minDistanceCity
+    return resultDistance
