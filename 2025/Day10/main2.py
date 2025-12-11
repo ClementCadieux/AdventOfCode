@@ -1,4 +1,4 @@
-from util import readFile
+from util import readFile, processJoltage
 import sys
 
 if __name__ == "__main__":
@@ -9,8 +9,11 @@ if __name__ == "__main__":
     total = 0
 
     for machine in lines:
-        targetState = machine[2]
+        print(machine)
+        joltage = machine[2]
 
         buttons = machine[1]
+
+        total += processJoltage(buttons, joltage)
 
     print(total)

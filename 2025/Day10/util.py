@@ -1,5 +1,7 @@
 import sys
-import math
+from itertools import combinations
+from scipy.optimize import linprog
+import numpy as np
 
 def readFile(filePath):
     file = open(filePath, 'r')
@@ -45,3 +47,13 @@ def processState(currState, targetState, buttons, currButtonIdx):
     buttonsWithoutNext = processState(currState, targetState, buttons, currButtonIdx + 1)
 
     return min(buttonsWithNext, buttonsWithoutNext)
+
+def processJoltage(buttons, joltage):
+    A = np.array([[int(i in button) for i in range(len(joltage))]
+                         for button in buttons]).transpose()
+    b = np.array(joltage)
+    c = [1 for _ in range(len(buttons))]
+
+    
+    return linprog(c=c, A_eq=A, b_eq=b, integrality=1)
+
