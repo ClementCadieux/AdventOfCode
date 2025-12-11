@@ -9,7 +9,6 @@ if __name__ == "__main__":
     total = 0
 
     for machine in lines:
-        print(machine)
         joltage = machine[2]
 
         buttons = machine[1]

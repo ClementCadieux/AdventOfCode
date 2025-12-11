@@ -1,5 +1,4 @@
 import sys
-from itertools import combinations
 from scipy.optimize import linprog
 import numpy as np
 
@@ -55,5 +54,5 @@ def processJoltage(buttons, joltage):
     c = [1 for _ in range(len(buttons))]
 
     
-    return linprog(c=c, A_eq=A, b_eq=b, integrality=1)
+    return int(linprog(c=c, A_eq=A, b_eq=b, integrality=1).fun)
 
