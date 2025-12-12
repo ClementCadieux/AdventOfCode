@@ -1,4 +1,4 @@
-from util import readFile
+from util import readFile, presentAreas, validate
 import sys
 
 if __name__ == "__main__":
@@ -7,5 +7,7 @@ if __name__ == "__main__":
     filePath = "2025\\Day12\\test.txt" if len(args) < 2 else args[1]
 
     presents, regions = readFile(filePath)
+
+    presentAreaList = presentAreas(presents)
 
     count = 0

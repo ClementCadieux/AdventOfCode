@@ -1,3 +1,46 @@
+def presentAreas(presents):
+    areas = []
+
+    for present in presents:
+        area = 0
+
+        for line in present:
+            for char in line:
+                if char == "#":
+                    area += 1
+
+        areas.append(area)
+
+    return areas
+
+def validate(region, presents, presentAreas):
+    size = region[0]
+    area = size[0]*size[1]
+
+    pList = region[1]
+
+    #Quick check 1: if all presents can fit as 3x3
+    maximumSize = 0
+
+    maximumSize += sum(pList)*9
+
+    if maximumSize <= area:
+        return True
+    
+    #Quick check 2: if total area of "#" in presents is too large
+    totalArea = 0
+
+    for i in range(len(pList)):
+        totalArea += pList[i]*presentAreas[i]
+
+    if totalArea > area:
+        return False
+
+    #Long check
+    
+
+    return True
+
 def readFile(filePath):
     file = open(filePath, 'r')
 
