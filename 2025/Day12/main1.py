@@ -6,6 +6,6 @@ if __name__ == "__main__":
 
     filePath = "2025\\Day12\\test.txt" if len(args) < 2 else args[1]
 
-    presents = readFile(filePath)
+    presents, regions = readFile(filePath)
 
-    print(presents)
+    print(regions)

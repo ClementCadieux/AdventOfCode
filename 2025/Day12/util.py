@@ -20,4 +20,19 @@ def readFile(filePath):
 
         presents.append(present)
 
-    return presents
+    regions = lines[linesIdx:]
+
+    splitRegions = [[x.strip() for x in region.split(":")] for region in regions]
+
+    regionDict = []
+
+    for region in splitRegions:
+        key = region[0]
+        vals = region[1]
+
+        splitKey = tuple([int(val) for val in key.split("x")])
+        splitVals = [int(val) for val in vals.split(" ")]
+
+        regionDict.append([splitKey, splitVals])
+
+    return presents, regionDict
