@@ -37,7 +37,7 @@ def validate(region, presents, presentAreas):
         return False
 
     #Long check
-
+    #don't need it lol
 
     return False
 
