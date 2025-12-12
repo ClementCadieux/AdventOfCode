@@ -37,9 +37,9 @@ def validate(region, presents, presentAreas):
         return False
 
     #Long check
-    
 
-    return True
+
+    return False
 
 def readFile(filePath):
     file = open(filePath, 'r')

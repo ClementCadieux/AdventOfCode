@@ -11,3 +11,10 @@ if __name__ == "__main__":
     presentAreaList = presentAreas(presents)
 
     count = 0
+
+    for region in regions:
+        if validate(region, presents, presentAreaList):
+            count += 1
+
+
+    print(count)
