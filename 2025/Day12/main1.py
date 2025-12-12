@@ -18,8 +18,7 @@ if __name__ == "__main__":
 
         expectedSize = 0
 
-        for val in pList:
-            expectedSize += val*9
+        expectedSize += sum(pList)*9
 
         if expectedSize <= area:
             count += 1
